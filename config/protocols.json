@@ -1,0 +1,248 @@
+{
+  "$comment": "Protocol registry for BTCFi Risk Layer v0.1. Contract IDs verified against the Hiro Stacks API and each protocol's public docs on 2026-09-18. Static fields (audits, governance, docs) feed the Transparency component and must cite a public source. Activity is measured on direct calls to the listed contracts, so list the user-facing entry points.",
+  "protocols": [
+    {
+      "slug": "zest",
+      "name": "Zest Protocol",
+      "category": "Lending",
+      "description": "Bitcoin-backed lending market on Stacks. Users supply sBTC, STX and stablecoins and borrow against them.",
+      "website": "https://www.zestprotocol.com/",
+      "docs": "https://docs.zestprotocol.com/",
+      "github": "https://github.com/Zest-Protocol",
+      "llamaSlug": "zest-v2",
+      "hasCollateral": true,
+      "assets": [
+        "sBTC",
+        "STX",
+        "stSTX",
+        "USDh",
+        "USDCx",
+        "stSTXbtc"
+      ],
+      "contracts": [
+        {
+          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v2-1-8",
+          "role": "User entry point (supply / withdraw / borrow / repay / liquidation-call)"
+        },
+        {
+          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-borrow-v2-1",
+          "role": "Pool borrow core"
+        },
+        {
+          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-0-reserve-v2-0",
+          "role": "Reserve state"
+        }
+      ],
+      "audits": [
+        {
+          "name": "Audit reports (Zest docs)",
+          "url": "https://docs.zestprotocol.com/",
+          "source": "DefiLlama lists 2 audits"
+        },
+        {
+          "name": "Second audit (Zest docs)",
+          "url": "https://docs.zestprotocol.com/",
+          "source": "DefiLlama lists 2 audits"
+        }
+      ],
+      "governance": "governance-contract",
+      "bugBounty": null,
+      "governanceNote": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.zest-governance observed on-chain"
+    },
+    {
+      "slug": "stackingdao",
+      "name": "StackingDAO",
+      "category": "Liquid Stacking",
+      "description": "Liquid stacking protocol. Users deposit STX and receive stSTX, which accrues Bitcoin stacking yield.",
+      "website": "https://app.stackingdao.com",
+      "docs": "https://docs.stackingdao.com/",
+      "github": "https://github.com/StackingDAO",
+      "llamaSlug": "stackingdao",
+      "hasCollateral": false,
+      "assets": [
+        "STX",
+        "stSTX",
+        "sBTC",
+        "stSTXbtc"
+      ],
+      "contracts": [
+        {
+          "id": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-stx-v2",
+          "role": "stSTX core (deposit / withdraw)"
+        },
+        {
+          "id": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-ststxbtc-v2",
+          "role": "stSTXbtc core"
+        },
+        {
+          "id": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-stbtc-v1",
+          "role": "stBTC core"
+        },
+        {
+          "id": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.ststx-token",
+          "role": "stSTX token"
+        }
+      ],
+      "audits": [
+        {
+          "name": "Audit reports (repo)",
+          "url": "https://github.com/StackingDAO/app",
+          "source": "DefiLlama lists 2 audits"
+        },
+        {
+          "name": "Second audit (repo)",
+          "url": "https://github.com/StackingDAO/app",
+          "source": "DefiLlama lists 2 audits"
+        }
+      ],
+      "governance": "governance-contract",
+      "bugBounty": null,
+      "governanceNote": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.dao-multisig observed on-chain (propose/execute)"
+    },
+    {
+      "slug": "granite",
+      "name": "Granite",
+      "category": "Lending",
+      "description": "Bitcoin-collateralised borrowing. Borrow stablecoins against sBTC without rehypothecation.",
+      "website": "https://granite.world/",
+      "docs": "https://docs.granite.world/",
+      "github": "https://github.com/GraniteProtocol/core-v1",
+      "llamaSlug": "granite",
+      "hasCollateral": true,
+      "assets": [
+        "sBTC",
+        "aeUSDC",
+        "USDCx"
+      ],
+      "contracts": [
+        {
+          "id": "SPSX722NK9V3A8D3CVQT0CDY4EBQ3E9FSDDE61FT.borrower-v1",
+          "role": "Borrower (USDCx market v2)"
+        },
+        {
+          "id": "SPSX722NK9V3A8D3CVQT0CDY4EBQ3E9FSDDE61FT.liquidity-provider-v1",
+          "role": "Liquidity provider (USDCx market v2)"
+        },
+        {
+          "id": "SP3M2BYF7RGF8WKW5FVDNJ6WR8D7AR9BHDXAKPXZE.borrower-v1",
+          "role": "Borrower (USDCx market v1)"
+        },
+        {
+          "id": "SP26NGV9AFZBX7XBDBS2C7EC7FCPSAV9PKREQNMVS.borrower-v1",
+          "role": "Borrower (aeUSDC market)"
+        },
+        {
+          "id": "SP26NGV9AFZBX7XBDBS2C7EC7FCPSAV9PKREQNMVS.liquidity-provider-v1",
+          "role": "Liquidity provider (aeUSDC market)"
+        }
+      ],
+      "audits": [
+        {
+          "name": "Audit reports (repo)",
+          "url": "https://github.com/GraniteProtocol/core-v1/tree/master/audits",
+          "source": "DefiLlama lists 2 audits"
+        },
+        {
+          "name": "Second audit (repo)",
+          "url": "https://github.com/GraniteProtocol/core-v1/tree/master/audits",
+          "source": "DefiLlama lists 2 audits"
+        }
+      ],
+      "governance": "governance-contract",
+      "bugBounty": null,
+      "governanceNote": "governance-v1 / meta-governance-v1 contracts per Granite docs and deployment plans (github.com/GraniteProtocol/core-v1/deployments)"
+    },
+    {
+      "slug": "bitflow",
+      "name": "Bitflow",
+      "category": "DEX / AMM",
+      "description": "Decentralised exchange with StableSwap pools for correlated assets (STX/stSTX, USDA/aeUSDC, BTC pairs).",
+      "website": "https://www.bitflow.finance/",
+      "docs": "https://docs.bitflow.finance/",
+      "github": "https://github.com/BitflowFinance",
+      "llamaSlug": "bitflow",
+      "hasCollateral": false,
+      "assets": [
+        "STX",
+        "stSTX",
+        "aeUSDC",
+        "USDh",
+        "sBTC",
+        "BTC"
+      ],
+      "contracts": [
+        {
+          "id": "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-stx-ststx-v-1-2",
+          "role": "StableSwap STX/stSTX"
+        },
+        {
+          "id": "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-4",
+          "role": "StableSwap USDA/aeUSDC"
+        },
+        {
+          "id": "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-aeusdc-susdt-v-1-2",
+          "role": "StableSwap aeUSDC/sUSDT"
+        }
+      ],
+      "audits": [
+        {
+          "name": "Audit reports (docs)",
+          "url": "https://docs.bitflow.finance/bitflow-documentation/resources/audits",
+          "year": 2024
+        },
+        {
+          "name": "Second audit (docs)",
+          "url": "https://docs.bitflow.finance/bitflow-documentation/resources/audits",
+          "year": 2024
+        }
+      ],
+      "governance": "unknown",
+      "bugBounty": null,
+      "governanceNote": "Not verified in v0.1"
+    },
+    {
+      "slug": "alex",
+      "name": "ALEX",
+      "category": "DEX / AMM",
+      "description": "Automated market maker and DeFi hub on Stacks (AMM v2 pools, launchpad, orderbook).",
+      "website": "https://alexlab.co/",
+      "docs": "https://docs.alexgo.io/",
+      "github": "https://github.com/alexgo-io",
+      "llamaSlug": "alex",
+      "hasCollateral": false,
+      "assets": [
+        "ALEX",
+        "STX",
+        "sBTC",
+        "stSTX",
+        "USDh",
+        "wSTX"
+      ],
+      "contracts": [
+        {
+          "id": "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-pool-v2-01",
+          "role": "AMM v2 pool"
+        },
+        {
+          "id": "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-vault-v2-01",
+          "role": "AMM v2 vault"
+        }
+      ],
+      "audits": [
+        {
+          "name": "Security (site)",
+          "url": "https://www.alexgo.io/#Security",
+          "year": 2023
+        },
+        {
+          "name": "Second audit (site)",
+          "url": "https://www.alexgo.io/#Security",
+          "year": 2024
+        }
+      ],
+      "governance": "dao",
+      "bugBounty": null,
+      "governanceNote": "ALEX Lab DAO; governance token SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.age000-governance-token"
+    }
+  ]
+}

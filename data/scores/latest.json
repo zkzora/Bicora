@@ -1,0 +1,822 @@
+[
+  {
+    "slug": "zest",
+    "computedAt": "2026-09-18T06:40:44.654Z",
+    "methodologyVersion": "1.0.0",
+    "overall": 68,
+    "band": "Moderate",
+    "components": [
+      {
+        "key": "liquidity",
+        "label": "Liquidity Health",
+        "weight": 0.3,
+        "score": 72.5,
+        "factors": [
+          {
+            "key": "depth",
+            "label": "Liquidity depth (TVL)",
+            "value": "$65.4M",
+            "raw": 65385202.17838,
+            "score": 70.4,
+            "weight": 0.5
+          },
+          {
+            "key": "trend30d",
+            "label": "30-day TVL trend",
+            "value": "+9.8%",
+            "raw": 0.09828313065977927,
+            "score": 77.3,
+            "weight": 0.25
+          },
+          {
+            "key": "stability",
+            "label": "30-day stability (drawdown, volatility)",
+            "value": "dd 15.0% · vol 3.3%/d",
+            "raw": 0.15023949715001658,
+            "score": 71.8,
+            "weight": 0.25
+          }
+        ],
+        "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers."
+      },
+      {
+        "key": "activity",
+        "label": "Protocol Activity",
+        "weight": 0.25,
+        "score": 16.3,
+        "factors": [
+          {
+            "key": "tx7d",
+            "label": "Transactions, 7 days",
+            "value": "36",
+            "raw": 36,
+            "score": 18.9,
+            "weight": 0.4
+          },
+          {
+            "key": "senders7d",
+            "label": "Unique senders, 7 days",
+            "value": "15",
+            "raw": 15,
+            "score": 18.7,
+            "weight": 0.35
+          },
+          {
+            "key": "trend7d",
+            "label": "7-day transaction trend vs prior week",
+            "value": "-54.4%",
+            "raw": -0.5443037974683544,
+            "score": 14.6,
+            "weight": 0.15
+          },
+          {
+            "key": "success",
+            "label": "Transaction success rate",
+            "value": "66.7%",
+            "raw": 0.6666666666666666,
+            "score": 0,
+            "weight": 0.1
+          }
+        ]
+      },
+      {
+        "key": "collateral",
+        "label": "Collateral Health",
+        "weight": 0.25,
+        "score": 93.9,
+        "factors": [
+          {
+            "key": "utilization",
+            "label": "Utilisation (borrowed / supplied)",
+            "value": "17.2%",
+            "raw": 0.17199261453642614,
+            "score": 100,
+            "weight": 0.7
+          },
+          {
+            "key": "utilTrend7d",
+            "label": "Utilisation change, 7 days",
+            "value": "+0.1 pts",
+            "raw": 0.0009976331814168515,
+            "score": 79.6,
+            "weight": 0.3
+          }
+        ]
+      },
+      {
+        "key": "transparency",
+        "label": "Security & Transparency",
+        "weight": 0.2,
+        "score": 93.7,
+        "factors": [
+          {
+            "key": "source",
+            "label": "Contract source verifiable on-chain",
+            "value": "3/3 contracts",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.2
+          },
+          {
+            "key": "audits",
+            "label": "Public audits listed",
+            "value": "2",
+            "raw": 2,
+            "score": 100,
+            "weight": 0.25
+          },
+          {
+            "key": "github",
+            "label": "Public source repository",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "docs",
+            "label": "Public documentation",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "age",
+            "label": "Oldest tracked contract age",
+            "value": "21 months",
+            "raw": 21.03312400951173,
+            "score": 91.3,
+            "weight": 0.15
+          },
+          {
+            "key": "governance",
+            "label": "Governance / upgrade control",
+            "value": "governance-contract",
+            "raw": null,
+            "note": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.zest-governance observed on-chain",
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "bounty",
+            "label": "Bug bounty programme",
+            "value": "no",
+            "raw": 0,
+            "score": 0,
+            "weight": 0.05
+          }
+        ]
+      }
+    ],
+    "effectiveWeights": {
+      "liquidity": 30,
+      "activity": 25,
+      "collateral": 25,
+      "transparency": 20
+    }
+  },
+  {
+    "slug": "stackingdao",
+    "computedAt": "2026-09-18T06:40:44.654Z",
+    "methodologyVersion": "1.0.0",
+    "overall": 65,
+    "band": "Moderate",
+    "components": [
+      {
+        "key": "liquidity",
+        "label": "Liquidity Health",
+        "weight": 0.3,
+        "score": 63.9,
+        "factors": [
+          {
+            "key": "depth",
+            "label": "Liquidity depth (TVL)",
+            "value": "$33.4M",
+            "raw": 33393559.36006,
+            "score": 63.1,
+            "weight": 0.5
+          },
+          {
+            "key": "trend30d",
+            "label": "30-day TVL trend",
+            "value": "+204.9%",
+            "raw": 2.0491572713562984,
+            "score": 100,
+            "weight": 0.25
+          },
+          {
+            "key": "stability",
+            "label": "30-day stability (drawdown, volatility)",
+            "value": "dd 23.2% · vol 41.1%/d",
+            "raw": 0.23216244874529032,
+            "score": 29.5,
+            "weight": 0.25
+          }
+        ],
+        "note": "32 daily point(s) below 5% of the 90-day median were excluded as adapter outliers."
+      },
+      {
+        "key": "activity",
+        "label": "Protocol Activity",
+        "weight": 0.25,
+        "score": 43.2,
+        "factors": [
+          {
+            "key": "tx7d",
+            "label": "Transactions, 7 days",
+            "value": "113",
+            "raw": 113,
+            "score": 35.2,
+            "weight": 0.4
+          },
+          {
+            "key": "senders7d",
+            "label": "Unique senders, 7 days",
+            "value": "82",
+            "raw": 82,
+            "score": 45.2,
+            "weight": 0.35
+          },
+          {
+            "key": "trend7d",
+            "label": "7-day transaction trend vs prior week",
+            "value": "-28.9%",
+            "raw": -0.289308176100629,
+            "score": 35.9,
+            "weight": 0.15
+          },
+          {
+            "key": "success",
+            "label": "Transaction success rate",
+            "value": "94.7%",
+            "raw": 0.9469026548672567,
+            "score": 78.8,
+            "weight": 0.1
+          }
+        ]
+      },
+      {
+        "key": "collateral",
+        "label": "Collateral Health",
+        "weight": 0.25,
+        "score": null,
+        "factors": [],
+        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
+      },
+      {
+        "key": "transparency",
+        "label": "Security & Transparency",
+        "weight": 0.2,
+        "score": 95,
+        "factors": [
+          {
+            "key": "source",
+            "label": "Contract source verifiable on-chain",
+            "value": "4/4 contracts",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.2
+          },
+          {
+            "key": "audits",
+            "label": "Public audits listed",
+            "value": "2",
+            "raw": 2,
+            "score": 100,
+            "weight": 0.25
+          },
+          {
+            "key": "github",
+            "label": "Public source repository",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "docs",
+            "label": "Public documentation",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "age",
+            "label": "Oldest tracked contract age",
+            "value": "33 months",
+            "raw": 33.09775213534822,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "governance",
+            "label": "Governance / upgrade control",
+            "value": "governance-contract",
+            "raw": null,
+            "note": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.dao-multisig observed on-chain (propose/execute)",
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "bounty",
+            "label": "Bug bounty programme",
+            "value": "no",
+            "raw": 0,
+            "score": 0,
+            "weight": 0.05
+          }
+        ]
+      }
+    ],
+    "effectiveWeights": {
+      "liquidity": 40,
+      "activity": 33.33,
+      "collateral": 0,
+      "transparency": 26.669999999999998
+    }
+  },
+  {
+    "slug": "granite",
+    "computedAt": "2026-09-18T06:40:44.654Z",
+    "methodologyVersion": "1.0.0",
+    "overall": 50,
+    "band": "Elevated",
+    "components": [
+      {
+        "key": "liquidity",
+        "label": "Liquidity Health",
+        "weight": 0.3,
+        "score": 53,
+        "factors": [
+          {
+            "key": "depth",
+            "label": "Liquidity depth (TVL)",
+            "value": "$6.9M",
+            "raw": 6896147.55086,
+            "score": 46,
+            "weight": 0.5
+          },
+          {
+            "key": "trend30d",
+            "label": "30-day TVL trend",
+            "value": "-8.3%",
+            "raw": -0.08341666263144704,
+            "score": 50.4,
+            "weight": 0.25
+          },
+          {
+            "key": "stability",
+            "label": "30-day stability (drawdown, volatility)",
+            "value": "dd 19.0% · vol 2.5%/d",
+            "raw": 0.18953461391701584,
+            "score": 69.4,
+            "weight": 0.25
+          }
+        ]
+      },
+      {
+        "key": "activity",
+        "label": "Protocol Activity",
+        "weight": 0.25,
+        "score": 13.4,
+        "factors": [
+          {
+            "key": "tx7d",
+            "label": "Transactions, 7 days",
+            "value": "9",
+            "raw": 9,
+            "score": 0,
+            "weight": 0.4
+          },
+          {
+            "key": "senders7d",
+            "label": "Unique senders, 7 days",
+            "value": "6",
+            "raw": 6,
+            "score": 5.4,
+            "weight": 0.35
+          },
+          {
+            "key": "trend7d",
+            "label": "7-day transaction trend vs prior week",
+            "value": "-71.0%",
+            "raw": -0.7096774193548387,
+            "score": 10,
+            "weight": 0.15
+          },
+          {
+            "key": "success",
+            "label": "Transaction success rate",
+            "value": "100.0%",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.1
+          }
+        ]
+      },
+      {
+        "key": "collateral",
+        "label": "Collateral Health",
+        "weight": 0.25,
+        "score": null,
+        "factors": [],
+        "note": "No borrowed-value data available from the adapter. Weight redistributed."
+      },
+      {
+        "key": "transparency",
+        "label": "Security & Transparency",
+        "weight": 0.2,
+        "score": 90.2,
+        "factors": [
+          {
+            "key": "source",
+            "label": "Contract source verifiable on-chain",
+            "value": "5/5 contracts",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.2
+          },
+          {
+            "key": "audits",
+            "label": "Public audits listed",
+            "value": "2",
+            "raw": 2,
+            "score": 100,
+            "weight": 0.25
+          },
+          {
+            "key": "github",
+            "label": "Public source repository",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "docs",
+            "label": "Public documentation",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "age",
+            "label": "Oldest tracked contract age",
+            "value": "13 months",
+            "raw": 13.00794812122816,
+            "score": 67.9,
+            "weight": 0.15
+          },
+          {
+            "key": "governance",
+            "label": "Governance / upgrade control",
+            "value": "governance-contract",
+            "raw": null,
+            "note": "governance-v1 / meta-governance-v1 contracts per Granite docs and deployment plans (github.com/GraniteProtocol/core-v1/deployments)",
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "bounty",
+            "label": "Bug bounty programme",
+            "value": "no",
+            "raw": 0,
+            "score": 0,
+            "weight": 0.05
+          }
+        ]
+      }
+    ],
+    "effectiveWeights": {
+      "liquidity": 40,
+      "activity": 33.33,
+      "collateral": 0,
+      "transparency": 26.669999999999998
+    }
+  },
+  {
+    "slug": "bitflow",
+    "computedAt": "2026-09-18T06:40:44.654Z",
+    "methodologyVersion": "1.0.0",
+    "overall": 57,
+    "band": "Elevated",
+    "components": [
+      {
+        "key": "liquidity",
+        "label": "Liquidity Health",
+        "weight": 0.3,
+        "score": 49,
+        "factors": [
+          {
+            "key": "depth",
+            "label": "Liquidity depth (TVL)",
+            "value": "$3.0M",
+            "raw": 2994522.73324,
+            "score": 36.9,
+            "weight": 0.5
+          },
+          {
+            "key": "trend30d",
+            "label": "30-day TVL trend",
+            "value": "+15.1%",
+            "raw": 0.15141755872108068,
+            "score": 83.9,
+            "weight": 0.25
+          },
+          {
+            "key": "stability",
+            "label": "30-day stability (drawdown, volatility)",
+            "value": "dd 28.5% · vol 8.5%/d",
+            "raw": 0.2853904087919034,
+            "score": 38.2,
+            "weight": 0.25
+          }
+        ]
+      },
+      {
+        "key": "activity",
+        "label": "Protocol Activity",
+        "weight": 0.25,
+        "score": 44.3,
+        "factors": [
+          {
+            "key": "tx7d",
+            "label": "Transactions, 7 days",
+            "value": "272",
+            "raw": 272,
+            "score": 47.9,
+            "weight": 0.4
+          },
+          {
+            "key": "senders7d",
+            "label": "Unique senders, 7 days",
+            "value": "17",
+            "raw": 17,
+            "score": 20.6,
+            "weight": 0.35
+          },
+          {
+            "key": "trend7d",
+            "label": "7-day transaction trend vs prior week",
+            "value": "-8.4%",
+            "raw": -0.08417508417508412,
+            "score": 53,
+            "weight": 0.15
+          },
+          {
+            "key": "success",
+            "label": "Transaction success rate",
+            "value": "100.0%",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.1
+          }
+        ]
+      },
+      {
+        "key": "collateral",
+        "label": "Collateral Health",
+        "weight": 0.25,
+        "score": null,
+        "factors": [],
+        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
+      },
+      {
+        "key": "transparency",
+        "label": "Security & Transparency",
+        "weight": 0.2,
+        "score": 85,
+        "factors": [
+          {
+            "key": "source",
+            "label": "Contract source verifiable on-chain",
+            "value": "3/3 contracts",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.2
+          },
+          {
+            "key": "audits",
+            "label": "Public audits listed",
+            "value": "2",
+            "raw": 2,
+            "score": 100,
+            "weight": 0.25
+          },
+          {
+            "key": "github",
+            "label": "Public source repository",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "docs",
+            "label": "Public documentation",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "age",
+            "label": "Oldest tracked contract age",
+            "value": "32 months",
+            "raw": 32.12863598130202,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "governance",
+            "label": "Governance / upgrade control",
+            "value": "unknown",
+            "raw": null,
+            "note": "Not verified in v0.1",
+            "score": 0,
+            "weight": 0.1
+          },
+          {
+            "key": "bounty",
+            "label": "Bug bounty programme",
+            "value": "no",
+            "raw": 0,
+            "score": 0,
+            "weight": 0.05
+          }
+        ]
+      }
+    ],
+    "effectiveWeights": {
+      "liquidity": 40,
+      "activity": 33.33,
+      "collateral": 0,
+      "transparency": 26.669999999999998
+    }
+  },
+  {
+    "slug": "alex",
+    "computedAt": "2026-09-18T06:40:44.654Z",
+    "methodologyVersion": "1.0.0",
+    "overall": 71,
+    "band": "Moderate",
+    "components": [
+      {
+        "key": "liquidity",
+        "label": "Liquidity Health",
+        "weight": 0.3,
+        "score": 53.3,
+        "factors": [
+          {
+            "key": "depth",
+            "label": "Liquidity depth (TVL)",
+            "value": "$1.1M",
+            "raw": 1120027.85422,
+            "score": 26.2,
+            "weight": 0.5
+          },
+          {
+            "key": "trend30d",
+            "label": "30-day TVL trend",
+            "value": "+60.0%",
+            "raw": 0.599731272140373,
+            "score": 100,
+            "weight": 0.25
+          },
+          {
+            "key": "stability",
+            "label": "30-day stability (drawdown, volatility)",
+            "value": "dd 8.7% · vol 9.9%/d",
+            "raw": 0.08744227967289354,
+            "score": 60.8,
+            "weight": 0.25
+          }
+        ]
+      },
+      {
+        "key": "activity",
+        "label": "Protocol Activity",
+        "weight": 0.25,
+        "score": 71.7,
+        "factors": [
+          {
+            "key": "tx7d",
+            "label": "Transactions, 7 days",
+            "value": "2.897 (est.)",
+            "raw": 2897,
+            "score": 82.1,
+            "weight": 0.4,
+            "note": "Sampled: 5.8 of 7 days covered by the pagination cap."
+          },
+          {
+            "key": "senders7d",
+            "label": "Unique senders, 7 days",
+            "value": "124 (est.)",
+            "raw": 124,
+            "score": 51.7,
+            "weight": 0.35
+          },
+          {
+            "key": "trend7d",
+            "label": "7-day transaction trend vs prior week",
+            "value": "n/a",
+            "raw": null,
+            "score": null,
+            "weight": 0.15,
+            "note": "Prior week not covered in this run; factor excluded."
+          },
+          {
+            "key": "success",
+            "label": "Transaction success rate",
+            "value": "99.2%",
+            "raw": 0.9920833333333333,
+            "score": 100,
+            "weight": 0.1
+          }
+        ]
+      },
+      {
+        "key": "collateral",
+        "label": "Collateral Health",
+        "weight": 0.25,
+        "score": null,
+        "factors": [],
+        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
+      },
+      {
+        "key": "transparency",
+        "label": "Security & Transparency",
+        "weight": 0.2,
+        "score": 95,
+        "factors": [
+          {
+            "key": "source",
+            "label": "Contract source verifiable on-chain",
+            "value": "2/2 contracts",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.2
+          },
+          {
+            "key": "audits",
+            "label": "Public audits listed",
+            "value": "2",
+            "raw": 2,
+            "score": 100,
+            "weight": 0.25
+          },
+          {
+            "key": "github",
+            "label": "Public source repository",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "docs",
+            "label": "Public documentation",
+            "value": "yes",
+            "raw": 1,
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "age",
+            "label": "Oldest tracked contract age",
+            "value": "28 months",
+            "raw": 27.524853343857984,
+            "score": 100,
+            "weight": 0.15
+          },
+          {
+            "key": "governance",
+            "label": "Governance / upgrade control",
+            "value": "dao",
+            "raw": null,
+            "note": "ALEX Lab DAO; governance token SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.age000-governance-token",
+            "score": 100,
+            "weight": 0.1
+          },
+          {
+            "key": "bounty",
+            "label": "Bug bounty programme",
+            "value": "no",
+            "raw": 0,
+            "score": 0,
+            "weight": 0.05
+          }
+        ]
+      }
+    ],
+    "effectiveWeights": {
+      "liquidity": 40,
+      "activity": 33.33,
+      "collateral": 0,
+      "transparency": 26.669999999999998
+    }
+  }
+]
