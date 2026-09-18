@@ -8,7 +8,6 @@ const body = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500', '600'],
 export const metadata: Metadata = {
   title: { default: 'BTCFi Risk Layer', template: '%s · BTCFi Risk Layer' },
   description: 'Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.',
-  icons: { icon: '/btcfi-logo.png' },
 };
 
 // Runs before first paint so a saved theme never flashes the wrong colours.
