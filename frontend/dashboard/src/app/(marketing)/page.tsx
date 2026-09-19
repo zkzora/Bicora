@@ -18,7 +18,7 @@ export default async function HomePage() {
         <div className="hero-dots" />
         <div className="wrap hero-grid">
           <div className="hero-copy">
-            <h1>BTCFi Risk Intelligence Layer</h1>
+            <h1>Bicora Risk Intelligence Layer</h1>
             <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: '52ch', color: 'var(--color-neutral-700)' }}>
               Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.
             </p>
@@ -38,7 +38,7 @@ export default async function HomePage() {
               <span className="flame flame-c" />
               <span className="glow" />
             </div>
-            <Image className="float" src="/engine.png" alt="BTCFi risk engine: Stacks data flowing into a central risk engine and out to dashboards" width={1100} height={760} priority />
+            <Image className="float" src="/engine.png" alt="Bicora risk engine: Stacks data flowing into a central risk engine and out to dashboards" width={1100} height={760} priority />
           </div>
         </div>
       </section>

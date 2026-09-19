@@ -7,15 +7,15 @@ const body = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500', '600'],
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.btcfiintelligence.xyz'),
-  title: { default: 'BTCFi Risk Layer', template: '%s · BTCFi Risk Layer' },
+  title: { default: 'Bicora Risk Layer', template: '%s · Bicora Risk Layer' },
   description: 'Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.',
   openGraph: {
     type: 'website',
-    siteName: 'BTCFi Risk Layer',
+    siteName: 'Bicora Risk Layer',
     url: 'https://www.btcfiintelligence.xyz',
-    title: 'BTCFi Risk Layer',
+    title: 'Bicora Risk Layer',
     description: 'Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.',
-    images: [{ url: '/engine.png', width: 1100, height: 760, alt: 'BTCFi risk engine' }],
+    images: [{ url: '/engine.png', width: 1100, height: 760, alt: 'Bicora risk engine' }],
   },
   twitter: { card: 'summary_large_image' },
 };

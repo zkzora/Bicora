@@ -1,4 +1,4 @@
-// Shared domain types for the BTCFi Risk Layer pipeline.
+// Shared domain types for the Bicora Risk Layer pipeline.
 
 export type Governance = 'dao' | 'governance-contract' | 'multisig' | 'unknown';
 

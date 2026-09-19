@@ -1,5 +1,5 @@
 /**
- * BTCFi Risk Layer — public API (v1)
+ * Bicora Risk Layer — public API (v1)
  *
  *   GET /health
  *   GET /v1/snapshot                       full denormalised snapshot (what the dashboard renders)

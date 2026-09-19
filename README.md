@@ -1,4 +1,6 @@
-# BTCFi Risk Layer — v0.1 prototype
+# Bicora Risk Layer — v0.1 prototype
+
+Bicora (formerly BTCFi Risk Layer) — risk intelligence for Bitcoin DeFi on Stacks.
 
 **Live:** https://www.btcfiintelligence.xyz · API base (Phase 2): https://api.btcfiintelligence.xyz
 

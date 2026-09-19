@@ -1,5 +1,5 @@
 /**
- * BTCFi Risk Layer — Indexer
+ * Bicora Risk Layer — Indexer
  *
  * For every protocol in config/protocols.json:
  *   1. DefiLlama  -> TVL history (Stacks chain), borrowed history, token breakdown

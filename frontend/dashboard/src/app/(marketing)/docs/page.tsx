@@ -108,7 +108,7 @@ export default async function DocsPage() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8, minWidth: 0 }}>
         <div id="overview" className="endpoint">
           <span className="k">Documentation</span>
-          <h1 style={{ fontSize: 'clamp(28px,3.4vw,40px)', letterSpacing: '-0.03em' }}>BTCFi Risk Layer API v1</h1>
+          <h1 style={{ fontSize: 'clamp(28px,3.4vw,40px)', letterSpacing: '-0.03em' }}>Bicora Risk Layer API v1</h1>
           <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-neutral-700)', maxWidth: '64ch' }}>
             Read-only JSON over HTTPS. Every response is derived from the latest scoring snapshot (methodology v{snapshot.methodologyVersion}) and is refreshed on the indexer schedule (every 6 hours). No authentication is required in v0.1; responses are cacheable for 60 seconds. All monetary values are USD, all scores are 0–100 where higher means lower risk.
           </p>

@@ -78,12 +78,12 @@ export default function SiteFooter({ version, protocols }: Props) {
         ))}
       </div>
       <div className="wrap footer-bar">
-        <Image src="/btcfi-logo.png" alt="BTCFi" width={64} height={16} style={{ height: 16, width: 'auto' }} />
+        <Image src="/bicora-logo.png" alt="Bicora" width={64} height={16} style={{ height: 16, width: 'auto' }} />
         <span>Risk intelligence layer for Bitcoin DeFi on Stacks</span>
         <span className="footer-right">
           <span>Methodology v{version}</span>
           <span>Analytics, not financial advice</span>
-          <span>© {new Date().getFullYear()} BTCFi</span>
+          <span>© {new Date().getFullYear()} Bicora</span>
         </span>
       </div>
     </footer>

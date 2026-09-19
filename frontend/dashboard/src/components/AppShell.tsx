@@ -40,8 +40,8 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
   return (
     <div className="app">
       <aside className="app-side">
-        <Link href="/" className="brand" aria-label="BTCFi site">
-          <Image src="/btcfi-logo.png" alt="BTCFi" width={80} height={20} style={{ height: 20, width: 'auto' }} />
+        <Link href="/" className="brand" aria-label="Bicora site">
+          <Image src="/bicora-logo.png" alt="Bicora" width={80} height={20} style={{ height: 20, width: 'auto' }} />
           <span>Risk Layer</span>
         </Link>
         <div className="group">Dashboard</div>

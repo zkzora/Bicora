@@ -1,5 +1,5 @@
 /**
- * BTCFi Risk Layer — Scoring Engine
+ * Bicora Risk Layer — Scoring Engine
  *
  * Reads ProtocolRaw records from the store, computes risk scores (methodology v1.0.0),
  * detects risk events, and writes a denormalised Snapshot that the API and dashboard serve.

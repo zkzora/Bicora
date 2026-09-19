@@ -3,7 +3,7 @@ import AppShell from '@/components/AppShell';
 import DashboardTour from '@/components/DashboardTour';
 import { getSnapshot } from '@/lib/data';
 
-export const metadata: Metadata = { title: { default: 'Risk Dashboard', template: '%s · BTCFi Risk Dashboard' } };
+export const metadata: Metadata = { title: { default: 'Risk Dashboard', template: '%s · Bicora Risk Dashboard' } };
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { snapshot, source } = await getSnapshot();

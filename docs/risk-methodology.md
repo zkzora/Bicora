@@ -1,4 +1,4 @@
-# BTCFi Risk Layer — Risk Scoring Methodology
+# Bicora Risk Layer — Risk Scoring Methodology
 
 **Version 1.0.0 · September 2026 · applies to prototype v0.1**
 

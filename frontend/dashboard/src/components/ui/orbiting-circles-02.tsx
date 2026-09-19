@@ -6,7 +6,7 @@ import { Activity, Database, ShieldCheck } from 'lucide-react';
 import ParticleSphereAnimation from '@/components/ui/orbiting-circles-02-utils/particalsphear';
 
 /**
- * Orbiting protocol logos around the BTCFi particle globe.
+ * Orbiting protocol logos around the Bicora particle globe.
  * Ported from the Tailwind original to this project's token stylesheet (see .orb-* in globals.css).
  * Inner rings carry the tracked protocols (logos from /public/protocols); the outer ring carries the
  * three data layers the engine reads (indexer, activity, security) as lucide icons.
