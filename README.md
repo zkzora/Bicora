@@ -1,8 +1,7 @@
-# Bicora Risk Layer — v0.1 prototype
-
-Bicora (formerly BTCFi Risk Layer) — risk intelligence for Bitcoin DeFi on Stacks.
+# Bicora — risk intelligence for Bitcoin DeFi on Stacks (v0.1)
 
 **Live:** site https://bicora.xyz · dashboard https://app.bicora.xyz · API base (Phase 2): https://api.bicora.xyz
+**Repository:** https://github.com/zkzora/Bicora
 
 Risk intelligence infrastructure for Bitcoin DeFi on Stacks. v0.1 proves three things end to end on **live mainnet data**: Stacks DeFi data can be collected, turned into transparent risk indicators with a documented methodology, and published through a public dashboard and API.
 
@@ -27,6 +26,7 @@ Stacks data sources ──▶ Indexer ──▶ Store (PostgreSQL | files) ─�
 ## Quick start (no database needed)
 
 ```bash
+git clone https://github.com/zkzora/Bicora.git && cd Bicora
 npm install
 npm run pipeline      # 1) index live Stacks data  2) score it  -> data/snapshot.json + frontend snapshot
 npm run dashboard     # http://localhost:3000
