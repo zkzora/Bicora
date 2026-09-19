@@ -116,7 +116,7 @@ export default async function DocsPage() {
           <div className="grid-cells" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
             <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Base URL</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}>https://api.bicora.xyz</div></div>
             <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Dashboard</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href={dash('/')}>{APP_URL.replace(/^https?:\/\//, '')}</a></div></div>
-            <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Source</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href="https://github.com/zkzora/BTCFi-Risk-Layer" target="_blank" rel="noreferrer">github.com/zkzora/BTCFi-Risk-Layer ↗</a></div></div>
+            <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Source</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href="https://github.com/zkzora/Bicora" target="_blank" rel="noreferrer">github.com/zkzora/Bicora ↗</a></div></div>
           </div>
         </div>
 
@@ -173,7 +173,7 @@ if (p.band === 'High' || p.band === 'Elevated') {
 }`}</pre>
           <p style={{ fontSize: 13, color: 'var(--color-neutral-700)' }}>
             Source, methodology and the protocol registry live in the public repository at{' '}
-            <a href="https://github.com/zkzora/BTCFi-Risk-Layer" target="_blank" rel="noreferrer">github.com/zkzora/BTCFi-Risk-Layer</a>. Contributions that add a protocol must cite public sources for every transparency field.
+            <a href="https://github.com/zkzora/Bicora" target="_blank" rel="noreferrer">github.com/zkzora/Bicora</a>. Contributions that add a protocol must cite public sources for every transparency field.
           </p>
         </div>
       </div>
