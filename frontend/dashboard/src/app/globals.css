@@ -141,7 +141,7 @@ svg text { font-family: var(--font-body), ui-monospace, monospace; }
 
 /* kicker with the orange square */
 .k { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); font-weight: 600; }
-.k::before { content: ''; width: 8px; height: 8px; background: var(--color-accent); flex: none; }
+.k::before { display: none; }
 .k.k-muted { color: var(--color-muted); }
 .k.k-ink { color: var(--color-text); }
 .k.no-sq::before { display: none; }
@@ -174,7 +174,7 @@ svg text { font-family: var(--font-body), ui-monospace, monospace; }
 .tag-watch { background: var(--tag-mod-bg); color: var(--tag-mod-fg); }
 .tag-alert { background: var(--tag-high-bg); color: var(--tag-high-fg); }
 .tag-Medium { background: var(--tag-mod-bg); color: var(--tag-mod-fg); }
-.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+.dot { display: none; }
 .dot-Low { background: var(--status-low); }
 .dot-Moderate { background: var(--status-moderate); }
 .dot-Elevated { background: var(--status-elevated); }
@@ -307,9 +307,9 @@ svg text { font-family: var(--font-body), ui-monospace, monospace; }
 .footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .footer-col a { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); transition: color 120ms ease; }
 .footer-col a:hover { color: var(--color-accent-700); }
-.footer-bar { display: flex; align-items: center; gap: 16px 24px; flex-wrap: wrap; padding: 18px clamp(20px, 4vw, 48px) 28px; border-top: 1px solid var(--color-rule); font-size: 11.5px; color: var(--color-muted); }
-.footer-bar img { height: 16px; }
-.footer-right { margin-left: auto; display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-bar { display: flex; align-items: baseline; gap: 16px 24px; flex-wrap: wrap; padding: 18px clamp(20px, 4vw, 48px) 28px; border-top: 1px solid var(--color-rule); font-size: 11.5px; line-height: 1; color: var(--color-muted); }
+.footer-bar img { height: 16px; display: inline-block; vertical-align: baseline; }
+.footer-right { margin-left: auto; display: flex; gap: 20px; flex-wrap: wrap; align-items: baseline; }
 
 .hero { position: relative; overflow: hidden; background: radial-gradient(ellipse at 70% 35%, var(--hero-glow) 0%, var(--color-bg) 65%); border-bottom: 1px solid var(--color-rule); }
 .hero-dots { position: absolute; inset: 0; background-image: radial-gradient(var(--dots) 1px, transparent 1.2px); background-size: 22px 22px; mask-image: linear-gradient(180deg, #000 40%, transparent 100%); pointer-events: none; }
