@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { pctChange } from '@btcfi/shared';
 import type { ProtocolRaw, RiskEvent, RiskScore, ScorePoint, Severity } from '@btcfi/shared';
 import { pointDaysAgo } from './scoring.js';
+import { IMPACT, REASON } from './explain.js';
 
 const id = (parts: string[]) => createHash('sha1').update(parts.join('|')).digest('hex').slice(0, 16);
 const pct = (r: number) => `${r >= 0 ? '+' : '−'}${Math.abs(r * 100).toFixed(1)}%`;
@@ -15,7 +16,7 @@ export function detectEvents(raw: ProtocolRaw, score: RiskScore, previous: Score
   const day = ts.slice(0, 10);
   const out: RiskEvent[] = [];
   const push = (kind: RiskEvent['kind'], severity: Severity, message: string, delta: number | null, key: string) =>
-    out.push({ id: id([raw.slug, day, kind, key]), slug: raw.slug, ts, kind, severity, message, delta });
+    out.push({ id: id([raw.slug, day, kind, key]), slug: raw.slug, ts, kind, severity, message, delta, impact: IMPACT[severity], reason: REASON[kind] });
 
   // Score movement vs previous run (different day).
   if (previous && previous.date !== day) {

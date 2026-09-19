@@ -50,7 +50,7 @@ export default function LineChart({ series, height = 240, yDomain, formatKind = 
       const line = pts.map(([px, py], i) => `${i ? 'L' : 'M'}${px.toFixed(1)},${py.toFixed(1)}`).join(' ');
       const base = y(lo);
       const area = pts.length ? `${line} L${pts[pts.length - 1][0].toFixed(1)},${base} L${pts[0][0].toFixed(1)},${base} Z` : '';
-      return { ...s, pts, line, area, idx };
+      return { ...s, pts, line, areaPath: area, idx };
     });
     return { dates, x, y, ticks, paths };
   }, [series, height, yDomain]);
@@ -80,7 +80,7 @@ export default function LineChart({ series, height = 240, yDomain, formatKind = 
         ))}
         {paths.map((s) => (
           <g key={s.key}>
-            {s.area && <path d={s.area} fill={s.color} fillOpacity={0.12} />}
+            {s.area && <path d={s.areaPath} fill={s.color} fillOpacity={0.12} />}
             <path d={s.line} fill="none" stroke={s.color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
             {s.pts.length > 0 && (
               <circle cx={s.pts[s.pts.length - 1][0]} cy={s.pts[s.pts.length - 1][1]} r={4} fill="var(--color-bg)" stroke={s.color} strokeWidth={2} />

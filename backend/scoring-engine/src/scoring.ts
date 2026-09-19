@@ -4,6 +4,7 @@
  * All scores are 0–100 where HIGHER = LOWER RISK.
  */
 import { clamp, round1, pctChange, METHODOLOGY_VERSION } from '@btcfi/shared';
+import { explainComponent, explainFactor } from './explain.js';
 import type { Band, ComponentScore, Factor, ProtocolConfig, ProtocolRaw, RiskScore, TvlPoint } from '@btcfi/shared';
 
 export const WEIGHTS = { liquidity: 0.3, activity: 0.25, collateral: 0.25, transparency: 0.2 } as const;
@@ -282,6 +283,10 @@ export function scoreProtocol(cfg: ProtocolConfig, raw: ProtocolRaw, now = new D
     { key: 'transparency', label: 'Security & Transparency', weight: WEIGHTS.transparency, score: weightedMean(tra), factors: tra },
   ];
 
+  for (const c of components) {
+    for (const x of c.factors) x.explanation = explainFactor(c.key, x);
+    c.explanation = explainComponent(c);
+  }
   const avail = components.filter((c) => c.score != null);
   const totalW = avail.reduce((s, c) => s + c.weight, 0);
   const effectiveWeights: Record<string, number> = {};

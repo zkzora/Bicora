@@ -71,6 +71,7 @@ export interface Factor {
   score: number | null; // 0..100, null when not available
   weight: number; // within its component
   note?: string;
+  explanation?: string;
 }
 
 export interface ComponentScore {
@@ -80,6 +81,8 @@ export interface ComponentScore {
   score: number | null; // null = not applicable
   factors: Factor[];
   note?: string;
+  /** Rule-based prose answering "why this score?" (see scoring-engine/explain.ts). */
+  explanation?: string;
 }
 
 export type Band = 'Low' | 'Moderate' | 'Elevated' | 'High';
@@ -105,6 +108,8 @@ export interface RiskEvent {
   severity: Severity;
   message: string;
   delta: number | null;
+  impact?: 'Low' | 'Medium' | 'High';
+  reason?: string;
 }
 
 export interface ScorePoint {
@@ -160,6 +165,8 @@ export interface Snapshot {
     activeAddresses7d: number;
     tx7d: number;
     avgScore: number;
+    /** Bicora Risk Index: mean of tracked protocol scores, with movement from stored history. */
+    index: { score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; history: { date: string; score: number }[] };
     bandDistribution: Record<Band, number>;
     ecosystemTvlHistory: TvlPoint[];
   };

@@ -11,7 +11,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { createStore, loadRegistry, log, pctChange, REPO_ROOT, METHODOLOGY_VERSION } from '@btcfi/shared';
 import type { Band, RiskEvent, Snapshot, SnapshotProtocol, TvlPoint } from '@btcfi/shared';
-import { backfillLiquidity, cleanTvlHistory, pointDaysAgo, scoreProtocol } from './scoring.js';
+import { backfillLiquidity, band, cleanTvlHistory, pointDaysAgo, scoreProtocol } from './scoring.js';
 import { detectEvents } from './events.js';
 
 const info = log('scoring');
@@ -111,6 +111,24 @@ async function main() {
   const bandDistribution: Record<Band, number> = { Low: 0, Moderate: 0, Elevated: 0, High: 0 };
   for (const p of protocols) bandDistribution[p.score.band]++;
 
+  // Bicora Risk Index: mean of protocol scores per day, from each protocol's stored score history.
+  const byDate = new Map<string, number[]>();
+  for (const p of protocols) for (const pt of p.scoreHistory) byDate.set(pt.date, [...(byDate.get(pt.date) ?? []), pt.overall]);
+  const indexHistory = [...byDate.entries()]
+    .filter(([, v]) => v.length === protocols.length) // only days where every protocol was scored
+    .sort(([a], [b]) => (a < b ? -1 : 1))
+    .map(([date, v]) => ({ date, score: Math.round(v.reduce((s, x) => s + x, 0) / v.length) }));
+  const indexScore = Math.round(protocols.reduce((s, p) => s + p.score.overall, 0) / protocols.length);
+  const today = now.toISOString().slice(0, 10);
+  const indexAt = (daysAgo: number) => {
+    const target = new Date(now.getTime() - daysAgo * 864e5).toISOString().slice(0, 10);
+    const pts = indexHistory.filter((x) => x.date <= target);
+    return pts.length ? pts[pts.length - 1].score : null;
+  };
+  const previousIdx = indexHistory.filter((x) => x.date < today).at(-1)?.score ?? null;
+  const idx7 = indexAt(7);
+  const idx30 = indexAt(30);
+
   // Persist events from this run (deduplicated by id in the store) and gather the recent feed.
   await store.saveScores(scores);
   const known = new Set((await store.getEvents()).map((e) => e.id));
@@ -127,7 +145,15 @@ async function main() {
       totalTvlChange30d: pctChange(totalTvl, pointDaysAgo(complete, 30)?.tvlUsd),
       activeAddresses7d: protocols.reduce((s, p) => s + p.metrics.uniqueSenders7d, 0),
       tx7d: protocols.reduce((s, p) => s + p.metrics.tx7d, 0),
-      avgScore: Math.round(protocols.reduce((s, p) => s + p.score.overall, 0) / protocols.length),
+      avgScore: indexScore,
+      index: {
+        score: indexScore,
+        band: band(indexScore),
+        previous: previousIdx,
+        change7d: idx7 == null ? null : indexScore - idx7,
+        change30d: idx30 == null ? null : indexScore - idx30,
+        history: indexHistory.slice(-180),
+      },
       bandDistribution,
       ecosystemTvlHistory: complete.slice(-90),
     },

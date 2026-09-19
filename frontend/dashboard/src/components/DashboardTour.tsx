@@ -23,9 +23,14 @@ const STEPS: Step[] = [
     body: 'Overview summarises the ecosystem. Protocol Risk opens one protocol at a time with its full factor breakdown. Market Metrics tracks liquidity and activity; Alerts lists detected risk events.',
   },
   {
+    target: 'index',
+    title: 'Bicora Risk Index',
+    body: 'The current Bitcoin DeFi risk condition on Stacks: the mean score of all tracked protocols, its band, and how it moved. Scores run 0–100 and higher always means lower risk.',
+  },
+  {
     target: 'tiles',
-    title: 'Ecosystem at a glance',
-    body: 'Liquidity tracked, active addresses and the average risk score across all tracked protocols. Scores run 0–100 and higher always means lower risk.',
+    title: 'Market context',
+    body: 'Liquidity tracked, transaction volume, the spread of protocols across risk bands and average lending utilisation — the inputs behind the index.',
   },
   {
     target: 'components',

@@ -1,49 +1,53 @@
 [
   {
     "slug": "zest",
-    "computedAt": "2026-09-19T01:05:26.291Z",
+    "computedAt": "2026-09-19T03:54:37.351Z",
     "methodologyVersion": "1.0.0",
-    "overall": 70,
+    "overall": 69,
     "band": "Moderate",
     "components": [
       {
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 74.2,
+        "score": 72.3,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
-            "value": "$68.6M",
-            "raw": 68593040.31171,
+            "value": "$68.5M",
+            "raw": 68508582.53433,
             "score": 70.9,
-            "weight": 0.5
+            "weight": 0.5,
+            "explanation": "Deep liquidity: $68.5M locked places it among the largest pools on Stacks."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "+15.2%",
-            "raw": 0.15216557485735088,
-            "score": 84,
-            "weight": 0.25
+            "value": "+8.3%",
+            "raw": 0.08330405011710781,
+            "score": 75.4,
+            "weight": 0.25,
+            "explanation": "TVL was broadly flat over 30 days (+8.3%)."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 15.0% · vol 3.5%/d",
+            "value": "dd 15.0% · vol 3.3%/d",
             "raw": 0.15023949715001658,
-            "score": 71.1,
-            "weight": 0.25
+            "score": 71.8,
+            "weight": 0.25,
+            "explanation": "Moderate swings: 15% max drawdown in 30 days."
           }
         ],
-        "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers."
+        "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
+        "explanation": "Deep liquidity: $68.5M locked places it among the largest pools on Stacks. TVL was broadly flat over 30 days (+8.3%). Moderate swings: 15% max drawdown in 30 days."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 21.3,
+        "score": 21.4,
         "factors": [
           {
             "key": "tx7d",
@@ -51,7 +55,8 @@
             "value": "56",
             "raw": 56,
             "score": 25.2,
-            "weight": 0.4
+            "weight": 0.4,
+            "explanation": "Only 56 transactions in 7 days on the tracked entry points: low direct usage."
           },
           {
             "key": "senders7d",
@@ -59,15 +64,17 @@
             "value": "12",
             "raw": 12,
             "score": 15.3,
-            "weight": 0.35
+            "weight": 0.35,
+            "explanation": "12 distinct addresses interacted: activity is concentrated in few users."
           },
           {
             "key": "trend7d",
             "label": "7-day transaction trend vs prior week",
-            "value": "-25.3%",
-            "raw": -0.2533333333333333,
-            "score": 38.9,
-            "weight": 0.15
+            "value": "-24.3%",
+            "raw": -0.2432432432432432,
+            "score": 39.7,
+            "weight": 0.15,
+            "explanation": "Weekly transactions stable (−24.3%) versus the prior week."
           },
           {
             "key": "success",
@@ -75,9 +82,11 @@
             "value": "39.3%",
             "raw": 0.39285714285714285,
             "score": 0,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "61% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
           }
-        ]
+        ],
+        "explanation": "Only 56 transactions in 7 days on the tracked entry points: low direct usage. 12 distinct addresses interacted: activity is concentrated in few users. Weekly transactions stable (−24.3%) versus the prior week. 61% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
       },
       {
         "key": "collateral",
@@ -88,20 +97,23 @@
           {
             "key": "utilization",
             "label": "Utilisation (borrowed / supplied)",
-            "value": "17.1%",
-            "raw": 0.17081128064989587,
+            "value": "17.0%",
+            "raw": 0.17038281220111795,
             "score": 100,
-            "weight": 0.7
+            "weight": 0.7,
+            "explanation": "Utilisation of 17% leaves ample liquidity available for withdrawals."
           },
           {
             "key": "utilTrend7d",
             "label": "Utilisation change, 7 days",
             "value": "-0.0 pts",
-            "raw": -0.00018370070511342096,
-            "score": 80,
-            "weight": 0.3
+            "raw": -0.0003805520045981614,
+            "score": 80.1,
+            "weight": 0.3,
+            "explanation": "Utilisation is unchanged over 7 days."
           }
-        ]
+        ],
+        "explanation": "Utilisation of 17% leaves ample liquidity available for withdrawals. Utilisation is unchanged over 7 days."
       },
       {
         "key": "transparency",
@@ -115,7 +127,8 @@
             "value": "3/3 contracts",
             "raw": 1,
             "score": 100,
-            "weight": 0.2
+            "weight": 0.2,
+            "explanation": "All tracked contracts are found on-chain with readable Clarity source."
           },
           {
             "key": "audits",
@@ -123,7 +136,8 @@
             "value": "2",
             "raw": 2,
             "score": 100,
-            "weight": 0.25
+            "weight": 0.25,
+            "explanation": "2 public audits listed."
           },
           {
             "key": "github",
@@ -131,7 +145,8 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Source repository is public."
           },
           {
             "key": "docs",
@@ -139,15 +154,17 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Public documentation is available."
           },
           {
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "21 months",
-            "raw": 21.05832599725629,
+            "raw": 21.06218569544824,
             "score": 91.4,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Contracts have 21 months of production history."
           },
           {
             "key": "governance",
@@ -156,7 +173,8 @@
             "raw": null,
             "note": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.zest-governance observed on-chain",
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Upgrades are controlled by an on-chain governance contract or DAO."
           },
           {
             "key": "bounty",
@@ -164,9 +182,11 @@
             "value": "no",
             "raw": 0,
             "score": 0,
-            "weight": 0.05
+            "weight": 0.05,
+            "explanation": "No public bug bounty programme."
           }
-        ]
+        ],
+        "explanation": "Strong public information: contract source verifiable on-chain, public audits listed, public source repository. No public bug bounty programme."
       }
     ],
     "effectiveWeights": {
@@ -178,7 +198,7 @@
   },
   {
     "slug": "stackingdao",
-    "computedAt": "2026-09-19T01:05:26.291Z",
+    "computedAt": "2026-09-19T03:54:37.351Z",
     "methodologyVersion": "1.0.0",
     "overall": 66,
     "band": "Moderate",
@@ -187,40 +207,44 @@
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 64.3,
+        "score": 64.5,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
-            "value": "$35.9M",
-            "raw": 35926423.35615,
-            "score": 63.9,
-            "weight": 0.5
+            "value": "$35.6M",
+            "raw": 35571340.29227,
+            "score": 63.8,
+            "weight": 0.5,
+            "explanation": "Mid-sized liquidity ($35.6M): adequate for normal flows, thinner under stress."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "+228.0%",
-            "raw": 2.2804324279744197,
+            "value": "+224.8%",
+            "raw": 2.248009885217263,
             "score": 100,
-            "weight": 0.25
+            "weight": 0.25,
+            "explanation": "TVL grew +224.8% over 30 days, attracting capital."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 23.2% · vol 41.1%/d",
-            "raw": 0.23216244874529032,
-            "score": 29.5,
-            "weight": 0.25
+            "value": "dd 22.7% · vol 41.0%/d",
+            "raw": 0.2265403111619763,
+            "score": 30.3,
+            "weight": 0.25,
+            "explanation": "Moderate swings: 23% max drawdown in 30 days."
           }
         ],
-        "note": "32 daily point(s) below 5% of the 90-day median were excluded as adapter outliers."
+        "note": "32 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
+        "explanation": "Mid-sized liquidity ($35.6M): adequate for normal flows, thinner under stress. TVL grew +224.8% over 30 days, attracting capital. Moderate swings: 23% max drawdown in 30 days."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 45.3,
+        "score": 45.6,
         "factors": [
           {
             "key": "tx7d",
@@ -228,33 +252,38 @@
             "value": "125",
             "raw": 125,
             "score": 36.7,
-            "weight": 0.4
+            "weight": 0.4,
+            "explanation": "125 transactions in 7 days: moderate usage."
           },
           {
             "key": "senders7d",
             "label": "Unique senders, 7 days",
-            "value": "86",
-            "raw": 86,
-            "score": 45.9,
-            "weight": 0.35
+            "value": "88",
+            "raw": 88,
+            "score": 46.3,
+            "weight": 0.35,
+            "explanation": "88 distinct addresses interacted: a modest user base."
           },
           {
             "key": "trend7d",
             "label": "7-day transaction trend vs prior week",
-            "value": "-17.8%",
-            "raw": -0.17763157894736847,
-            "score": 45.2,
-            "weight": 0.15
+            "value": "-18.8%",
+            "raw": -0.18831168831168832,
+            "score": 44.3,
+            "weight": 0.15,
+            "explanation": "Weekly transactions stable (−18.8%) versus the prior week."
           },
           {
             "key": "success",
             "label": "Transaction success rate",
-            "value": "94.4%",
-            "raw": 0.944,
-            "score": 77.6,
-            "weight": 0.1
+            "value": "95.2%",
+            "raw": 0.952,
+            "score": 81,
+            "weight": 0.1,
+            "explanation": "95% of transactions succeeded."
           }
-        ]
+        ],
+        "explanation": "125 transactions in 7 days: moderate usage. 88 distinct addresses interacted: a modest user base. Weekly transactions stable (−18.8%) versus the prior week."
       },
       {
         "key": "collateral",
@@ -262,7 +291,8 @@
         "weight": 0.25,
         "score": null,
         "factors": [],
-        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
+        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed.",
+        "explanation": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
       },
       {
         "key": "transparency",
@@ -276,7 +306,8 @@
             "value": "4/4 contracts",
             "raw": 1,
             "score": 100,
-            "weight": 0.2
+            "weight": 0.2,
+            "explanation": "All tracked contracts are found on-chain with readable Clarity source."
           },
           {
             "key": "audits",
@@ -284,7 +315,8 @@
             "value": "2",
             "raw": 2,
             "score": 100,
-            "weight": 0.25
+            "weight": 0.25,
+            "explanation": "2 public audits listed."
           },
           {
             "key": "github",
@@ -292,7 +324,8 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Source repository is public."
           },
           {
             "key": "docs",
@@ -300,15 +333,17 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Public documentation is available."
           },
           {
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "33 months",
-            "raw": 33.122954122712564,
+            "raw": 33.126813821284735,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Contracts have been live for 33 months."
           },
           {
             "key": "governance",
@@ -317,7 +352,8 @@
             "raw": null,
             "note": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.dao-multisig observed on-chain (propose/execute)",
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Upgrades are controlled by an on-chain governance contract or DAO."
           },
           {
             "key": "bounty",
@@ -325,9 +361,11 @@
             "value": "no",
             "raw": 0,
             "score": 0,
-            "weight": 0.05
+            "weight": 0.05,
+            "explanation": "No public bug bounty programme."
           }
-        ]
+        ],
+        "explanation": "Strong public information: contract source verifiable on-chain, public audits listed, public source repository. No public bug bounty programme."
       }
     ],
     "effectiveWeights": {
@@ -339,42 +377,46 @@
   },
   {
     "slug": "granite",
-    "computedAt": "2026-09-19T01:05:26.291Z",
+    "computedAt": "2026-09-19T03:54:37.351Z",
     "methodologyVersion": "1.0.0",
-    "overall": 50,
+    "overall": 49,
     "band": "Elevated",
     "components": [
       {
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 53.8,
+        "score": 52.4,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
             "value": "$7.0M",
-            "raw": 7027952.98158,
+            "raw": 7042459.73144,
             "score": 46.2,
-            "weight": 0.5
+            "weight": 0.5,
+            "explanation": "Mid-sized liquidity ($7.0M): adequate for normal flows, thinner under stress."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "-6.6%",
-            "raw": -0.06589809002527192,
-            "score": 53.5,
-            "weight": 0.25
+            "value": "-10.0%",
+            "raw": -0.10026856910775385,
+            "score": 47.5,
+            "weight": 0.25,
+            "explanation": "TVL declined −10.0% over 30 days, signalling capital leaving."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 19.0% · vol 2.6%/d",
+            "value": "dd 19.0% · vol 2.4%/d",
             "raw": 0.18953461391701584,
-            "score": 69.2,
-            "weight": 0.25
+            "score": 69.7,
+            "weight": 0.25,
+            "explanation": "Moderate swings: 19% max drawdown in 30 days."
           }
-        ]
+        ],
+        "explanation": "Mid-sized liquidity ($7.0M): adequate for normal flows, thinner under stress. TVL declined −10.0% over 30 days, signalling capital leaving. Moderate swings: 19% max drawdown in 30 days."
       },
       {
         "key": "activity",
@@ -388,7 +430,8 @@
             "value": "8",
             "raw": 8,
             "score": 0,
-            "weight": 0.4
+            "weight": 0.4,
+            "explanation": "Only 8 transactions in 7 days on the tracked entry points: low direct usage."
           },
           {
             "key": "senders7d",
@@ -396,7 +439,8 @@
             "value": "5",
             "raw": 5,
             "score": 2.9,
-            "weight": 0.35
+            "weight": 0.35,
+            "explanation": "5 distinct addresses interacted: activity is concentrated in few users."
           },
           {
             "key": "trend7d",
@@ -404,7 +448,8 @@
             "value": "-71.4%",
             "raw": -0.7142857142857143,
             "score": 10,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Weekly transactions down −71.4% versus the prior week."
           },
           {
             "key": "success",
@@ -412,9 +457,11 @@
             "value": "100.0%",
             "raw": 1,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "100% of transactions succeeded."
           }
-        ]
+        ],
+        "explanation": "Only 8 transactions in 7 days on the tracked entry points: low direct usage. 5 distinct addresses interacted: activity is concentrated in few users. Weekly transactions down −71.4% versus the prior week."
       },
       {
         "key": "collateral",
@@ -422,7 +469,8 @@
         "weight": 0.25,
         "score": null,
         "factors": [],
-        "note": "No borrowed-value data available from the adapter. Weight redistributed."
+        "note": "No borrowed-value data available from the adapter. Weight redistributed.",
+        "explanation": "No borrowed-value data available from the adapter. Weight redistributed."
       },
       {
         "key": "transparency",
@@ -436,7 +484,8 @@
             "value": "5/5 contracts",
             "raw": 1,
             "score": 100,
-            "weight": 0.2
+            "weight": 0.2,
+            "explanation": "All tracked contracts are found on-chain with readable Clarity source."
           },
           {
             "key": "audits",
@@ -444,7 +493,8 @@
             "value": "2",
             "raw": 2,
             "score": 100,
-            "weight": 0.25
+            "weight": 0.25,
+            "explanation": "2 public audits listed."
           },
           {
             "key": "github",
@@ -452,7 +502,8 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Source repository is public."
           },
           {
             "key": "docs",
@@ -460,15 +511,17 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Public documentation is available."
           },
           {
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "13 months",
-            "raw": 13.033150109352947,
+            "raw": 13.03700980716467,
             "score": 68,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Contracts have 13 months of production history."
           },
           {
             "key": "governance",
@@ -477,7 +530,8 @@
             "raw": null,
             "note": "governance-v1 / meta-governance-v1 contracts per Granite docs and deployment plans (github.com/GraniteProtocol/core-v1/deployments)",
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Upgrades are controlled by an on-chain governance contract or DAO."
           },
           {
             "key": "bounty",
@@ -485,9 +539,11 @@
             "value": "no",
             "raw": 0,
             "score": 0,
-            "weight": 0.05
+            "weight": 0.05,
+            "explanation": "No public bug bounty programme."
           }
-        ]
+        ],
+        "explanation": "Strong public information: contract source verifiable on-chain, public audits listed, public source repository. No public bug bounty programme."
       }
     ],
     "effectiveWeights": {
@@ -499,7 +555,7 @@
   },
   {
     "slug": "bitflow",
-    "computedAt": "2026-09-19T01:05:26.291Z",
+    "computedAt": "2026-09-19T03:54:37.351Z",
     "methodologyVersion": "1.0.0",
     "overall": 57,
     "band": "Elevated",
@@ -508,47 +564,52 @@
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 50.8,
+        "score": 51.8,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
             "value": "$3.2M",
-            "raw": 3175126.28851,
-            "score": 37.5,
-            "weight": 0.5
+            "raw": 3196562.99613,
+            "score": 37.6,
+            "weight": 0.5,
+            "explanation": "Thin liquidity ($3.2M) limits exit capacity under stress."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "+22.1%",
-            "raw": 0.22086104712643806,
-            "score": 90.7,
-            "weight": 0.25
+            "value": "+22.9%",
+            "raw": 0.22910362991963396,
+            "score": 91,
+            "weight": 0.25,
+            "explanation": "TVL grew +22.9% over 30 days, attracting capital."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 28.5% · vol 8.8%/d",
-            "raw": 0.2853904087919034,
-            "score": 37.5,
-            "weight": 0.25
+            "value": "dd 25.5% · vol 8.4%/d",
+            "raw": 0.25459876529821274,
+            "score": 41,
+            "weight": 0.25,
+            "explanation": "A 25% drawdown inside 30 days shows unstable capital."
           }
-        ]
+        ],
+        "explanation": "Thin liquidity ($3.2M) limits exit capacity under stress. TVL grew +22.9% over 30 days, attracting capital. A 25% drawdown inside 30 days shows unstable capital."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 41.9,
+        "score": 41.2,
         "factors": [
           {
             "key": "tx7d",
             "label": "Transactions, 7 days",
-            "value": "253",
-            "raw": 253,
-            "score": 46.8,
-            "weight": 0.4
+            "value": "244",
+            "raw": 244,
+            "score": 46.3,
+            "weight": 0.4,
+            "explanation": "244 transactions in 7 days: moderate usage."
           },
           {
             "key": "senders7d",
@@ -556,15 +617,17 @@
             "value": "16",
             "raw": 16,
             "score": 19.6,
-            "weight": 0.35
+            "weight": 0.35,
+            "explanation": "16 distinct addresses interacted: activity is concentrated in few users."
           },
           {
             "key": "trend7d",
             "label": "7-day transaction trend vs prior week",
-            "value": "-21.4%",
-            "raw": -0.2142857142857143,
-            "score": 42.1,
-            "weight": 0.15
+            "value": "-25.8%",
+            "raw": -0.25835866261398177,
+            "score": 38.5,
+            "weight": 0.15,
+            "explanation": "Weekly transactions stable (−25.8%) versus the prior week."
           },
           {
             "key": "success",
@@ -572,9 +635,11 @@
             "value": "100.0%",
             "raw": 1,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "100% of transactions succeeded."
           }
-        ]
+        ],
+        "explanation": "244 transactions in 7 days: moderate usage. 16 distinct addresses interacted: activity is concentrated in few users. Weekly transactions stable (−25.8%) versus the prior week."
       },
       {
         "key": "collateral",
@@ -582,7 +647,8 @@
         "weight": 0.25,
         "score": null,
         "factors": [],
-        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
+        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed.",
+        "explanation": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
       },
       {
         "key": "transparency",
@@ -596,7 +662,8 @@
             "value": "3/3 contracts",
             "raw": 1,
             "score": 100,
-            "weight": 0.2
+            "weight": 0.2,
+            "explanation": "All tracked contracts are found on-chain with readable Clarity source."
           },
           {
             "key": "audits",
@@ -604,7 +671,8 @@
             "value": "2",
             "raw": 2,
             "score": 100,
-            "weight": 0.25
+            "weight": 0.25,
+            "explanation": "2 public audits listed."
           },
           {
             "key": "github",
@@ -612,7 +680,8 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Source repository is public."
           },
           {
             "key": "docs",
@@ -620,15 +689,17 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Public documentation is available."
           },
           {
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "32 months",
-            "raw": 32.1538379694268,
+            "raw": 32.157697667618756,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Contracts have been live for 32 months."
           },
           {
             "key": "governance",
@@ -637,7 +708,8 @@
             "raw": null,
             "note": "Not verified in v0.1",
             "score": 0,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Upgrade control is not publicly verified: treated as a transparency gap."
           },
           {
             "key": "bounty",
@@ -645,9 +717,11 @@
             "value": "no",
             "raw": 0,
             "score": 0,
-            "weight": 0.05
+            "weight": 0.05,
+            "explanation": "No public bug bounty programme."
           }
-        ]
+        ],
+        "explanation": "Strong public information: contract source verifiable on-chain, public audits listed, public source repository. Upgrade control is not publicly verified: treated as a transparency gap. No public bug bounty programme."
       }
     ],
     "effectiveWeights": {
@@ -659,7 +733,7 @@
   },
   {
     "slug": "alex",
-    "computedAt": "2026-09-19T01:05:26.291Z",
+    "computedAt": "2026-09-19T03:54:37.351Z",
     "methodologyVersion": "1.0.0",
     "overall": 71,
     "band": "Moderate",
@@ -668,33 +742,37 @@
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 53.6,
+        "score": 53.7,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
             "value": "$1.2M",
-            "raw": 1214050.97356,
-            "score": 27.1,
-            "weight": 0.5
+            "raw": 1204493.40508,
+            "score": 27,
+            "weight": 0.5,
+            "explanation": "Thin liquidity ($1.2M) limits exit capacity under stress."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "+73.4%",
-            "raw": 0.7340241147207325,
+            "value": "+72.0%",
+            "raw": 0.7203730781634969,
             "score": 100,
-            "weight": 0.25
+            "weight": 0.25,
+            "explanation": "TVL grew +72.0% over 30 days, attracting capital."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 8.7% · vol 10.2%/d",
+            "value": "dd 8.7% · vol 9.9%/d",
             "raw": 0.08744227967289354,
-            "score": 60.2,
-            "weight": 0.25
+            "score": 60.7,
+            "weight": 0.25,
+            "explanation": "Capital has been stable (max drawdown 9%)."
           }
-        ]
+        ],
+        "explanation": "Thin liquidity ($1.2M) limits exit capacity under stress. TVL grew +72.0% over 30 days, attracting capital. Capital has been stable (max drawdown 9%)."
       },
       {
         "key": "activity",
@@ -705,19 +783,21 @@
           {
             "key": "tx7d",
             "label": "Transactions, 7 days",
-            "value": "2,800 (est.)",
+            "value": "2.800 (est.)",
             "raw": 2800,
             "score": 81.6,
             "weight": 0.4,
-            "note": "Sampled: 6 of 7 days covered by the pagination cap."
+            "note": "Sampled: 6 of 7 days covered by the pagination cap.",
+            "explanation": "2,800 transactions in 7 days: sustained usage."
           },
           {
             "key": "senders7d",
             "label": "Unique senders, 7 days",
-            "value": "126 (est.)",
-            "raw": 126,
-            "score": 52,
-            "weight": 0.35
+            "value": "127 (est.)",
+            "raw": 127,
+            "score": 52.1,
+            "weight": 0.35,
+            "explanation": "127 distinct addresses interacted: a modest user base."
           },
           {
             "key": "trend7d",
@@ -726,17 +806,20 @@
             "raw": null,
             "score": null,
             "weight": 0.15,
-            "note": "Prior week not covered in this run; factor excluded."
+            "note": "Prior week not covered in this run; factor excluded.",
+            "explanation": "Prior week not covered; trend excluded from the score."
           },
           {
             "key": "success",
             "label": "Transaction success rate",
-            "value": "99.1%",
-            "raw": 0.99125,
+            "value": "99.3%",
+            "raw": 0.9929166666666667,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "99% of transactions succeeded."
           }
-        ]
+        ],
+        "explanation": "2,800 transactions in 7 days: sustained usage. 127 distinct addresses interacted: a modest user base. Prior week not covered; trend excluded from the score."
       },
       {
         "key": "collateral",
@@ -744,7 +827,8 @@
         "weight": 0.25,
         "score": null,
         "factors": [],
-        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
+        "note": "Not applicable: protocol has no collateralised borrowing. Weight redistributed.",
+        "explanation": "Not applicable: protocol has no collateralised borrowing. Weight redistributed."
       },
       {
         "key": "transparency",
@@ -758,7 +842,8 @@
             "value": "2/2 contracts",
             "raw": 1,
             "score": 100,
-            "weight": 0.2
+            "weight": 0.2,
+            "explanation": "All tracked contracts are found on-chain with readable Clarity source."
           },
           {
             "key": "audits",
@@ -766,7 +851,8 @@
             "value": "2",
             "raw": 2,
             "score": 100,
-            "weight": 0.25
+            "weight": 0.25,
+            "explanation": "2 public audits listed."
           },
           {
             "key": "github",
@@ -774,7 +860,8 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Source repository is public."
           },
           {
             "key": "docs",
@@ -782,15 +869,17 @@
             "value": "yes",
             "raw": 1,
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Public documentation is available."
           },
           {
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "28 months",
-            "raw": 27.550055331602547,
+            "raw": 27.553915029794496,
             "score": 100,
-            "weight": 0.15
+            "weight": 0.15,
+            "explanation": "Contracts have been live for 28 months."
           },
           {
             "key": "governance",
@@ -799,7 +888,8 @@
             "raw": null,
             "note": "ALEX Lab DAO; governance token SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.age000-governance-token",
             "score": 100,
-            "weight": 0.1
+            "weight": 0.1,
+            "explanation": "Upgrades are controlled by an on-chain governance contract or DAO."
           },
           {
             "key": "bounty",
@@ -807,9 +897,11 @@
             "value": "no",
             "raw": 0,
             "score": 0,
-            "weight": 0.05
+            "weight": 0.05,
+            "explanation": "No public bug bounty programme."
           }
-        ]
+        ],
+        "explanation": "Strong public information: contract source verifiable on-chain, public audits listed, public source repository. No public bug bounty programme."
       }
     ],
     "effectiveWeights": {

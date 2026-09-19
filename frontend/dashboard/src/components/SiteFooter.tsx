@@ -20,6 +20,7 @@ export default function SiteFooter({ version, protocols }: Props) {
         { label: 'Market metrics', href: dash('/market') },
         { label: 'Alerts', href: dash('/alerts') },
         { label: 'Wallet exposure', href: dash('/wallet') },
+        { label: 'Bicora Pro', href: '/pro' },
       ],
     },
     {

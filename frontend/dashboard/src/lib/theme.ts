@@ -43,5 +43,7 @@ export function applyTheme(t: Theme) {
   if (t === 'system') root.removeAttribute('data-theme');
   else root.setAttribute('data-theme', t);
   const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  root.classList.toggle('sys-dark', t === 'system' && dark);
+  // Dark is the default palette; .sys-light applies the light palette when following a light OS.
+  root.classList.toggle('sys-light', t === 'system' && !dark);
+  root.classList.remove('sys-dark');
 }

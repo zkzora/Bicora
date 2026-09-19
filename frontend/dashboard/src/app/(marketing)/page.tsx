@@ -27,11 +27,12 @@ export default async function HomePage() {
               <Link href={dash('/')} className="btn btn-primary btn-lg">Open Dashboard</Link>
               <Link href="/methodology" className="btn btn-secondary btn-lg">Read Methodology</Link>
             </div>
-            <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginTop: 18, fontSize: 12, color: 'var(--color-neutral-600)' }}>
-              <span><b style={{ color: 'var(--color-text)' }}>{m.protocolsTracked}</b> protocols tracked</span>
-              <span><b style={{ color: 'var(--color-text)' }}>4</b> risk dimensions</span>
-              <span>Analytics, not financial advice</span>
+            <div className="hero-live" aria-label="Live ecosystem figures">
+              <div><div className="l">Risk index</div><div className={`v tnum c-${m.index.band}`}>{m.index.score}<span style={{ fontSize: 12, color: 'var(--color-faint)' }}> /100</span></div></div>
+              <div><div className="l">Protocols</div><div className="v tnum">{m.protocolsTracked}</div></div>
+              <div><div className="l">Liquidity tracked</div><div className="v tnum">{fmtUsd(m.totalTvlUsd, 0)}</div></div>
             </div>
+            <div style={{ fontSize: 11.5, color: 'var(--color-muted)' }}>Updated every 6 hours · Analytics, not financial advice</div>
           </div>
           <div className="hero-art">
             <div className="float-shadow" />
