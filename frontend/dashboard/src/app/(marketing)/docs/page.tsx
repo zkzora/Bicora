@@ -13,7 +13,7 @@ const ENDPOINTS = [
       ['protocol', 'string', 'Protocol slug, e.g. zest. Omit for all tracked protocols.'],
       ['window', '7d | 30d | 90d', 'History window for tvl_history and score_history. Default 30d.'],
     ],
-    example: `curl https://api.btcfi.example/v1/protocol-risk?protocol=zest&window=7d
+    example: `curl https://api.btcfiintelligence.xyz/v1/protocol-risk?protocol=zest&window=7d
 
 {
   "updated_at": "2026-09-18T06:25:31.000Z",
@@ -43,7 +43,7 @@ const ENDPOINTS = [
     path: '/v1/market-health',
     desc: 'Returns ecosystem metrics across all tracked protocols: liquidity tracked with 7d / 30d change, active addresses, transactions, the average risk score, the band distribution and the 90-day ecosystem TVL series.',
     params: [],
-    example: `curl https://api.btcfi.example/v1/market-health
+    example: `curl https://api.btcfiintelligence.xyz/v1/market-health
 
 {
   "protocols": 5,
@@ -64,7 +64,7 @@ const ENDPOINTS = [
       ['since', 'ISO 8601', 'Only events at or after this timestamp.'],
       ['kind', 'string', 'liquidity | activity | collateral | transparency | score'],
     ],
-    example: `curl https://api.btcfi.example/v1/risk-alerts?since=2026-09-17T00:00:00Z
+    example: `curl https://api.btcfiintelligence.xyz/v1/risk-alerts?since=2026-09-17T00:00:00Z
 
 {
   "events": [
@@ -78,7 +78,7 @@ const ENDPOINTS = [
     path: '/v1/methodology',
     desc: 'Returns the methodology version, the nominal component weights and the risk band thresholds, so integrators can label scores consistently.',
     params: [],
-    example: `curl https://api.btcfi.example/v1/methodology
+    example: `curl https://api.btcfiintelligence.xyz/v1/methodology
 
 {
   "version": "1.0.0",
@@ -110,8 +110,13 @@ export default async function DocsPage() {
           <span className="k">Documentation</span>
           <h1 style={{ fontSize: 'clamp(28px,3.4vw,40px)', letterSpacing: '-0.03em' }}>BTCFi Risk Layer API v1</h1>
           <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-neutral-700)', maxWidth: '64ch' }}>
-            Read-only JSON over HTTPS. Every response is derived from the latest scoring snapshot (methodology v{snapshot.methodologyVersion}) and is refreshed on the indexer schedule. No authentication is required in v0.1; responses are cacheable for 60 seconds. All monetary values are USD, all scores are 0–100 where higher means lower risk.
+            Read-only JSON over HTTPS. Every response is derived from the latest scoring snapshot (methodology v{snapshot.methodologyVersion}) and is refreshed on the indexer schedule (every 6 hours). No authentication is required in v0.1; responses are cacheable for 60 seconds. All monetary values are USD, all scores are 0–100 where higher means lower risk.
           </p>
+          <div className="grid-cells" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+            <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Base URL</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}>https://api.btcfiintelligence.xyz</div></div>
+            <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Dashboard</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href="https://www.btcfiintelligence.xyz">www.btcfiintelligence.xyz</a></div></div>
+            <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Source</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href="https://github.com/zkzora/BTCFi-Risk-Layer" target="_blank" rel="noreferrer">github.com/zkzora/BTCFi-Risk-Layer ↗</a></div></div>
+          </div>
         </div>
 
         <div id="running" className="endpoint">
@@ -166,7 +171,8 @@ if (p.band === 'High' || p.band === 'Elevated') {
   showWarning(\`\${p.name}: risk score \${p.overall_score} (\${p.band})\`);
 }`}</pre>
           <p style={{ fontSize: 13, color: 'var(--color-neutral-700)' }}>
-            Source, methodology and the protocol registry live in the public repository. Contributions that add a protocol must cite public sources for every transparency field.
+            Source, methodology and the protocol registry live in the public repository at{' '}
+            <a href="https://github.com/zkzora/BTCFi-Risk-Layer" target="_blank" rel="noreferrer">github.com/zkzora/BTCFi-Risk-Layer</a>. Contributions that add a protocol must cite public sources for every transparency field.
           </p>
         </div>
       </div>

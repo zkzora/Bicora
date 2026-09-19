@@ -109,7 +109,7 @@ app.get('/v1/methodology', (_req, res) => {
     scale: '0-100, higher is safer',
     weights: { liquidity: 0.3, activity: 0.25, collateral: 0.25, transparency: 0.2 },
     bands: { Low: '75-100', Moderate: '60-74', Elevated: '40-59', High: '0-39' },
-    docs: 'https://github.com/btcfi/btcfi-risk-layer/blob/main/docs/risk-methodology.md',
+    docs: 'https://www.btcfiintelligence.xyz/methodology',
   });
 });
 

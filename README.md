@@ -1,5 +1,7 @@
 # BTCFi Risk Layer — v0.1 prototype
 
+**Live:** https://www.btcfiintelligence.xyz · API base (Phase 2): https://api.btcfiintelligence.xyz
+
 Risk intelligence infrastructure for Bitcoin DeFi on Stacks. v0.1 proves three things end to end on **live mainnet data**: Stacks DeFi data can be collected, turned into transparent risk indicators with a documented methodology, and published through a public dashboard and API.
 
 ```

@@ -49,6 +49,7 @@ export default function SiteFooter({ version, protocols }: Props) {
     {
       title: 'Data sources',
       items: [
+        { label: 'Source code', href: 'https://github.com/zkzora/BTCFi-Risk-Layer', external: true },
         { label: 'DefiLlama', href: 'https://defillama.com/chain/Stacks', external: true },
         { label: 'Hiro Stacks API', href: 'https://docs.hiro.so/stacks/api', external: true },
         { label: 'Stacks Explorer', href: 'https://explorer.hiro.so/?chain=mainnet', external: true },
