@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
 };
 
-// Runs before first paint so a saved theme never flashes the wrong colours.
-const themeInit = `(function(){try{var t=localStorage.getItem('btcfi-theme');var r=document.documentElement;if(t==='dark'||t==='light'){r.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){r.classList.add('sys-dark')}}catch(e){}})();`;
+// Runs before first paint so a saved theme never flashes the wrong colours. Cookie (shared across *.bicora.xyz) first, localStorage fallback.
+const themeInit = `(function(){try{var r=document.documentElement;var m=document.cookie.match(/(?:^|; )bicora-theme=(light|dark|system)/);var t=m?m[1]:localStorage.getItem('bicora-theme');if(t==='dark'||t==='light'){r.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){r.classList.add('sys-dark')}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

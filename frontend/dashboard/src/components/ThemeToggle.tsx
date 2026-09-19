@@ -1,17 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-
-type Theme = 'light' | 'dark' | 'system';
-const KEY = 'btcfi-theme';
-
-/** Applies the choice to <html>: data-theme for explicit choices, a .sys-dark class when following the OS. */
-export function applyTheme(theme: Theme) {
-  const root = document.documentElement;
-  if (theme === 'system') root.removeAttribute('data-theme');
-  else root.setAttribute('data-theme', theme);
-  const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  root.classList.toggle('sys-dark', theme === 'system' && dark);
-}
+import { applyTheme, readTheme, writeTheme, type Theme } from '@/lib/theme';
 
 const ICONS: Record<Theme, React.ReactNode> = {
   light: (
@@ -35,12 +24,14 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>('system');
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(KEY) as Theme | null;
-      if (saved === 'light' || saved === 'dark') setTheme(saved);
-    } catch { /* storage unavailable */ }
+    // Re-read on mount and re-apply: the stored preference wins over whatever the DOM currently shows.
+    const t = readTheme();
+    setTheme(t);
+    applyTheme(t);
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const onChange = () => { try { if (!localStorage.getItem(KEY)) applyTheme('system'); } catch { applyTheme('system'); } };
+    const onChange = () => {
+      if (readTheme() === 'system') applyTheme('system');
+    };
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);
   }, []);
@@ -48,10 +39,7 @@ export default function ThemeToggle() {
   const choose = (t: Theme) => {
     setTheme(t);
     applyTheme(t);
-    try {
-      if (t === 'system') localStorage.removeItem(KEY);
-      else localStorage.setItem(KEY, t);
-    } catch { /* ignore */ }
+    writeTheme(t);
   };
 
   return (
