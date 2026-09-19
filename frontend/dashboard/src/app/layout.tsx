@@ -1,18 +1,19 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import { ORIGIN } from '@/lib/urls';
 
 const heading = Space_Grotesk({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-heading', display: 'swap' });
 const body = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-body', display: 'swap' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.btcfiintelligence.xyz'),
+  metadataBase: new URL(ORIGIN),
   title: { default: 'Bicora Risk Layer', template: '%s · Bicora Risk Layer' },
   description: 'Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.',
   openGraph: {
     type: 'website',
     siteName: 'Bicora Risk Layer',
-    url: 'https://www.btcfiintelligence.xyz',
+    url: ORIGIN,
     title: 'Bicora Risk Layer',
     description: 'Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.',
     images: [{ url: '/engine.png', width: 1100, height: 760, alt: 'Bicora risk engine' }],

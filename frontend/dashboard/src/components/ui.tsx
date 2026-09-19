@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Band, RiskEvent, SnapshotProtocol } from '@/lib/types';
 import { fmtDateTime, fmtDelta, fmtInt, fmtPct, fmtScore, fmtUsd } from '@/lib/format';
 import ProtocolLogo from './ProtocolLogo';
+import { dash } from '@/lib/urls';
 
 /** Risk band as colour + dot + text (never colour alone). */
 export function BandTag({ band, score }: { band: Band; score?: number }) {
@@ -57,7 +58,7 @@ export function EventList({ events, names, limit, showProtocol = true }: { event
             <span className="mono muted" style={{ fontSize: 11, paddingTop: 2 }}>{fmtDateTime(e.ts).replace(' UTC', '')}</span>
             <span>
               {showProtocol && (
-                <Link href={`/dashboard/protocols/${e.slug}`} style={{ color: 'var(--color-text)', fontWeight: 600 }}>{name}</Link>
+                <Link href={dash(`/protocols/${e.slug}`)} style={{ color: 'var(--color-text)', fontWeight: 600 }}>{name}</Link>
               )}
               {showProtocol ? ' — ' : ''}
               {text}
@@ -104,7 +105,7 @@ export function ProtocolTable({ protocols, compact = false }: { protocols: Snaps
               <tr key={p.slug} className="row stag" style={{ animationDelay: `${i * 25}ms` }}>
                 <td className="mono muted">{i + 1}</td>
                 <td style={{ fontWeight: 600 }}>
-                  <Link href={`/dashboard/protocols/${p.slug}`} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link>
+                  <Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link>
                 </td>
                 <td className="caps muted">{p.category}</td>
                 <td className="r mono">{fmtUsd(p.metrics.tvlUsd)}</td>

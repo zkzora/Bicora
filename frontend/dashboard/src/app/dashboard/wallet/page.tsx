@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getSnapshot } from '@/lib/data';
 import { BandTag } from '@/components/ui';
 import ProtocolLogo from '@/components/ProtocolLogo';
+import { dash } from '@/lib/urls';
 
 export const metadata: Metadata = { title: 'Wallet exposure' };
 
@@ -29,7 +30,7 @@ export default async function WalletPage() {
           <tbody>
             {snapshot.protocols.map((p) => (
               <tr key={p.slug} className="row">
-                <td style={{ fontWeight: 600 }}><Link href={`/dashboard/protocols/${p.slug}`} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
+                <td style={{ fontWeight: 600 }}><Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
                 <td className="caps muted">{p.category}</td>
                 <td><BandTag band={p.score.band} score={p.score.overall} /></td>
               </tr>

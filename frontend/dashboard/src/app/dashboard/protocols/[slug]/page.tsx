@@ -7,6 +7,7 @@ import { BandTag, EventList, PctDelta, ScoreDelta } from '@/components/ui';
 import Sparkline from '@/components/charts/Sparkline';
 import ProtocolHistory from '@/components/ProtocolHistory';
 import ProtocolLogo from '@/components/ProtocolLogo';
+import { dash, site } from '@/lib/urls';
 
 export async function generateStaticParams() {
   const { snapshot } = await getSnapshot();
@@ -34,7 +35,7 @@ export default async function ProtocolPage({ params }: { params: Promise<{ slug:
       <aside className="proto-side">
         <div className="k k-muted" style={{ padding: '6px 12px 10px' }}>Tracked protocols</div>
         {snapshot.protocols.map((x) => (
-          <Link key={x.slug} href={`/dashboard/protocols/${x.slug}`} aria-current={x.slug === p.slug ? 'page' : undefined}>
+          <Link key={x.slug} href={dash(`/protocols/${x.slug}`)} aria-current={x.slug === p.slug ? 'page' : undefined}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={x.slug} name={x.name} size={18} radius={4} />{x.name}</span><span className="mono muted">{x.score.overall}</span>
           </Link>
         ))}
@@ -119,7 +120,7 @@ export default async function ProtocolPage({ params }: { params: Promise<{ slug:
         <div className="card">
           <div className="card-head">
             <span className="k k-ink">Score breakdown</span>
-            <Link href="/methodology" style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase' }}>Methodology →</Link>
+            <Link href={site('/methodology')} style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase' }}>Methodology →</Link>
           </div>
           {p.score.components.map((c) => (
             <div key={c.key} style={{ marginTop: 4 }}>

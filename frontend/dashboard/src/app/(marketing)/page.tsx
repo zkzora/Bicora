@@ -6,6 +6,7 @@ import { BandTag } from '@/components/ui';
 import ProtocolLogo from '@/components/ProtocolLogo';
 import OrbitingCirclesGlobe from '@/components/ui/orbiting-circles-02';
 import TextBlockAnimation from '@/components/ui/text-block-animation';
+import { dash } from '@/lib/urls';
 
 export default async function HomePage() {
   const { snapshot } = await getSnapshot();
@@ -23,7 +24,7 @@ export default async function HomePage() {
               Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 6 }}>
-              <Link href="/dashboard" className="btn btn-primary btn-lg">Open Dashboard</Link>
+              <Link href={dash('/')} className="btn btn-primary btn-lg">Open Dashboard</Link>
               <Link href="/methodology" className="btn btn-secondary btn-lg">Read Methodology</Link>
             </div>
             <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginTop: 18, fontSize: 12, color: 'var(--color-neutral-600)' }}>
@@ -125,7 +126,7 @@ export default async function HomePage() {
             <tbody>
               {snapshot.protocols.map((p) => (
                 <tr key={p.slug} className="row">
-                  <td style={{ fontWeight: 600 }}><Link href={`/dashboard/protocols/${p.slug}`} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
+                  <td style={{ fontWeight: 600 }}><Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
                   <td className="caps muted">{p.category}</td>
                   <td className="r"><BandTag band={p.score.band} score={p.score.overall} /></td>
                 </tr>
@@ -176,7 +177,7 @@ export default async function HomePage() {
           <h2>See the risk before you take it.</h2>
           <p>Tracked protocols orbit one engine: indexed on-chain data, activity signals and security checks, scored with a public methodology.</p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Link href="/dashboard" className="btn btn-primary btn-lg">Open Dashboard</Link>
+            <Link href={dash('/')} className="btn btn-primary btn-lg">Open Dashboard</Link>
             <Link href="/methodology" className="btn btn-secondary btn-lg">Read Methodology</Link>
           </div>
         </div>

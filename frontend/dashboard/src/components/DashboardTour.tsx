@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
+import { isDashHome } from '@/lib/urls';
 
 const KEY = 'btcfi-tour-v1';
 
@@ -58,7 +59,7 @@ export default function DashboardTour() {
 
   // First visit: open automatically on the overview page.
   useEffect(() => {
-    if (path !== '/dashboard') return;
+    if (!isDashHome(path)) return;
     try {
       if (!localStorage.getItem(KEY)) setOpen(true);
     } catch {

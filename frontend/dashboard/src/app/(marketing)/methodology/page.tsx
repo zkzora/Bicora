@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getSnapshot } from '@/lib/data';
 import { bandMeaning } from '@/lib/format';
 import { BandTag } from '@/components/ui';
+import { dash } from '@/lib/urls';
 
 export const metadata: Metadata = { title: 'Methodology' };
 
@@ -142,7 +143,7 @@ export default async function MethodologyPage() {
         <span style={{ fontSize: 14, color: 'var(--color-neutral-700)' }}>Scores are analytics, not financial recommendations. Methodology v{snapshot.methodologyVersion} · Sep 2026</span>
         <div style={{ display: 'flex', gap: 12 }}>
           <Link href="/docs" className="btn btn-secondary">Read the documentation</Link>
-          <Link href="/dashboard" className="btn btn-primary">Open Dashboard</Link>
+          <Link href={dash('/')} className="btn btn-primary">Open Dashboard</Link>
         </div>
       </section>
     </>

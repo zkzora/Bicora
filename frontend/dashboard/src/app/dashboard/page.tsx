@@ -4,6 +4,7 @@ import { componentColor, fmtInt, fmtUsd } from '@/lib/format';
 import { EventList, PctDelta, ProtocolTable, StatTile } from '@/components/ui';
 import GroupedBars from '@/components/charts/GroupedBars';
 import BandBar from '@/components/charts/BandBar';
+import { dash } from '@/lib/urls';
 
 const COMPONENTS = [
   { key: 'liquidity', label: 'Liquidity' },
@@ -53,7 +54,7 @@ export default async function OverviewPage() {
           <div className="card" style={{ flex: 1 }} data-tour="events">
             <div className="card-head">
               <span className="k k-ink">Recent risk events</span>
-              <Link href="/dashboard/alerts" style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase' }}>All alerts →</Link>
+              <Link href={dash('/alerts')} style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase' }}>All alerts →</Link>
             </div>
             <EventList events={snapshot.events} names={names} limit={5} />
           </div>

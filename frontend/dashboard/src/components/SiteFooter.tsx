@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { dash } from '@/lib/urls';
 
 interface Props {
   version: string;
@@ -14,16 +15,16 @@ export default function SiteFooter({ version, protocols }: Props) {
     {
       title: 'Dashboard',
       items: [
-        { label: 'Overview', href: '/dashboard' },
-        { label: 'Protocol risk', href: '/dashboard/protocols' },
-        { label: 'Market metrics', href: '/dashboard/market' },
-        { label: 'Alerts', href: '/dashboard/alerts' },
-        { label: 'Wallet exposure', href: '/dashboard/wallet' },
+        { label: 'Overview', href: dash('/') },
+        { label: 'Protocol risk', href: dash('/protocols') },
+        { label: 'Market metrics', href: dash('/market') },
+        { label: 'Alerts', href: dash('/alerts') },
+        { label: 'Wallet exposure', href: dash('/wallet') },
       ],
     },
     {
       title: 'Protocols',
-      items: protocols.map((p) => ({ label: p.name, href: `/dashboard/protocols/${p.slug}` })),
+      items: protocols.map((p) => ({ label: p.name, href: dash(`/protocols/${p.slug}`) })),
     },
     {
       title: 'Methodology',

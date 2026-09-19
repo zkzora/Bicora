@@ -2,7 +2,7 @@
 
 Bicora (formerly BTCFi Risk Layer) — risk intelligence for Bitcoin DeFi on Stacks.
 
-**Live:** https://www.btcfiintelligence.xyz · API base (Phase 2): https://api.btcfiintelligence.xyz
+**Live:** site https://bicora.xyz · dashboard https://app.bicora.xyz · API base (Phase 2): https://api.bicora.xyz
 
 Risk intelligence infrastructure for Bitcoin DeFi on Stacks. v0.1 proves three things end to end on **live mainnet data**: Stacks DeFi data can be collected, turned into transparent risk indicators with a documented methodology, and published through a public dashboard and API.
 
@@ -77,7 +77,11 @@ Every service picks PostgreSQL automatically when `DATABASE_URL` is set; nothing
 
 ## Deployment
 
-- **Dashboard**: any Next.js host (Vercel, Netlify, a container). Without `API_URL` it serves the committed snapshot; a scheduled job that runs the pipeline and commits `frontend/dashboard/src/data/snapshot.json` is enough for a public M1 dashboard.
+- **Frontend**: one Next.js codebase, two Vercel projects from this repo (Root Directory `frontend/dashboard`):
+  - *Site* project → domain `bicora.xyz`, env `NEXT_PUBLIC_MODE=site`. Serves `/`, `/methodology`, `/docs`; `/dashboard/*` redirects to the app.
+  - *App* project → domain `app.bicora.xyz`, env `NEXT_PUBLIC_MODE=app`. Serves the dashboard at the root (`/`, `/protocols/zest`, `/alerts`, …); `/methodology` and `/docs` redirect to the site.
+  - Optional `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_APP_URL` override the defaults above. With no env set (local dev, previews) everything runs on one origin under `/dashboard`.
+  - Without `API_URL` both builds serve the committed snapshot, refreshed by the scheduled GitHub Action.
 - **API + pipeline**: any Node 20+ host with PostgreSQL (Railway, Fly, Render, a VM). Run the pipeline on a schedule and expose the API; point the dashboard at it with `API_URL`.
 
 ## Status against M1

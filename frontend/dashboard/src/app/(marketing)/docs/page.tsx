@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSnapshot } from '@/lib/data';
+import { dash, APP_URL } from '@/lib/urls';
 
 export const metadata: Metadata = { title: 'API Documentation' };
 
@@ -114,7 +115,7 @@ export default async function DocsPage() {
           </p>
           <div className="grid-cells" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
             <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Base URL</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}>https://api.btcfiintelligence.xyz</div></div>
-            <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Dashboard</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href="https://www.btcfiintelligence.xyz">www.btcfiintelligence.xyz</a></div></div>
+            <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Dashboard</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href={dash('/')}>{APP_URL.replace(/^https?:\/\//, '')}</a></div></div>
             <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Source</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href="https://github.com/zkzora/BTCFi-Risk-Layer" target="_blank" rel="noreferrer">github.com/zkzora/BTCFi-Risk-Layer ↗</a></div></div>
           </div>
         </div>

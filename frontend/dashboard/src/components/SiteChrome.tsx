@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
+import { dash } from '@/lib/urls';
 
 const LINKS = [
   { href: '/', label: 'Home' },
@@ -20,9 +21,9 @@ export function SiteNav() {
       {LINKS.map((l) => (
         <Link key={l.href} href={l.href} className="navlink" aria-current={path === l.href ? 'page' : undefined}>{l.label}</Link>
       ))}
-      <Link href="/dashboard" className="navlink">Risk Index</Link>
+      <Link href={dash('/')} className="navlink">Risk Index</Link>
       <ThemeToggle />
-      <Link href="/dashboard" className="btn btn-primary">Dashboard</Link>
+      <Link href={dash('/')} className="btn btn-primary">Dashboard</Link>
     </nav>
   );
 }

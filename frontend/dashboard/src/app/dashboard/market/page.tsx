@@ -5,6 +5,7 @@ import { componentColor, fmtInt, fmtUsd } from '@/lib/format';
 import { BandTag, PctDelta, StatTile } from '@/components/ui';
 import LineChart from '@/components/charts/LineChart';
 import ProtocolLogo from '@/components/ProtocolLogo';
+import { dash } from '@/lib/urls';
 
 export const metadata: Metadata = { title: 'Market metrics' };
 
@@ -54,7 +55,7 @@ export default async function MarketPage() {
             <tbody>
               {byTvl.map((p, i) => (
                 <tr key={p.slug} className="row">
-                  <td style={{ fontWeight: 600 }}><i style={{ display: 'inline-block', width: 10, height: 10, marginRight: 8, borderRadius: 2, verticalAlign: -1, background: ['var(--ink)', 'var(--color-accent)', 'var(--color-accent-300)', 'var(--color-neutral-400)', 'var(--color-neutral-300)'][i] ?? 'var(--color-neutral-200)' }} /><Link href={`/dashboard/protocols/${p.slug}`} style={{ color: 'var(--color-text)' }}>{p.name}</Link></td>
+                  <td style={{ fontWeight: 600 }}><i style={{ display: 'inline-block', width: 10, height: 10, marginRight: 8, borderRadius: 2, verticalAlign: -1, background: ['var(--ink)', 'var(--color-accent)', 'var(--color-accent-300)', 'var(--color-neutral-400)', 'var(--color-neutral-300)'][i] ?? 'var(--color-neutral-200)' }} /><Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)' }}>{p.name}</Link></td>
                   <td className="r mono">{fmtUsd(p.metrics.tvlUsd)}</td>
                   <td className="r mono">{((p.metrics.tvlUsd / m.totalTvlUsd) * 100).toFixed(1)}%</td>
                   <td className="r"><PctDelta r={p.metrics.tvlChange7d} /></td>
@@ -84,7 +85,7 @@ export default async function MarketPage() {
               <tbody>
                 {[...snapshot.protocols].sort((a, b) => b.metrics.tx7d - a.metrics.tx7d).map((p) => (
                   <tr key={p.slug} className="row">
-                    <td style={{ fontWeight: 600 }}><Link href={`/dashboard/protocols/${p.slug}`} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
+                    <td style={{ fontWeight: 600 }}><Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
                     <td className="r mono">{fmtInt(p.metrics.tx7d)}{p.metrics.activitySampled ? '*' : ''}</td>
                     <td className="r mono">{fmtInt(p.metrics.uniqueSenders7d)}</td>
                     <td><BandTag band={p.score.band} /></td>

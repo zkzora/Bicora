@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { fmtDateTime } from '@/lib/format';
 import ProtocolLogo from './ProtocolLogo';
 import ThemeToggle from './ThemeToggle';
+import { dash, site } from '@/lib/urls';
 
 interface Props {
   children: React.ReactNode;
@@ -15,32 +16,32 @@ interface Props {
 }
 
 const NAV = [
-  { href: '/dashboard', label: 'Overview', exact: true },
-  { href: '/dashboard/protocols', label: 'Protocol Risk' },
-  { href: '/dashboard/market', label: 'Market Metrics' },
-  { href: '/dashboard/alerts', label: 'Alerts' },
+  { href: dash('/'), label: 'Overview', exact: true },
+  { href: dash('/protocols'), label: 'Protocol Risk' },
+  { href: dash('/market'), label: 'Market Metrics' },
+  { href: dash('/alerts'), label: 'Alerts' },
 ];
-const PHASE2 = [{ label: 'Wallet Exposure', href: '/dashboard/wallet', exact: false }];
+const PHASE2 = [{ label: 'Wallet Exposure', href: dash('/wallet'), exact: false }];
 
-const TITLES: [RegExp, string][] = [
-  [/^\/dashboard$/, 'Ecosystem overview'],
-  [/^\/dashboard\/protocols/, 'Protocol risk'],
-  [/^\/dashboard\/market/, 'Market metrics'],
-  [/^\/dashboard\/alerts/, 'Risk alerts'],
-  [/^\/dashboard\/wallet/, 'Wallet exposure'],
+const TITLES: [string, string][] = [
+  [dash('/'), 'Ecosystem overview'],
+  [dash('/protocols'), 'Protocol risk'],
+  [dash('/market'), 'Market metrics'],
+  [dash('/alerts'), 'Risk alerts'],
+  [dash('/wallet'), 'Wallet exposure'],
 ];
 
 export default function AppShell({ children, generatedAt, methodologyVersion, source, protocols }: Props) {
   const path = usePathname();
   const isActive = (href: string, exact?: boolean) => (exact ? path === href : path.startsWith(href));
-  const title = TITLES.find(([re]) => re.test(path))?.[1] ?? 'Dashboard';
-  const crumbProtocol = path.match(/^\/dashboard\/protocols\/([^/]+)/)?.[1];
+  const title = TITLES.find(([p]) => (p === dash('/') ? path === p : path.startsWith(p)))?.[1] ?? 'Dashboard';
+  const crumbProtocol = path.startsWith(dash('/protocols') + '/') ? path.slice(dash('/protocols').length + 1).split('/')[0] : undefined;
   const crumbName = protocols.find((p) => p.slug === crumbProtocol)?.name;
 
   return (
     <div className="app">
       <aside className="app-side">
-        <Link href="/" className="brand" aria-label="Bicora site">
+        <Link href={site('/')} className="brand" aria-label="Bicora site">
           <Image src="/bicora-logo.png" alt="Bicora" width={80} height={20} style={{ height: 20, width: 'auto' }} />
           <span>Risk Layer</span>
         </Link>
@@ -58,11 +59,11 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
         </div>
         <div className="group">Tracked protocols</div>
         {protocols.map((p) => (
-          <Link key={p.slug} href={`/dashboard/protocols/${p.slug}`} className="item" aria-current={path === `/dashboard/protocols/${p.slug}` ? 'page' : undefined} style={{ justifyContent: 'flex-start' }}><ProtocolLogo slug={p.slug} name={p.name} size={18} radius={4} />{p.name}</Link>
+          <Link key={p.slug} href={dash(`/protocols/${p.slug}`)} className="item" aria-current={path === dash(`/protocols/${p.slug}`) ? 'page' : undefined} style={{ justifyContent: 'flex-start' }}><ProtocolLogo slug={p.slug} name={p.name} size={18} radius={4} />{p.name}</Link>
         ))}
         <div className="group">Reference</div>
-        <Link href="/methodology" className="item">Methodology</Link>
-        <Link href="/docs" className="item">API documentation</Link>
+        <Link href={site('/methodology')} className="item">Methodology</Link>
+        <Link href={site('/docs')} className="item">API documentation</Link>
         <button type="button" className="item" onClick={() => window.dispatchEvent(new Event('btcfi:tour'))}>Replay the guide</button>
         <div data-tour="theme" style={{ display: 'flex' }}><ThemeToggle /></div>
         <div className="foot">
@@ -71,7 +72,7 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
           <br />
           Methodology v{methodologyVersion} · {source === 'api' ? 'live API' : 'committed snapshot'}
           <br />
-          <Link href="/">← Back to site</Link>
+          <Link href={site('/')}>← Back to site</Link>
         </div>
       </aside>
 
