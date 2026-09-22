@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { fmtDateTime } from '@/lib/format';
 import ProtocolLogo from './ProtocolLogo';
 import ThemeToggle from './ThemeToggle';
+import PriceTicker from './PriceTicker';
 import { dash, site } from '@/lib/urls';
 
 interface Props {
@@ -83,9 +84,8 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
             <h1>{crumbName ?? title}</h1>
           </div>
           <div className="meta">
-            <span className="live">Stacks mainnet</span>
-            <span>Updated {fmtDateTime(generatedAt)}</span>
-            <span className="tag tag-outline">0–100 · higher is safer</span>
+            <PriceTicker />
+            <span>Stacks mainnet · {fmtDateTime(generatedAt)}</span>
           </div>
         </header>
         <nav className="app-mobile-nav" aria-label="Dashboard sections">

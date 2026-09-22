@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import PriceTicker from './PriceTicker';
 import { dash } from '@/lib/urls';
 
 interface Props {
@@ -80,13 +81,16 @@ export default function SiteFooter({ version, protocols }: Props) {
         ))}
       </div>
       <div className="wrap footer-bar">
-        <Image src="/bicora-logo.png" alt="Bicora" width={64} height={16} style={{ height: 16, width: 'auto' }} />
-        <span>Risk intelligence layer for Bitcoin DeFi on Stacks</span>
-        <span className="footer-right">
+        <div className="footer-bar-top">
+          <Image src="/bicora-logo.png" alt="Bicora" width={64} height={16} style={{ height: 16, width: 'auto' }} />
+          <span>Risk intelligence layer for Bitcoin DeFi on Stacks</span>
+          <PriceTicker compact />
+        </div>
+        <div className="footer-bar-bottom">
           <span>Methodology v{version}</span>
           <span>Analytics, not financial advice</span>
           <span>© {new Date().getFullYear()} Bicora</span>
-        </span>
+        </div>
       </div>
     </footer>
   );
