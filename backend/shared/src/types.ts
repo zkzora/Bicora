@@ -14,7 +14,8 @@ export interface ProtocolConfig {
   hasCollateral: boolean;
   assets: string[];
   contracts: { id: string; role: string }[];
-  audits: { name: string; url: string; year?: number; source?: string }[];
+  /** One entry per distinct, publicly verifiable report. `source` is the primary page that lists it. */
+  audits: { name: string; url: string; year?: number; source?: string; auditor?: string; scope?: string }[];
   governance: Governance;
   governanceNote?: string;
   bugBounty: string | null;

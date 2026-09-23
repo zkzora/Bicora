@@ -136,3 +136,9 @@ Component colours were validated for colour-vision deficiency and normal-vision 
 ## 7. Changelog
 
 - **1.0.0 (2026-09)** — initial published methodology for prototype v0.1.
+
+### Registry data
+
+Changes to protocol registry data (`config/protocols.json`). These do not change the methodology version.
+
+- **2026-09 (registry data):** replaced placeholder audit references with verified audit reports, one entry per distinct report, each linked to the report and to the primary page that lists it. Methodology unchanged at 1.0.0.
