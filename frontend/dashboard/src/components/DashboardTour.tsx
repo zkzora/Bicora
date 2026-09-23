@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
 import { isDashHome } from '@/lib/urls';
 
-const KEY = 'btcfi-tour-v1';
+const KEY = 'bicora-tour-v1';
 
 interface Step {
   target?: string; // [data-tour="..."] — omitted = centred welcome card
@@ -78,8 +78,8 @@ export default function DashboardTour() {
       setStep(0);
       setOpen(true);
     };
-    window.addEventListener('btcfi:tour', onReplay);
-    return () => window.removeEventListener('btcfi:tour', onReplay);
+    window.addEventListener('bicora:tour', onReplay);
+    return () => window.removeEventListener('bicora:tour', onReplay);
   }, []);
 
   const visibleSteps = STEPS.filter((s) => {

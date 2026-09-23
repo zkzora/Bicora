@@ -11,13 +11,13 @@
     "frontend/dashboard"
   ],
   "scripts": {
-    "index": "npm run start -w @btcfi/indexer",
-    "score": "npm run start -w @btcfi/scoring-engine",
+    "index": "npm run start -w @bicora/indexer",
+    "score": "npm run start -w @bicora/scoring-engine",
     "pipeline": "npm run index && npm run score",
-    "api": "npm run start -w @btcfi/api",
-    "dashboard": "npm run dev -w @btcfi/dashboard",
-    "build": "npm run build -w @btcfi/dashboard",
-    "test": "npm run test -w @btcfi/scoring-engine",
+    "api": "npm run start -w @bicora/api",
+    "dashboard": "npm run dev -w @bicora/dashboard",
+    "build": "npm run build -w @bicora/dashboard",
+    "test": "npm run test -w @bicora/scoring-engine",
     "db:migrate": "node backend/shared/db/migrate.mjs"
   },
   "engines": {

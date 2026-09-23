@@ -122,7 +122,7 @@ export default async function ProPage() {
       <section className="wrap section" style={{ padding: '64px clamp(20px,4vw,48px)' }}>
         <div className="section-head" style={{ marginBottom: 20 }}>
           <div>
-            <span className="k">Compare BTCFi protocols</span>
+            <span className="k">Compare Bitcoin DeFi protocols</span>
             <h2 className="h2" style={{ marginTop: 8 }}>One table, every tracked protocol.</h2>
           </div>
           <span className="sub">Live data from the latest scoring run · {new Date(snapshot.generatedAt).toUTCString().replace(' GMT', ' UTC')}</span>

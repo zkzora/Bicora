@@ -11,8 +11,8 @@
  * Reads the latest snapshot from the store (PostgreSQL when DATABASE_URL is set, otherwise ./data).
  */
 import express from 'express';
-import { createStore, log, METHODOLOGY_VERSION } from '@btcfi/shared';
-import type { Snapshot } from '@btcfi/shared';
+import { createStore, log, METHODOLOGY_VERSION } from '@bicora/shared';
+import type { Snapshot } from '@bicora/shared';
 
 const info = log('api');
 const app = express();

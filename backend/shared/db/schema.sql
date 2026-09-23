@@ -1,4 +1,4 @@
--- BTCFi Risk Layer v0.1 — PostgreSQL schema
+-- Bicora Risk Layer v0.1 — PostgreSQL schema
 -- Raw indexed data, computed scores, detected events, and denormalised snapshots.
 
 CREATE TABLE IF NOT EXISTS protocol_raw (

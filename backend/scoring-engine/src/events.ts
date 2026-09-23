@@ -3,8 +3,8 @@
  * previous run (when available) and fixed thresholds, producing human-readable events.
  */
 import { createHash } from 'node:crypto';
-import { pctChange } from '@btcfi/shared';
-import type { ProtocolRaw, RiskEvent, RiskScore, ScorePoint, Severity } from '@btcfi/shared';
+import { pctChange } from '@bicora/shared';
+import type { ProtocolRaw, RiskEvent, RiskScore, ScorePoint, Severity } from '@bicora/shared';
 import { pointDaysAgo } from './scoring.js';
 import { IMPACT, REASON } from './explain.js';
 

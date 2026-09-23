@@ -9,8 +9,8 @@
  * Run: npm run index            (all protocols)
  *      npm run index -- zest    (one protocol)
  */
-import { createStore, loadRegistry, log } from '@btcfi/shared';
-import type { ProtocolRaw } from '@btcfi/shared';
+import { createStore, loadRegistry, log } from '@bicora/shared';
+import type { ProtocolRaw } from '@bicora/shared';
 import { fetchActivity, fetchContract, fetchLlama } from './sources.js';
 
 const info = log('indexer');

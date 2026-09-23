@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { ProtocolConfig, ProtocolRaw, TvlPoint } from '@btcfi/shared';
+import type { ProtocolConfig, ProtocolRaw, TvlPoint } from '@bicora/shared';
 import { activityFactors, band, collateralFactors, liquidityFactors, maxDrawdown, piecewise, scoreProtocol, weightedMean } from './scoring.js';
 
 const day = (i: number) => new Date(Date.UTC(2026, 7, 1) + i * 864e5).toISOString().slice(0, 10);

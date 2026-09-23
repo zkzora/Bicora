@@ -9,8 +9,8 @@
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
-import { createStore, loadRegistry, log, pctChange, REPO_ROOT, METHODOLOGY_VERSION } from '@btcfi/shared';
-import type { Band, RiskEvent, Snapshot, SnapshotProtocol, TvlPoint } from '@btcfi/shared';
+import { createStore, loadRegistry, log, pctChange, REPO_ROOT, METHODOLOGY_VERSION } from '@bicora/shared';
+import type { Band, RiskEvent, Snapshot, SnapshotProtocol, TvlPoint } from '@bicora/shared';
 import { backfillLiquidity, band, cleanTvlHistory, pointDaysAgo, scoreProtocol } from './scoring.js';
 import { detectEvents } from './events.js';
 

@@ -3,7 +3,7 @@
  * Deterministic, rule-based prose derived from the same factors that produce the numbers, so every
  * score on the dashboard can answer "why?". No model calls: the text is reproducible from the data.
  */
-import type { ComponentScore, Factor, RiskEvent, Severity } from '@btcfi/shared';
+import type { ComponentScore, Factor, RiskEvent, Severity } from '@bicora/shared';
 
 const usd = (n: number) => (n >= 1e9 ? `$${(n / 1e9).toFixed(2)}B` : n >= 1e6 ? `$${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `$${(n / 1e3).toFixed(0)}K` : `$${n.toFixed(0)}`);
 const pct = (r: number) => `${r >= 0 ? '+' : '−'}${Math.abs(r * 100).toFixed(1)}%`;

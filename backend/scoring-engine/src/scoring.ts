@@ -3,9 +3,9 @@
  * Every function here is pure: raw inputs in, factors and scores out.
  * All scores are 0–100 where HIGHER = LOWER RISK.
  */
-import { clamp, round1, pctChange, METHODOLOGY_VERSION } from '@btcfi/shared';
+import { clamp, round1, pctChange, METHODOLOGY_VERSION } from '@bicora/shared';
 import { explainComponent, explainFactor } from './explain.js';
-import type { Band, ComponentScore, Factor, ProtocolConfig, ProtocolRaw, RiskScore, TvlPoint } from '@btcfi/shared';
+import type { Band, ComponentScore, Factor, ProtocolConfig, ProtocolRaw, RiskScore, TvlPoint } from '@bicora/shared';
 
 export const WEIGHTS = { liquidity: 0.3, activity: 0.25, collateral: 0.25, transparency: 0.2 } as const;
 

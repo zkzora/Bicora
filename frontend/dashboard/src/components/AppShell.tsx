@@ -65,7 +65,7 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
         <div className="group">Reference</div>
         <Link href={site('/methodology')} className="item">Methodology</Link>
         <Link href={site('/docs')} className="item">API documentation</Link>
-        <button type="button" className="item" onClick={() => window.dispatchEvent(new Event('btcfi:tour'))}>Replay the guide</button>
+        <button type="button" className="item" onClick={() => window.dispatchEvent(new Event('bicora:tour'))}>Replay the guide</button>
         <div data-tour="theme" style={{ display: 'flex' }}><ThemeToggle /></div>
         <div className="foot">
           Data as of<br />

@@ -1,5 +1,5 @@
-import { isoDay, sleep } from '@btcfi/shared';
-import type { ActivityWindow, ContractInfo, TvlPoint } from '@btcfi/shared';
+import { isoDay, sleep } from '@bicora/shared';
+import type { ActivityWindow, ContractInfo, TvlPoint } from '@bicora/shared';
 
 const HIRO = (process.env.HIRO_API_URL ?? 'https://api.hiro.so').replace(/\/$/, '');
 const HIRO_KEY = process.env.HIRO_API_KEY;

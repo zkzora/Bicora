@@ -45,7 +45,7 @@ API_URL=http://localhost:4000 npm run dashboard   # dashboard reads the API, rev
 
 ```bash
 docker compose up -d postgres
-cp .env.example .env               # DATABASE_URL=postgres://btcfi:btcfi@localhost:5432/btcfi
+cp .env.example .env               # DATABASE_URL=postgres://bicora:bicora@localhost:5432/bicora
 npm run db:migrate                 # applies backend/shared/db/schema.sql
 npm run pipeline && npm run api
 ```
