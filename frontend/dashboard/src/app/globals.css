@@ -566,3 +566,7 @@ html, body { overflow-x: clip; }
   .card { padding: 14px; }
 }
 @media (max-width: 380px) { .hide-xs { display: none; } }
+
+/* icon link (X) in the site nav */
+.icon-link { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--color-rule-strong); border-radius: 6px; color: var(--color-text-2); background: var(--glass); flex: none; transition: color 120ms ease, background-color 120ms ease; }
+.icon-link:hover { color: var(--color-text); background: var(--glass-strong); }

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import PriceTicker from './PriceTicker';
+import { X_HANDLE, X_URL } from './XLink';
 import { dash } from '@/lib/urls';
 
 interface Props {
@@ -47,6 +48,14 @@ export default function SiteFooter({ version, protocols }: Props) {
         { label: 'Market health endpoint', href: '/docs#market-health' },
         { label: 'Risk alerts endpoint', href: '/docs#risk-alerts' },
         { label: 'Data definitions', href: '/docs#definitions' },
+      ],
+    },
+    {
+      title: 'Community',
+      items: [
+        { label: `X · ${X_HANDLE}`, href: X_URL, external: true },
+        { label: 'GitHub', href: 'https://github.com/zkzora/Bicora', external: true },
+        { label: 'Report an issue', href: 'https://github.com/zkzora/Bicora/issues', external: true },
       ],
     },
     {

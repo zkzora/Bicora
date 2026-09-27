@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
+import XLink from './XLink';
 import { dash } from '@/lib/urls';
 
 const LINKS = [
@@ -23,6 +24,7 @@ export function SiteNav() {
         <Link key={l.href} href={l.href} className="navlink" aria-current={path === l.href ? 'page' : undefined}>{l.label}</Link>
       ))}
       <Link href={dash('/')} className="navlink">Risk Index</Link>
+      <XLink />
       <ThemeToggle />
       <Link href={dash('/')} className="btn btn-primary">Dashboard</Link>
     </nav>

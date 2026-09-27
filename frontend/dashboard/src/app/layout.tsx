@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: 'Transparent risk analytics infrastructure for Bitcoin DeFi applications built on Stacks.',
     images: [{ url: '/engine.png', width: 1100, height: 760, alt: 'Bicora risk engine' }],
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: { card: 'summary_large_image', site: '@bicora_', creator: '@bicora_' },
 };
 
 // Runs before first paint so a saved theme never flashes the wrong colours. Cookie (shared across *.bicora.xyz) first, localStorage fallback.
