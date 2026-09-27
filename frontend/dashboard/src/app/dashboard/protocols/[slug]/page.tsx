@@ -171,7 +171,7 @@ export default async function ProtocolPage({ params }: { params: Promise<{ slug:
             <span className="sub">Threshold crossings detected for {p.name} in the last 30 days</span>
           </div>
           {events.length ? (
-            <div className="acards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>{events.map((e) => (<AlertCard key={e.id} e={e} name={names[e.slug] ?? e.slug} showProtocol={false} />))}</div>
+            <div className="acards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))' }}>{events.map((e) => (<AlertCard key={e.id} e={e} name={names[e.slug] ?? e.slug} showProtocol={false} />))}</div>
           ) : (
             <div className="empty">No risk events for this protocol in the last 30 days.</div>
           )}

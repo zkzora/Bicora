@@ -122,7 +122,7 @@ export default async function HomePage() {
         </div>
         <div className="col-pad">
           <TextBlockAnimation delay={0.1}><span className="k">Supported protocols</span></TextBlockAnimation>
-          <table className="table" style={{ marginTop: 2 }}>
+          <div className="table-wrap"><table className="table" style={{ marginTop: 2 }}>
             <thead><tr><th>Protocol</th><th>Category</th><th className="r">Risk score</th></tr></thead>
             <tbody>
               {snapshot.protocols.map((p) => (
@@ -133,7 +133,7 @@ export default async function HomePage() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </div>
       </section>
 

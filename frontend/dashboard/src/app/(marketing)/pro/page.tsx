@@ -65,7 +65,7 @@ export default async function ProPage() {
       </section>
 
       {/* --------------------------------------------------------- pricing */}
-      <section className="wrap section" style={{ padding: '56px clamp(20px,4vw,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 40, alignItems: 'start' }}>
+      <section className="wrap section" style={{ padding: '56px clamp(20px,4vw,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 40, alignItems: 'start' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18, paddingTop: 8 }}>
           <span className="k">One plan</span>
           <h2 className="h2">Everything a research desk needs, at one price.</h2>
@@ -152,7 +152,7 @@ export default async function ProPage() {
       </section>
 
       {/* ------------------------------------------------------ monitoring */}
-      <section className="wrap section" style={{ padding: '64px clamp(20px,4vw,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 40, alignItems: 'center' }}>
+      <section className="wrap section" style={{ padding: '64px clamp(20px,4vw,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 40, alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <span className="k">Bicora Risk Alerts</span>
           <h2 className="h2">Know when conditions change.</h2>
@@ -187,7 +187,7 @@ export default async function ProPage() {
           <h2 className="h2" style={{ marginTop: 8 }}>What changes when you upgrade.</h2>
         </div>
         <div className="card" style={{ padding: 0, maxWidth: 760 }}>
-          <table className="table pro-compare">
+          <div className="table-wrap"><table className="table pro-compare">
             <thead><tr><th>Feature</th><th>Free</th><th>Pro</th></tr></thead>
             <tbody>
               {FREE_VS_PRO.map(([f, free, pro]) => (
@@ -198,7 +198,7 @@ export default async function ProPage() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </div>
       </section>
 

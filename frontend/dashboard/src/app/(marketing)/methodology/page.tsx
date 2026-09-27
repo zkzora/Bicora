@@ -63,7 +63,7 @@ export default async function MethodologyPage() {
   const { snapshot } = await getSnapshot();
   return (
     <>
-      <section className="wrap section" style={{ padding: '72px clamp(20px,4vw,48px) 48px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: '24px 48px', alignItems: 'end' }}>
+      <section className="wrap section" style={{ padding: '72px clamp(20px,4vw,48px) 48px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(300px, 100%), 1fr))', gap: '24px 48px', alignItems: 'end' }}>
         <div>
           <span className="k">Risk Score Framework · v{snapshot.methodologyVersion}</span>
           <h1 style={{ fontSize: 'clamp(38px,4.4vw,56px)', lineHeight: 1, letterSpacing: '-0.03em', marginTop: 14 }}>How scores are calculated.</h1>
@@ -77,7 +77,7 @@ export default async function MethodologyPage() {
         {COMPONENTS.map((c) => (<MethodologyCard key={c.name} pct={c.pct} name={c.name} color={c.color} summary={c.summary} bullets={c.bullets} />))}
       </section>
 
-      <section className="wrap section" style={{ padding: '56px clamp(20px,4vw,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 32 }}>
+      <section className="wrap section" style={{ padding: '56px clamp(20px,4vw,48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(300px, 100%), 1fr))', gap: 32 }}>
         <div className="card">
           <div className="card-title">Calculation logic</div>
           <div className="composite" style={{ margin: '4px 0 6px' }}>
@@ -93,14 +93,14 @@ export default async function MethodologyPage() {
         </div>
         <div className="card">
           <div className="card-title">Risk bands</div>
-          <table className="table">
+          <div className="table-wrap"><table className="table">
             <thead><tr><th>Band</th><th>Score</th><th>Meaning</th></tr></thead>
             <tbody>
               {([['Low', '75–100'], ['Moderate', '60–74'], ['Elevated', '40–59'], ['High', '0–39']] as const).map(([b, r]) => (
                 <tr key={b}><td><BandTag band={b} /></td><td className="mono">{r}</td><td style={{ color: 'var(--color-text-2)' }}>{bandMeaning[b]}</td></tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
           <p style={{ fontSize: 12.5, color: 'var(--color-text-2)' }}>The Bicora Risk Index on the dashboard is the mean of tracked protocol scores, banded with the same thresholds.</p>
         </div>
         <div className="card">
@@ -128,16 +128,16 @@ export default async function MethodologyPage() {
           <h2 className="h2" style={{ marginTop: 8 }}>Every input, its weight and its mapping.</h2>
         </div>
         {COMPONENTS.map((c) => (
-          <div key={c.name} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '16px 48px', alignItems: 'start' }}>
+          <div key={c.name} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px, 100%), 1fr))', gap: '16px 48px', alignItems: 'start' }}>
             <div>
               <h3 style={{ fontSize: 17, textTransform: 'none' }}><span style={{ display: 'inline-block', width: 10, height: 10, background: c.color, borderRadius: 2, marginRight: 8 }} />{c.name} · {c.pct}</h3>
               <p style={{ fontSize: 13, color: 'var(--color-text-2)', marginTop: 8, lineHeight: 1.7 }}><b style={{ color: 'var(--color-text)' }}>Source.</b> {c.source}</p>
             </div>
-            <div className="card" style={{ gridColumn: 'span 2', padding: 0 }}>
-              <table className="table">
+            <div className="card span-2" style={{ padding: 0 }}>
+              <div className="table-wrap"><table className="table">
                 <thead><tr><th>Factor</th><th className="r">Weight</th><th>Mapping to 0–100</th></tr></thead>
                 <tbody>{c.factors.map(([f, w, mth]) => (<tr key={f}><td style={{ fontWeight: 600 }}>{f}</td><td className="r mono">{w}</td><td className="mono" style={{ fontSize: 11.5, color: 'var(--color-text-2)' }}>{mth}</td></tr>))}</tbody>
-              </table>
+              </table></div>
             </div>
           </div>
         ))}

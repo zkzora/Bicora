@@ -25,18 +25,18 @@ export default async function WalletPage() {
       </div>
       <div className="card">
         <span className="k k-ink">Protocol scores that will feed portfolio health</span>
-        <table className="table">
-          <thead><tr><th>Protocol</th><th>Category</th><th>Score</th></tr></thead>
+        <div className="table-wrap"><table className="table">
+          <thead><tr><th>Protocol</th><th className="hide-sm">Category</th><th>Score</th></tr></thead>
           <tbody>
             {snapshot.protocols.map((p) => (
               <tr key={p.slug} className="row">
                 <td style={{ fontWeight: 600 }}><Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
-                <td className="caps muted">{p.category}</td>
+                <td className="caps muted hide-sm">{p.category}</td>
                 <td><BandTag band={p.score.band} score={p.score.overall} /></td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
   );

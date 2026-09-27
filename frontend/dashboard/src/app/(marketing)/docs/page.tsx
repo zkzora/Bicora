@@ -113,7 +113,7 @@ export default async function DocsPage() {
           <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-neutral-700)', maxWidth: '64ch' }}>
             Read-only JSON over HTTPS. Every response is derived from the latest scoring snapshot (methodology v{snapshot.methodologyVersion}) and is refreshed on the indexer schedule (every 6 hours). No authentication is required in v0.1; responses are cacheable for 60 seconds. All monetary values are USD, all scores are 0–100 where higher means lower risk.
           </p>
-          <div className="grid-cells" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+          <div className="grid-cells" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(220px, 100%), 1fr))' }}>
             <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Base URL</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}>https://api.bicora.xyz</div></div>
             <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Dashboard</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href={dash('/')}>{APP_URL.replace(/^https?:\/\//, '')}</a></div></div>
             <div className="cell" style={{ padding: 14 }}><div className="k k-muted">Source</div><div className="mono" style={{ fontSize: 13, marginTop: 4 }}><a href="https://github.com/zkzora/Bicora" target="_blank" rel="noreferrer">github.com/zkzora/Bicora ↗</a></div></div>
@@ -138,10 +138,10 @@ npm run dashboard     # http://localhost:3000  (reads API_URL when set, else the
             {e.params.length > 0 && (
               <div>
                 <span className="k k-ink">Query parameters</span>
-                <table className="table" style={{ marginTop: 8 }}>
+                <div className="table-wrap"><table className="table" style={{ marginTop: 8 }}>
                   <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
                   <tbody>{e.params.map(([n, t, d]) => (<tr key={n}><td className="mono">{n}</td><td className="mono">{t}</td><td>{d}</td></tr>))}</tbody>
-                </table>
+                </table></div>
               </div>
             )}
             <div>

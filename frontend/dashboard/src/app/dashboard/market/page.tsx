@@ -50,8 +50,8 @@ export default async function MarketPage() {
               <div key={p.slug} style={{ width: `${(p.metrics.tvlUsd / m.totalTvlUsd) * 100}%`, background: ['var(--ink)', 'var(--color-accent)', 'var(--color-accent-300)', 'var(--color-neutral-400)', 'var(--color-neutral-300)'][i] ?? 'var(--color-neutral-200)' }} title={p.name} />
             ))}
           </div>
-          <table className="table">
-            <thead><tr><th>Protocol</th><th className="r">TVL</th><th className="r">Share</th><th className="r">7d</th><th className="r">30d</th></tr></thead>
+          <div className="table-wrap"><table className="table">
+            <thead><tr><th>Protocol</th><th className="r">TVL</th><th className="r">Share</th><th className="r">7d</th><th className="r hide-sm">30d</th></tr></thead>
             <tbody>
               {byTvl.map((p, i) => (
                 <tr key={p.slug} className="row">
@@ -59,40 +59,40 @@ export default async function MarketPage() {
                   <td className="r mono">{fmtUsd(p.metrics.tvlUsd)}</td>
                   <td className="r mono">{((p.metrics.tvlUsd / m.totalTvlUsd) * 100).toFixed(1)}%</td>
                   <td className="r"><PctDelta r={p.metrics.tvlChange7d} /></td>
-                  <td className="r"><PctDelta r={p.metrics.tvlChange30d} /></td>
+                  <td className="r hide-sm"><PctDelta r={p.metrics.tvlChange30d} /></td>
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <div className="card">
             <span className="k k-ink">By category</span>
-            <table className="table">
+            <div className="table-wrap"><table className="table">
               <thead><tr><th>Category</th><th className="r">Protocols</th><th className="r">TVL</th><th className="r">Avg. score</th></tr></thead>
               <tbody>
                 {[...byCategory.entries()].sort((a, b) => b[1].tvl - a[1].tvl).map(([cat, c]) => (
                   <tr key={cat}><td className="caps" style={{ fontWeight: 600 }}>{cat}</td><td className="r mono">{c.n}</td><td className="r mono">{fmtUsd(c.tvl)}</td><td className="r mono">{Math.round(c.scores.reduce((s, x) => s + x, 0) / c.scores.length)}</td></tr>
                 ))}
               </tbody>
-            </table>
+            </table></div>
           </div>
           <div className="card">
             <span className="k k-ink">Activity · 7 days</span>
-            <table className="table">
-              <thead><tr><th>Protocol</th><th className="r">Transactions</th><th className="r">Senders</th><th>Band</th></tr></thead>
+            <div className="table-wrap"><table className="table">
+              <thead><tr><th>Protocol</th><th className="r">Transactions</th><th className="r">Senders</th><th className="hide-sm">Band</th></tr></thead>
               <tbody>
                 {[...snapshot.protocols].sort((a, b) => b.metrics.tx7d - a.metrics.tx7d).map((p) => (
                   <tr key={p.slug} className="row">
                     <td style={{ fontWeight: 600 }}><Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link></td>
                     <td className="r mono">{fmtInt(p.metrics.tx7d)}{p.metrics.activitySampled ? '*' : ''}</td>
                     <td className="r mono">{fmtInt(p.metrics.uniqueSenders7d)}</td>
-                    <td><BandTag band={p.score.band} /></td>
+                    <td className="hide-sm"><BandTag band={p.score.band} /></td>
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table></div>
             <div className="muted" style={{ fontSize: 11 }}>* extrapolated from a sampled window. Direct calls to registered entry points only; see methodology limitations.</div>
           </div>
         </div>

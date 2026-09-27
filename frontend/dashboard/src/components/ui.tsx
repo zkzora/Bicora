@@ -80,9 +80,9 @@ export function ProtocolTable({ protocols, compact = false }: { protocols: Snaps
       <table className="table" style={{ minWidth: compact ? 0 : 860 }}>
         <thead>
           <tr>
-            <th>#</th>
+            <th className="hide-xs">#</th>
             <th>Protocol</th>
-            <th>Category</th>
+            <th className="hide-sm">Category</th>
             <th className="r">Liquidity</th>
             {!compact && <th className="r">7d TVL</th>}
             <th>Overall</th>
@@ -103,11 +103,11 @@ export function ProtocolTable({ protocols, compact = false }: { protocols: Snaps
             const c = (k: string) => p.score.components.find((x) => x.key === k)?.score;
             return (
               <tr key={p.slug} className="row stag" style={{ animationDelay: `${i * 25}ms` }}>
-                <td className="mono muted">{i + 1}</td>
+                <td className="mono muted hide-xs">{i + 1}</td>
                 <td style={{ fontWeight: 600 }}>
                   <Link href={dash(`/protocols/${p.slug}`)} style={{ color: 'var(--color-text)', display: 'inline-flex', alignItems: 'center', gap: 8 }}><ProtocolLogo slug={p.slug} name={p.name} size={20} radius={4} />{p.name}</Link>
                 </td>
-                <td className="caps muted">{p.category}</td>
+                <td className="caps muted hide-sm">{p.category}</td>
                 <td className="r mono">{fmtUsd(p.metrics.tvlUsd)}</td>
                 {!compact && <td className="r"><PctDelta r={p.metrics.tvlChange7d} /></td>}
                 <td><BandTag band={p.score.band} score={p.score.overall} /></td>
