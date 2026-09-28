@@ -67,7 +67,7 @@ export default async function OverviewPage() {
             <Link href={dash('/alerts')} style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase' }}>All alerts →</Link>
           </div>
           {snapshot.events.length ? (
-            <div className="acards">{snapshot.events.slice(0, 4).map((e) => (<AlertCard key={e.id} e={e} name={names[e.slug] ?? e.slug} />))}</div>
+            <div className="acards">{snapshot.events.slice(0, 2).map((e) => (<AlertCard key={e.id} e={e} name={names[e.slug] ?? e.slug} />))}</div>
           ) : (
             <div className="empty">No risk events in the last 30 days. Events appear when TVL, utilisation, activity or scores cross documented thresholds.</div>
           )}
