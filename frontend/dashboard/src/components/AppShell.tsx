@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -6,6 +7,7 @@ import { fmtDateTime } from '@/lib/format';
 import ProtocolLogo from './ProtocolLogo';
 import ThemeToggle from './ThemeToggle';
 import PriceTicker from './PriceTicker';
+import { MenuIcon } from './MenuIcon';
 import { dash, site } from '@/lib/urls';
 
 interface Props {
@@ -38,10 +40,28 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
   const title = TITLES.find(([p]) => (p === dash('/') ? path === p : path.startsWith(p)))?.[1] ?? 'Dashboard';
   const crumbProtocol = path.startsWith(dash('/protocols') + '/') ? path.slice(dash('/protocols').length + 1).split('/')[0] : undefined;
   const crumbName = protocols.find((p) => p.slug === crumbProtocol)?.name;
+  // Mobile drawer: tied to the page it was opened on, so any navigation closes it.
+  const [menuPath, setMenuPath] = useState<string | null>(null);
+  const open = menuPath === path;
+  const close = () => setMenuPath(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenuPath(null);
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
+
+  const replayGuide = () => {
+    close();
+    // Let the drawer close first so the guide measures the page as it normally looks.
+    setTimeout(() => window.dispatchEvent(new Event('bicora:tour')), 0);
+  };
 
   return (
-    <div className="app">
-      <aside className="app-side">
+    <div className={open ? 'app nav-open' : 'app'}>
+      <aside className="app-side" id="app-side" aria-label="Dashboard navigation" onClick={(e) => (e.target as HTMLElement).closest('a') && close()}>
+        <button type="button" className="icon-link side-close" aria-label="Close menu" onClick={close}><MenuIcon open /></button>
         <Link href={site('/')} className="brand" aria-label="Bicora site">
           <Image src="/bicora-logo.png" alt="Bicora" width={80} height={20} style={{ height: 20, width: 'auto' }} />
           <span>Risk Layer</span>
@@ -65,7 +85,7 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
         <div className="group">Reference</div>
         <Link href={site('/methodology')} className="item">Methodology</Link>
         <Link href={site('/docs')} className="item">API documentation</Link>
-        <button type="button" className="item" onClick={() => window.dispatchEvent(new Event('bicora:tour'))}>Replay the guide</button>
+        <button type="button" className="item" onClick={replayGuide}>Replay the guide</button>
         <div data-tour="theme" style={{ display: 'flex' }}><ThemeToggle /></div>
         <div className="foot">
           Data as of<br />
@@ -79,7 +99,10 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
 
       <div className="app-main">
         <header className="app-top">
-          <div>
+          <Link href={site('/')} className="top-brand" aria-label="Bicora site">
+            <Image src="/bicora-logo.png" alt="Bicora" width={72} height={18} style={{ height: 18, width: 'auto' }} />
+          </Link>
+          <div className="top-title">
             <div className="crumb">Risk index{crumbName ? ` / Protocols / ${crumbName}` : ''}</div>
             <h1>{crumbName ?? title}</h1>
           </div>
@@ -87,14 +110,13 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
             <PriceTicker />
             <span>Stacks mainnet · {fmtDateTime(generatedAt)}</span>
           </div>
+          <button type="button" className="icon-link menu-btn" aria-label="Open menu" aria-expanded={open} aria-controls="app-side" onClick={() => setMenuPath(path)}>
+            <MenuIcon />
+          </button>
         </header>
-        <nav className="app-mobile-nav" aria-label="Dashboard sections">
-          {[...NAV, ...PHASE2].map((n) => (
-            <Link key={n.href} href={n.href} aria-current={isActive(n.href, n.exact) ? 'page' : undefined}>{n.label}</Link>
-          ))}
-        </nav>
         <main className="app-body page" key={path}>{children}</main>
       </div>
+      {open && <button type="button" className="app-scrim" aria-label="Close menu" onClick={close} />}
     </div>
   );
 }
