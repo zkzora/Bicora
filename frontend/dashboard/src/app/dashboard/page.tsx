@@ -51,17 +51,17 @@ export default async function OverviewPage() {
       </div>
 
       {/* TERTIARY — ranking + events */}
-      <div className="dash-tertiary">
-        <div className="dash-order-2" data-tour="ranking">
+      <div className="dash-tertiary dash-balance">
+        <div className="dash-order-2 dash-split" data-tour="ranking">
           <div className="section-head">
             <span className="k k-ink">Protocol ranking</span>
             <span className="sub">Sorted by overall score · open a protocol for its factor breakdown{sampled ? ' · * extrapolated activity' : ''}</span>
           </div>
-          <div className="card" style={{ padding: 0 }}>
+          <div className="card dash-fill-table" style={{ padding: 0 }}>
             <ProtocolTable protocols={snapshot.protocols} compact />
           </div>
         </div>
-        <div className="dash-order-3" data-tour="events">
+        <div className="dash-order-3 dash-split" data-tour="events">
           <div className="section-head">
             <span className="k k-ink">Recent risk events</span>
             <Link href={dash('/alerts')} style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase' }}>All alerts →</Link>
@@ -75,16 +75,17 @@ export default async function OverviewPage() {
       </div>
 
       {/* TERTIARY — charts */}
-      <div className="two-up dash-order-9">
+      <div className="dash-balance dash-order-9">
         <ChartCard title="Component scores by protocol" sub="Hatched bar = not applicable, weight redistributed" tour="components" aside={<div className="legend">{COMPONENTS.map((c) => (<span key={c.key}><i style={{ background: componentColor[c.key] }} />{c.label}</span>))}</div>}>
           <GroupedBars
+            fill
             ariaLabel="Component scores by protocol"
             groups={snapshot.protocols.map((p) => ({ label: p.name, values: COMPONENTS.map((c) => ({ key: c.key, label: c.label, color: componentColor[c.key], value: p.score.components.find((x) => x.key === c.key)?.score ?? null })) }))}
           />
         </ChartCard>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div className="dash-stack">
           <ChartCard title="Tracked liquidity · 90 days" sub="Sum of protocol TVL on a common daily calendar">
-            <LineChart ariaLabel="Ecosystem TVL over 90 days" series={[{ key: 'tvl', label: 'Tracked TVL', color: componentColor.liquidity, area: true, points: m.ecosystemTvlHistory.map((x) => ({ date: x.date, value: x.tvlUsd })) }]} formatKind="usd" height={170} />
+            <LineChart ariaLabel="Ecosystem TVL over 90 days" series={[{ key: 'tvl', label: 'Tracked TVL', color: componentColor.liquidity, area: true, points: m.ecosystemTvlHistory.map((x) => ({ date: x.date, value: x.tvlUsd })) }]} formatKind="usd" width={640} height={160} />
           </ChartCard>
           <ChartCard title="Risk distribution" sub={`${m.protocolsTracked} protocols across four bands`}>
             <BandBar distribution={m.bandDistribution} />

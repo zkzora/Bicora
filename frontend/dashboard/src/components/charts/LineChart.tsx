@@ -13,6 +13,8 @@ export interface LineSeries {
 interface Props {
   series: LineSeries[];
   height?: number;
+  /** viewBox width; a smaller value keeps labels legible in narrow cards. */
+  width?: number;
   yDomain?: [number, number];
   /** Serialisable formatter choice so server components can pass it. */
   formatKind?: 'score' | 'usd';
@@ -23,8 +25,7 @@ interface Props {
 const M = { top: 14, right: 56, bottom: 26, left: 44 };
 
 /** Multi-series line/area chart on a shared date axis with a crosshair tooltip. */
-export default function LineChart({ series, height = 240, yDomain, formatKind = 'score', ariaLabel, endLabels = true }: Props) {
-  const width = 960;
+export default function LineChart({ series, height = 240, width = 960, yDomain, formatKind = 'score', ariaLabel, endLabels = true }: Props) {
   const format = formatKind === 'usd' ? (v: number) => fmtUsd(v, 1) : (v: number) => v.toFixed(0);
   const ref = useRef<SVGSVGElement>(null);
   const [hover, setHover] = useState<number | null>(null);
@@ -53,7 +54,7 @@ export default function LineChart({ series, height = 240, yDomain, formatKind = 
       return { ...s, pts, line, areaPath: area, idx };
     });
     return { dates, x, y, ticks, paths };
-  }, [series, height, yDomain]);
+  }, [series, height, width, yDomain]);
 
   const onMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const r = ref.current!.getBoundingClientRect();

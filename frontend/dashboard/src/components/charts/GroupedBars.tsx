@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export interface BarGroup {
   label: string;
@@ -11,13 +11,27 @@ interface Props {
   groups: BarGroup[];
   height?: number;
   ariaLabel: string;
+  /** Grow to fill the parent's height (e.g. to match a neighbouring card); horizontal scale is unchanged. */
+  fill?: boolean;
 }
 
 const M = { top: 14, right: 12, bottom: 26, left: 36 };
 
 /** Grouped bars, 0–100 scale, per-bar hover tooltip. Null values render as a hatched placeholder. */
-export default function GroupedBars({ groups, height = 210, ariaLabel }: Props) {
+export default function GroupedBars({ groups, height: baseHeight = 210, ariaLabel, fill = false }: Props) {
   const width = 640;
+  const box = useRef<HTMLDivElement>(null);
+  const [fillHeight, setFillHeight] = useState<number | null>(null);
+  useEffect(() => {
+    if (!fill || !box.current) return;
+    const ro = new ResizeObserver(([e]) => {
+      const { width: w, height: h } = e.contentRect;
+      if (w > 0 && h > 0) setFillHeight(Math.round((width * h) / w));
+    });
+    ro.observe(box.current);
+    return () => ro.disconnect();
+  }, [fill]);
+  const height = fill && fillHeight ? fillHeight : baseHeight;
   const [hover, setHover] = useState<{ g: number; s: number } | null>(null);
   const plotW = width - M.left - M.right;
   const plotH = height - M.top - M.bottom;
@@ -30,8 +44,8 @@ export default function GroupedBars({ groups, height = 210, ariaLabel }: Props) 
   const tipX = hover ? M.left + hover.g * gw + gw / 2 - ((nS - 1) * (bw + gap)) / 2 + hover.s * (bw + gap) : 0;
 
   return (
-    <div style={{ position: 'relative' }}>
-      <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', display: 'block' }} role="img" aria-label={ariaLabel}>
+    <div ref={box} className={fill ? 'bars-fill' : undefined} style={{ position: 'relative' }}>
+      <svg viewBox={`0 0 ${width} ${height}`} style={fill ? undefined : { width: '100%', height: 'auto', display: 'block' }} role="img" aria-label={ariaLabel}>
         <defs>
           <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
             <line x1="0" y1="0" x2="0" y2="6" stroke="var(--color-neutral-400)" strokeWidth="1.5" />

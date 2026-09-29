@@ -432,6 +432,23 @@ button.icon-link { padding: 0; font: inherit; cursor: pointer; }
 .dash-secondary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
 .dash-tertiary { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(min(300px, 100%), 1fr); gap: 20px; align-items: start; }
 @media (max-width: 1000px) { .dash-tertiary { grid-template-columns: minmax(0, 1fr); } }
+/* Overview rows: the same two equal columns in every row, and both sides of a row end on the same line. */
+.dash-balance { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.dash-balance > * { min-width: 0; }
+@media (max-width: 1200px) { .dash-balance { grid-template-columns: minmax(0, 1fr); } }
+.dash-split { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 12px; }
+.dash-split > .section-head { margin-bottom: 0; }
+.dash-split > .acards { grid-auto-rows: 1fr; }
+.dash-split > .acards:has(> :only-child) { grid-auto-rows: auto; align-content: start; }
+.dash-fill-table { container-type: inline-size; }
+.dash-fill-table > .table-wrap { flex: 1; }
+@container (max-width: 520px) { .dash-fill-table .hide-sm { display: none; } }
+.dash-fill-table .table { height: 100%; }
+.dash-stack { display: flex; flex-direction: column; gap: 20px; }
+.dash-stack > :first-child { flex: 1; }
+.bars-fill { flex: 1; min-height: 220px; }
+.bars-fill > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+@media (max-width: 1200px) { .bars-fill { flex: none; min-height: 0; aspect-ratio: 640 / 210; } }
 /* mobile priority: risk score -> ranking -> alerts -> the rest */
 @media (max-width: 760px) { .dash-order-1 { order: 0; } .dash-tertiary { order: 5; } .dash-order-9 { order: 9; } }
 .proto-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; }
