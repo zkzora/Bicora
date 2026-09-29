@@ -74,7 +74,7 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
         {PHASE2.map((n) => (
           <Link key={n.href} href={n.href} className="item" aria-current={isActive(n.href) ? 'page' : undefined}>
             {n.label}
-            <span className="tag tag-outline" style={{ color: 'rgba(248,244,238,.6)', borderColor: 'rgba(248,244,238,.25)' }}>Coming soon</span>
+            <span className="tag tag-outline" style={{ color: 'var(--side-muted)', borderColor: 'var(--side-control)' }}>Coming soon</span>
           </Link>
         ))}
         </div>
@@ -89,7 +89,7 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
         <div data-tour="theme" style={{ display: 'flex' }}><ThemeToggle /></div>
         <div className="foot">
           Data as of<br />
-          <b style={{ color: 'rgba(248,244,238,.85)' }}>{fmtDateTime(generatedAt)}</b>
+          <b style={{ color: 'var(--side-fg)' }}>{fmtDateTime(generatedAt)}</b>
           <br />
           Methodology v{methodologyVersion} · {source === 'api' ? 'live API' : 'committed snapshot'}
           <br />
