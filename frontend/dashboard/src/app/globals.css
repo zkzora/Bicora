@@ -239,19 +239,23 @@ svg text { font-family: var(--font-body), ui-monospace, monospace; }
 @media (max-width: 760px) { .risk-score { grid-template-columns: 1fr; padding: 22px; } }
 
 /* protocol risk card */
-.pcard { display: flex; flex-direction: column; gap: 14px; padding: 18px; color: var(--color-text); transition: border-color 120ms ease, background-color 120ms ease; }
+.pcard { container-type: inline-size; display: flex; flex-direction: column; gap: 14px; padding: 18px; color: var(--color-text); transition: border-color 120ms ease, background-color 120ms ease; }
 .pcard:hover { border-color: var(--color-rule-strong); background: var(--color-surface-2); color: var(--color-text); }
 .pcard .top { display: flex; align-items: center; gap: 12px; }
 .pcard .name { font-family: var(--font-heading), system-ui, sans-serif; font-size: 17px; font-weight: 600; letter-spacing: -0.02em; text-transform: none; }
 .pcard .cat { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); }
 .pcard .score { margin-left: auto; text-align: right; }
 .pcard .score .n { font-family: var(--font-heading), system-ui, sans-serif; font-size: 34px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
-.pcard .factors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.pcard .factor .l { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); }
-.pcard .factor .v { font-family: var(--font-heading), system-ui, sans-serif; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-top: 2px; }
+.pcard .factors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 8px; }
+/* Labels stay on one line and every score sits on the same row, whatever the label length. */
+.pcard .factor { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 4px; }
+.pcard .factor .l { display: flex; align-items: center; gap: 4px; font-size: 9.5px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-muted); white-space: nowrap; }
+.pcard .factor .l i { flex: none; width: 6px; height: 6px; border-radius: 2px; }
+.pcard .factor .l span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.pcard .factor .v { font-family: var(--font-heading), system-ui, sans-serif; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
 .pcard .why { font-size: 12px; color: var(--color-text-2); line-height: 1.55; border-top: 1px solid var(--color-rule); padding-top: 12px; }
 .pcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 16px; }
-@media (max-width: 480px) { .pcard .factors { grid-template-columns: repeat(2, 1fr); } }
+@container (max-width: 340px) { .pcard .factors { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* risk factor card (expandable) */
 .fcard { padding: 0; overflow: hidden; gap: 0; }

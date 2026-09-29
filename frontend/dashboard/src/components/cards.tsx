@@ -73,7 +73,7 @@ export function ProtocolRiskCard({ p, delay = 0 }: { p: SnapshotProtocol; delay?
       <div className="factors">
         {p.score.components.map((c) => (
           <div key={c.key} className="factor">
-            <div className="l"><i style={{ display: 'inline-block', width: 7, height: 7, background: componentColor[c.key], borderRadius: 2, marginRight: 5 }} />{SHORT[c.key]}</div>
+            <div className="l"><i style={{ background: componentColor[c.key] }} /><span>{SHORT[c.key]}</span></div>
             <div className="v tnum">{c.score == null ? '—' : Math.round(c.score)}</div>
           </div>
         ))}
