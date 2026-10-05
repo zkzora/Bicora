@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import type { Band, RiskEvent, SnapshotProtocol } from '@/lib/types';
+import type { Band, RiskEvent, SnapshotProtocol, StakingSnapshot } from '@/lib/types';
 import { bandMeaning, componentColor, fmtDateTime, fmtDelta, fmtInt, fmtUsd } from '@/lib/format';
 import { dash } from '@/lib/urls';
 import ProtocolLogo from './ProtocolLogo';
+import StakingMark from './StakingMark';
 import Sparkline from './charts/Sparkline';
 import { BandTag, PctDelta, ScoreDelta } from './ui';
 
@@ -80,6 +81,45 @@ export function ProtocolRiskCard({ p, delay = 0 }: { p: SnapshotProtocol; delay?
       </div>
       <div className="why">
         <b style={{ color: 'var(--color-text)' }}>Main factor:</b> {weakest ? `${weakest.label} (${Math.round(weakest.score ?? 0)}). ${weakest.explanation?.split('. ')[0] ?? ''}${weakest.explanation ? '.' : ''}` : '—'}
+      </div>
+    </Link>
+  );
+}
+
+/* --------------------------------------------------------------- StakingCard */
+/** Looks like a protocol card, but informational — it carries staking metrics, no score. */
+export function StakingCard({ s, delay = 0 }: { s: StakingSnapshot; delay?: number }) {
+  const stx = s.stackedStx == null ? 'N/A' : s.stackedStx >= 1e6 ? `${(s.stackedStx / 1e6).toFixed(0)}M` : fmtInt(s.stackedStx);
+  const btcYield = s.btcYieldPerCycleEst == null ? 'N/A' : `${s.btcYieldPerCycleEst.toFixed(1)}`;
+  const factors: [string, React.ReactNode][] = [
+    ['STX committed', <>{stx}</>],
+    ['Staking TVL', s.stackingTvlUsd == null ? 'N/A' : fmtUsd(s.stackingTvlUsd)],
+    ['BTC / cycle', btcYield],
+    ['BTC bonded', <span style={{ color: 'var(--color-muted)' }}>N/A</span>],
+  ];
+  return (
+    <Link href={dash('/staking')} className="card pcard stag" style={{ animationDelay: `${delay}ms` }}>
+      <div className="top">
+        <StakingMark size={36} radius={8} />
+        <div>
+          <div className="name">Bitcoin Staking (Stacks)</div>
+          <div className="cat">Proof of Transfer</div>
+        </div>
+        <div className="score">
+          <div className="tnum" style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1, color: 'var(--color-accent-700)' }}>{stx}<span style={{ fontSize: 12, color: 'var(--color-muted)' }}> STX</span></div>
+          <span className="tag tag-outline" style={{ marginTop: 6, display: 'inline-block' }}>Not scored</span>
+        </div>
+      </div>
+      <div className="factors">
+        {factors.map(([l, v]) => (
+          <div key={l} className="factor">
+            <div className="l"><i style={{ background: 'var(--color-neutral-400)' }} /><span>{l}</span></div>
+            <div className="v tnum">{v}</div>
+          </div>
+        ))}
+      </div>
+      <div className="why">
+        <b style={{ color: 'var(--color-text)' }}>Native Bitcoin yield.</b> STX committed to Proof of Transfer; BTC rewards paid each cycle. Informational — not in the Risk Index.
       </div>
     </Link>
   );

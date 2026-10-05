@@ -13,6 +13,7 @@ import { createStore, loadRegistry, log, pctChange, REPO_ROOT, METHODOLOGY_VERSI
 import type { Band, RiskEvent, Snapshot, SnapshotProtocol, TvlPoint } from '@bicora/shared';
 import { backfillLiquidity, band, cleanTvlHistory, pointDaysAgo, scoreProtocol } from './scoring.js';
 import { detectEvents } from './events.js';
+import { buildStaking } from './staking.js';
 
 const info = log('scoring');
 
@@ -135,6 +136,14 @@ async function main() {
   await store.saveEvents(allEvents.filter((e) => !known.has(e.id)));
   const feed = (await store.getEvents(new Date(now.getTime() - 30 * 864e5).toISOString())).slice(0, 100);
 
+  // Bitcoin Staking / PoX tracker — informational, outside the scored index. StackingDAO's TVL is the
+  // tracked liquid-staking overlap passed in so the UI can flag double counting against the DeFi index.
+  const liquidStackedUsd = protocols
+    .filter((p) => p.category === 'Liquid Stacking')
+    .reduce((s, p) => s + p.metrics.tvlUsd, 0) || null;
+  const staking = await buildStaking(await store.getSnapshot(), now, liquidStackedUsd);
+  info(`staking: ${staking.stackedStx != null ? (staking.stackedStx / 1e6).toFixed(1) + 'M STX' : 'N/A'} (${staking.source})`);
+
   const snapshot: Snapshot = {
     generatedAt: now.toISOString(),
     methodologyVersion: METHODOLOGY_VERSION,
@@ -159,6 +168,7 @@ async function main() {
     },
     protocols,
     events: feed,
+    staking,
   };
 
   await store.saveSnapshot(snapshot);

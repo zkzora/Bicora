@@ -629,3 +629,15 @@ html, body { overflow-x: clip; }
 /* icon link (X) in the site nav */
 .icon-link { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--color-rule-strong); border-radius: 6px; color: var(--color-text-2); background: var(--glass); flex: none; transition: color 120ms ease, background-color 120ms ease; }
 .icon-link:hover { color: var(--color-text); background: var(--glass-strong); }
+
+/* Bitcoin Staking entry header: hero number right on desktop, stacks under the title on mobile. */
+.stk-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: start; }
+.stk-head-num { text-align: right; }
+@media (max-width: 640px) {
+  .stk-head { grid-template-columns: 1fr; gap: 16px; }
+  .stk-head-num { text-align: left; }
+}
+
+/* Stacks wordmark (black on transparent): invert in dark mode so it stays visible. */
+.stacks-wordmark { filter: invert(1); }
+:root[data-theme='light'] .stacks-wordmark, :root.sys-light:not([data-theme='dark']) .stacks-wordmark { filter: none; }

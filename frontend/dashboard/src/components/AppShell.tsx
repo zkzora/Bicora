@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { fmtDateTime } from '@/lib/format';
 import ProtocolLogo from './ProtocolLogo';
+import StakingMark from './StakingMark';
 import ThemeToggle from './ThemeToggle';
 import PriceTicker from './PriceTicker';
 import { MenuIcon } from './MenuIcon';
@@ -82,6 +83,10 @@ export default function AppShell({ children, generatedAt, methodologyVersion, so
         {protocols.map((p) => (
           <Link key={p.slug} href={dash(`/protocols/${p.slug}`)} className="item" aria-current={path === dash(`/protocols/${p.slug}`) ? 'page' : undefined} style={{ justifyContent: 'flex-start' }}><ProtocolLogo slug={p.slug} name={p.name} size={18} radius={4} />{p.name}</Link>
         ))}
+        <Link href={dash('/staking')} className="item" aria-current={path === dash('/staking') ? 'page' : undefined}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, minWidth: 0 }}><StakingMark size={18} radius={4} />Bitcoin Staking</span>
+          <span className="tag tag-outline" style={{ color: 'var(--side-muted)', borderColor: 'var(--side-control)' }}>Info</span>
+        </Link>
         <div className="group">Reference</div>
         <Link href={site('/methodology')} className="item">Methodology</Link>
         <Link href={site('/docs')} className="item">API documentation</Link>

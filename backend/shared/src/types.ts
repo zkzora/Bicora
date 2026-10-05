@@ -155,9 +155,56 @@ export interface SnapshotProtocol {
   events: RiskEvent[];
 }
 
+/** One reward cycle's stacking level (x-axis is the cycle number, not a date). */
+export interface StakingCyclePoint {
+  cycle: number;
+  stackedStx: number;
+  signers: number | null;
+}
+
+/**
+ * Stacks Bitcoin Staking / PoX tracker. Informational only — NOT part of the Risk Index or the
+ * scored `protocols` array. Fields that have no authoritative public source are null (shown as N/A),
+ * never zero. See scoring-engine/staking.ts for the data methodology.
+ */
+export interface StakingSnapshot {
+  source: 'live' | 'carried-forward';
+  fetchedAt: string;
+  // STX committed to PoX (classic stacking, live on-chain)
+  stackedStx: number | null;
+  stackedUsd: number | null;
+  stxPriceUsd: number | null;
+  totalStxSupply: number | null;
+  pctSupplyStacked: number | null; // 0..1
+  // Reward cycle / unlock timing
+  currentCycle: number | null;
+  cycleLengthBlocks: number | null; // Bitcoin blocks per cycle (~2100 ≈ 2 weeks)
+  blocksUntilNextCycle: number | null;
+  nextCycleEta: string | null; // ISO, estimated from blocks remaining
+  minThresholdStx: number | null;
+  totalSigners: number | null;
+  // Realized BTC yield (from PoX burnchain rewards; estimates from a recent sample)
+  btcRewardPerBlockAvg: number | null; // BTC paid per rewarded Bitcoin block (recent sample)
+  btcYieldPerCycleEst: number | null; // BTC distributed per cycle (estimate)
+  targetBtcApy: number | null; // native Bitcoin Staking target APY (0..1), cited target not a guarantee
+  cumulativeBtcDistributed: number | null; // cited stat, see notes for as-of date
+  // Native Bitcoin Staking program (BTC bonded on L1) — no public API
+  btcBonded: number | null; // N/A
+  bondPeriodBlocks: number; // ~25,200 Bitcoin blocks (~6 months)
+  programStatus: string;
+  // Double-count guard: STX stacked via tracked liquid-staking protocols (overlaps their DeFi TVL)
+  liquidStackedUsd: number | null;
+  stackingTvlUsd: number | null; // stackedStx × price — distinct from DeFi TVL and chain-wide TVL
+  history: StakingCyclePoint[];
+  sources: { label: string; url: string }[];
+  notes: string[];
+}
+
 export interface Snapshot {
   generatedAt: string;
   methodologyVersion: string;
+  /** Informational Bitcoin Staking / PoX metrics, outside the scored index. Optional for back-compat. */
+  staking?: StakingSnapshot;
   market: {
     protocolsTracked: number;
     totalTvlUsd: number;

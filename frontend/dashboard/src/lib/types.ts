@@ -21,4 +21,24 @@ export interface Snapshot {
   generatedAt: string; methodologyVersion: string;
   market: { protocolsTracked: number; totalTvlUsd: number; totalTvlChange7d: number | null; totalTvlChange30d: number | null; activeAddresses7d: number; tx7d: number; avgScore: number; index: { score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; history: { date: string; score: number }[] }; bandDistribution: Record<Band, number>; ecosystemTvlHistory: TvlPoint[] };
   protocols: SnapshotProtocol[]; events: RiskEvent[];
+  staking?: StakingSnapshot;
+}
+
+/** One reward cycle's stacking level (x-axis is the cycle number, not a date). */
+export interface StakingCyclePoint { cycle: number; stackedStx: number; signers: number | null }
+
+/** Bitcoin Staking / PoX tracker — informational, outside the scored index. Null = N/A (never zero). */
+export interface StakingSnapshot {
+  source: 'live' | 'carried-forward';
+  fetchedAt: string;
+  stackedStx: number | null; stackedUsd: number | null; stxPriceUsd: number | null;
+  totalStxSupply: number | null; pctSupplyStacked: number | null;
+  currentCycle: number | null; cycleLengthBlocks: number | null; blocksUntilNextCycle: number | null;
+  nextCycleEta: string | null; minThresholdStx: number | null; totalSigners: number | null;
+  btcRewardPerBlockAvg: number | null; btcYieldPerCycleEst: number | null; targetBtcApy: number | null; cumulativeBtcDistributed: number | null;
+  btcBonded: number | null; bondPeriodBlocks: number; programStatus: string;
+  liquidStackedUsd: number | null; stackingTvlUsd: number | null;
+  history: StakingCyclePoint[];
+  sources: { label: string; url: string }[];
+  notes: string[];
 }
