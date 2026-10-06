@@ -82,7 +82,8 @@ const SOURCES = [
 
 /**
  * Build the staking section. Never throws. On total fetch failure, carries forward the previous
- * snapshot's staking block (marked 'carried-forward'); if there is none, returns an all-N/A block.
+ * snapshot's staking block (marked 'carried-forward', original `observedAt` kept); if there is none,
+ * returns an all-N/A block with `observedAt: null`.
  *
  * @param prev previous snapshot (for fallback)
  * @param now  run timestamp
@@ -99,7 +100,7 @@ export async function buildStaking(prev: Snapshot | null, now: Date, liquidStack
   if (!pox) {
     if (prev?.staking) {
       info('PoX fetch failed — carrying forward previous staking block');
-      return { ...prev.staking, source: 'carried-forward', fetchedAt: now.toISOString() };
+      return carryForward(prev.staking, now);
     }
     info('PoX fetch failed and no previous data — staking block is all N/A');
     return emptyStaking(now, liquidStackedUsd);
@@ -150,6 +151,8 @@ export async function buildStaking(prev: Snapshot | null, now: Date, liquidStack
   return {
     source: 'live',
     fetchedAt: now.toISOString(),
+    observedAt: now.toISOString(),
+    lastAttemptAt: now.toISOString(),
     stackedStx,
     stackedUsd,
     stxPriceUsd,
@@ -176,10 +179,39 @@ export async function buildStaking(prev: Snapshot | null, now: Date, liquidStack
   };
 }
 
+const CARRIED_NOTE = 'Live PoX fetch failed on the latest run';
+
+/** When the values in a stored block were observed. Blocks written before `observedAt` existed only know it if they were live. */
+function observedAtOf(s: StakingSnapshot): string | null {
+  if (s.observedAt !== undefined) return s.observedAt;
+  return s.source === 'live' && s.stackedStx != null ? s.fetchedAt : null;
+}
+
+/**
+ * Reuse the previous block after a failed PoX fetch. Values and their observation time are kept as they
+ * were; only the attempt time and the source change, so a block carried across several runs still says
+ * when it was last fetched successfully.
+ */
+export function carryForward(prev: StakingSnapshot, now: Date): StakingSnapshot {
+  const observedAt = observedAtOf(prev);
+  const at = now.toISOString();
+  const note = `${CARRIED_NOTE} (${at}); values are from the last successful fetch${observedAt ? ` at ${observedAt}` : ', whose time was not recorded'}.`;
+  return {
+    ...prev,
+    source: 'carried-forward',
+    fetchedAt: at,
+    observedAt,
+    lastAttemptAt: at,
+    notes: [note, ...prev.notes.filter((n) => !n.startsWith(CARRIED_NOTE))],
+  };
+}
+
 function emptyStaking(now: Date, liquidStackedUsd: number | null): StakingSnapshot {
   return {
     source: 'live',
     fetchedAt: now.toISOString(),
+    observedAt: null,
+    lastAttemptAt: now.toISOString(),
     stackedStx: null,
     stackedUsd: null,
     stxPriceUsd: null,

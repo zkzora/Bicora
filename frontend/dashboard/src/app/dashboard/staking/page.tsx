@@ -66,6 +66,15 @@ export default async function StakingPage() {
     );
   }
 
+  // Blocks written before observedAt existed: a live block was observed when it was written; a carried one is unknown.
+  const observedAt = s.observedAt !== undefined ? s.observedAt : s.source === 'live' && s.stackedStx != null ? s.fetchedAt : null;
+  const attemptedAt = s.lastAttemptAt ?? s.fetchedAt;
+  const freshness =
+    s.source === 'carried-forward'
+      ? `Last good fetch ${observedAt ? fmtDateTime(observedAt) : 'time not recorded'} · latest attempt ${fmtDateTime(attemptedAt)} failed`
+      : observedAt
+        ? `Live from Proof of Transfer · updated ${fmtDateTime(observedAt)}`
+        : `Live fetch failed ${fmtDateTime(attemptedAt)} · no earlier data`;
   const priceOk = s.stxPriceUsd != null;
   const cycleDays = s.cycleLengthBlocks != null ? Math.round((s.cycleLengthBlocks * 10) / 60 / 24) : null;
 
@@ -99,7 +108,7 @@ export default async function StakingPage() {
 
       {/* primary metrics */}
       <div>
-        <div className="section-head"><span className="k k-ink">Locked assets &amp; yield</span><span className="sub">Live from Proof of Transfer · updated {fmtDateTime(s.fetchedAt)}{s.source === 'carried-forward' ? ' · last good fetch' : ''}</span></div>
+        <div className="section-head"><span className="k k-ink">Locked assets &amp; yield</span><span className="sub">{freshness}</span></div>
         <div className="dash-secondary">
           <MetricCard label="STX committed" value={fmtStx(s.stackedStx)} sub={s.pctSupplyStacked != null ? `${fmtPct(s.pctSupplyStacked, 1).replace('+', '')} of STX supply` : 'share N/A'} />
           <MetricCard label="Staking TVL" value={na(fmtUsd(s.stackingTvlUsd), s.stackingTvlUsd != null)} sub={priceOk ? `STX × $${s.stxPriceUsd!.toFixed(3)}` : 'STX price N/A'} delay={30} />

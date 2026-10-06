@@ -31,6 +31,8 @@ const ENDPOINTS = [
   "staking": {
     "source": "live",
     "fetchedAt": "2026-10-06T02:49:19.530Z",
+    "observedAt": "2026-10-06T02:49:19.530Z",
+    "lastAttemptAt": "2026-10-06T02:49:19.530Z",
     "stackedStx": 448329575.89,
     "stxPriceUsd": 0.375632,
     "stackingTvlUsd": 168406935.25,
@@ -151,7 +153,9 @@ const SOURCES: [string, string, string, string][] = [
 /** [field, type, definition, status] — every field of snapshot.staking. */
 const STAKING_FIELDS: [string, string, string, string][] = [
   ['source', "'live' | 'carried-forward'", 'Whether this run fetched PoX state, or copied the previous block because /v2/pox failed.', 'See Stale'],
-  ['fetchedAt', 'ISO 8601', 'Time of the pipeline run that produced the block. On a carried-forward block this is the carrying run, not when the values were observed.', 'Run time'],
+  ['observedAt', 'ISO 8601 | null', 'When the values were fetched successfully. Kept unchanged when the block is carried forward. Null when no successful fetch exists or, for a block carried forward before this field was added, when it was not recorded.', 'Observation time'],
+  ['lastAttemptAt', 'ISO 8601', 'Latest fetch attempt (the run that wrote the block), successful or not.', 'Run time'],
+  ['fetchedAt', 'ISO 8601', 'Same as lastAttemptAt; kept for compatibility. Use observedAt for data age.', 'Run time'],
   ['stackedStx', 'number | null', 'STX committed to Proof of Transfer for the current reward cycle (/v2/pox current_cycle.stacked_ustx ÷ 10^6).', 'Live'],
   ['totalStxSupply', 'number | null', 'Liquid STX supply (/v2/pox total_liquid_supply_ustx ÷ 10^6).', 'Live'],
   ['pctSupplyStacked', 'number | null', 'stackedStx ÷ totalStxSupply (0–1).', 'Derived'],
@@ -184,7 +188,8 @@ const TIMESTAMPS: [string, string][] = [
   ['events[].ts', 'Time of the scoring run that detected the event.'],
   ['contracts[].deployedAt', 'Bitcoin block time of the deploy transaction.'],
   ['Activity windows', 'Measured on transaction Bitcoin block time: the 7 days before the indexer run, and the 7 days before that.'],
-  ['staking.fetchedAt', 'Pipeline run time (see the staking field table for the carried-forward case).'],
+  ['staking.observedAt', 'Last successful fetch of the staking values; preserved when the block is carried forward.'],
+  ['staking.lastAttemptAt, staking.fetchedAt', 'Latest fetch attempt (pipeline run time), successful or not.'],
   ['staking.nextCycleEta', 'An estimate, not an observed time.'],
 ];
 
@@ -398,7 +403,7 @@ npm run dashboard     # http://localhost:3000  (reads API_URL when set, else the
           <h3>Stale</h3>
           <p>The value is older than the latest pipeline run:</p>
           <ul>
-            <li><code>staking.source: &apos;carried-forward&apos;</code>. <code>/v2/pox</code> failed, so the previous run&rsquo;s staking block was reused unchanged. <code>fetchedAt</code> then shows the carrying run, and the original observation time is not recorded, so a block carried across several runs can be older than it looks. If there is no earlier block, all live staking fields are N/A and the notes say the fetch failed.</li>
+            <li><code>staking.source: &apos;carried-forward&apos;</code>. <code>/v2/pox</code> failed, so the previous run&rsquo;s staking values were reused. <code>observedAt</code> keeps the time of the last successful fetch, across any number of failed runs; <code>lastAttemptAt</code> is the failed attempt. The data age is the time since <code>observedAt</code>. If there is no earlier block, all live staking fields are N/A and <code>observedAt</code> is null.</li>
             <li>Cited static values (<code>targetBtcApy</code>, <code>cumulativeBtcDistributed</code> as of 2026-09, <code>bondPeriodBlocks</code>) are constants that change only when the code is updated.</li>
             <li>Protocol data has no stale flag. Compare <code>updated_at</code> with the current time: anything older than about 6 hours means a scheduled run was missed. DefiLlama daily points can also lag the current TVL value.</li>
           </ul>

@@ -169,7 +169,12 @@ export interface StakingCyclePoint {
  */
 export interface StakingSnapshot {
   source: 'live' | 'carried-forward';
+  /** Time of the run that wrote this block (same as lastAttemptAt). Kept for compatibility; prefer observedAt / lastAttemptAt. */
   fetchedAt: string;
+  /** When the values were fetched successfully. Preserved when a block is carried forward; null if never fetched or not recorded. Optional only for blocks written before this field existed. */
+  observedAt?: string | null;
+  /** Latest fetch attempt (this run), successful or not. Optional only for blocks written before this field existed. */
+  lastAttemptAt?: string;
   // STX committed to PoX (classic stacking, live on-chain)
   stackedStx: number | null;
   stackedUsd: number | null;

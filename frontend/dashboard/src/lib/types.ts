@@ -30,7 +30,9 @@ export interface StakingCyclePoint { cycle: number; stackedStx: number; signers:
 /** Bitcoin Staking / PoX tracker — informational, outside the scored index. Null = N/A (never zero). */
 export interface StakingSnapshot {
   source: 'live' | 'carried-forward';
-  fetchedAt: string;
+  fetchedAt: string; // run that wrote the block; prefer observedAt / lastAttemptAt
+  observedAt?: string | null; // last successful fetch, preserved when carried forward
+  lastAttemptAt?: string; // latest fetch attempt, successful or not
   stackedStx: number | null; stackedUsd: number | null; stxPriceUsd: number | null;
   totalStxSupply: number | null; pctSupplyStacked: number | null;
   currentCycle: number | null; cycleLengthBlocks: number | null; blocksUntilNextCycle: number | null;
