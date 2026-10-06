@@ -127,6 +127,19 @@ export default async function ProtocolPage({ params }: { params: Promise<{ slug:
             <MetricCard label={p.hasCollateral ? 'Utilisation' : 'Collateral'} value={m.utilization == null ? '—' : `${(m.utilization * 100).toFixed(1)}%`} sub={m.borrowedUsd != null ? `${fmtUsd(m.borrowedUsd)} borrowed` : p.hasCollateral ? 'no borrowed data' : 'not applicable'} delay={60} />
             <MetricCard label="Liquidity score · 30d" value={<span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>{Math.round(p.score.components[0].score ?? 0)}<Sparkline values={p.liquidityScoreHistory.slice(-30).map((x) => x.score)} color={componentColor.liquidity} width={72} height={24} /></span>} sub={`${fmtPct(m.tvlChange30d)} TVL over 30 days`} delay={90} />
           </div>
+          {m.borrowedUsd != null && (
+            <div className="card" style={{ marginTop: 20 }}>
+              <div className="card-head"><div><div className="card-title">Supply &amp; borrow · data availability</div><div className="muted" style={{ fontSize: 11.5, marginTop: 2 }}>Shown for transparency — the Liquidity score uses net TVL (DefiLlama), not gross supplied</div></div></div>
+              <div className="dash-secondary">
+                <MetricCard label="Supplied (gross)" value={fmtUsd(m.tvlUsd + m.borrowedUsd)} sub="deposits · net + borrowed" />
+                <MetricCard label="Borrowed" value={fmtUsd(m.borrowedUsd)} sub={m.utilization != null ? `${(m.utilization * 100).toFixed(1)}% utilisation` : 'borrowed value'} delay={30} />
+                <MetricCard label="Net TVL · scored" value={fmtUsd(m.tvlUsd)} sub="DefiLlama Stacks · used by the Liquidity score" delay={60} />
+              </div>
+              <p className="muted" style={{ fontSize: 11.5, lineHeight: 1.6, marginTop: 12 }}>
+                Protocol dashboards often headline gross supplied (≈ {fmtUsd(m.tvlUsd + m.borrowedUsd)} here), while Bicora scores on DefiLlama&rsquo;s net Stacks TVL ({fmtUsd(m.tvlUsd)}) for consistency across protocols. Borrowed value is shown as context and does not change the score.
+              </p>
+            </div>
+          )}
           <div className="two-up">
             {tokens.length > 0 && (
               <ChartCard title="Liquidity by asset" sub="Latest token breakdown from DefiLlama">
