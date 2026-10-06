@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "status": "Mapping only. Bicora does not compute, store or serve on-chain TVL from this file, and it is not a Risk Index input. Protocol TVL and all scores keep using DefiLlama. When a calculation is built on this mapping it is intended to run as a parallel comparison against DefiLlama.",
+  "evidence": {
+    "source": "Read from the protocol's published Clarity source on GitHub (contract IDs, constants, function names). Not yet confirmed against mainnet state.",
+    "documented": "Stated in protocol documentation or audits; not read from source.",
+    "unverified": "Inferred. Must be confirmed before use.",
+    "onchain": "Confirmed against mainnet by `npm run tvl:verify`. No entry has this status yet."
+  },
+  "rules": [
+    "Net TVL counts the underlying tokens held by the mapped holder contracts. Borrowed value is excluded from TVL and reported separately, matching DefiLlama's convention for lending markets.",
+    "Share and receipt tokens (Zest ztokens, zvstBTC) are never counted. Only the underlying asset they represent is.",
+    "Zest v0-market-vault holds posted collateral: count only underlying assets it holds. Ztokens it holds are shares of Zest vaults that are already counted.",
+    "The Zest stBTC strategy vault (zvstBTC) is not counted as a separate position: its zstBTC collateral sits in v0-vault-stbtc. Only idle stBTC / sBTC held by its state and ops contracts is added.",
+    "stSTX, stSTXbtc and stBTC held by Zest are claims on StackingDAO's backing. Per-protocol TVL counts them in both protocols (as DefiLlama does); any ecosystem total must subtract holdings marked backedBy.",
+    "Prices are not chosen yet. priceRef records what each asset needs; derivative tokens also need the ratio named in ratio."
+  ],
+  "assets": {
+    "STX": { "contract": null, "native": true, "decimals": 6, "priceRef": "STX", "evidence": "documented" },
+    "wSTX": { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.wstx", "decimals": 6, "priceRef": "STX", "evidence": "source", "note": "Zest wrapper. v0-vault-stx moves native STX (with-stx), so its holding is measured as the vault's native STX balance." },
+    "sBTC": { "contract": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token", "decimals": 8, "priceRef": "BTC", "evidence": "source" },
+    "stSTX": { "contract": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.ststx-token", "decimals": 6, "priceRef": "STX", "ratio": { "contract": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.data-core-v3", "function": null, "evidence": "unverified", "note": "STX per stSTX. Data Core v3 is named in StackingDAO docs; the read-only function is not confirmed." }, "backedBy": "stackingdao", "evidence": "source" },
+    "stSTXbtc": { "contract": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.ststxbtc-token-v2", "decimals": 6, "priceRef": "STX", "ratio": { "fixed": 1, "evidence": "documented", "note": "Swaps with stSTX-backed STX 1:1 per StackingDAO docs." }, "backedBy": "stackingdao", "evidence": "source" },
+    "stBTC": { "contract": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stbtc-token", "decimals": 8, "priceRef": "BTC", "ratio": { "contract": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.data-stbtc-v1", "function": "get-sbtc-per-stbtc", "evidence": "source", "note": "Called by Zest zv-engine-stbtc-0; returns sBTC per stBTC, scaled (scale to confirm on-chain)." }, "backedBy": "stackingdao", "evidence": "source" },
+    "USDCx": { "contract": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx", "decimals": 6, "priceRef": "USD", "evidence": "source" },
+    "USDh": { "contract": "SPN5AKG35QZSK2M8GAMR4AFX45659RJHDW353HSG.usdh-token-v1", "decimals": 8, "priceRef": "USD", "evidence": "source" }
+  },
+  "protocols": {
+    "zest": {
+      "registrySlug": "zest",
+      "llamaSlug": "zest-v2",
+      "deployments": [
+        {
+          "name": "Zest v2 (hub-and-spoke markets and ztoken vaults)",
+          "deployer": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7",
+          "source": "https://github.com/Zest-Protocol/zest-v2-contracts/tree/main/mainnet",
+          "holders": [
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-vault-stx", "kind": "lending-vault", "asset": "STX", "shareToken": "zSTX", "reads": { "supplied": "get-total-assets", "borrowed": "get-debt", "available": "get-available-assets" }, "evidence": "source" },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-vault-sbtc", "kind": "lending-vault", "asset": "sBTC", "shareToken": "zsBTC", "reads": { "supplied": "get-total-assets", "borrowed": "get-debt", "available": "get-available-assets" }, "evidence": "source" },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-vault-stbtc", "kind": "lending-vault", "asset": "stBTC", "shareToken": "zstBTC", "reads": { "supplied": "get-total-assets", "borrowed": "get-debt", "available": "get-available-assets" }, "evidence": "source" },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-vault-ststx", "kind": "lending-vault", "asset": "stSTX", "shareToken": "zstSTX", "reads": { "supplied": "get-total-assets", "borrowed": "get-debt", "available": "get-available-assets" }, "evidence": "source" },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-vault-ststxbtc", "kind": "lending-vault", "asset": "stSTXbtc", "shareToken": "zstSTXbtc", "reads": { "supplied": "get-total-assets", "borrowed": "get-debt", "available": "get-available-assets" }, "evidence": "source" },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-vault-usdc", "kind": "lending-vault", "asset": "USDCx", "shareToken": "zUSDC", "reads": { "supplied": "get-total-assets", "borrowed": "get-debt", "available": "get-available-assets" }, "evidence": "source" },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-vault-usdh", "kind": "lending-vault", "asset": "USDh", "shareToken": "zUSDH", "reads": { "supplied": "get-total-assets", "borrowed": "get-debt", "available": "get-available-assets" }, "evidence": "source" },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-market-vault", "kind": "collateral-custody", "assets": ["STX", "sBTC", "stBTC", "stSTX", "stSTXbtc", "USDCx", "USDh"], "excludeShareTokens": true, "evidence": "source", "note": "Receives collateral by token transfer (traditional mode) and ztokens (rehypothecated mode). Count underlying balances only." },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.zv-state-stbtc-0", "kind": "strategy-idle", "assets": ["stBTC", "sBTC"], "evidence": "source", "note": "zvstBTC strategy vault idle balances, as summed by zv-engine-stbtc-0 compute-gross-nav." },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.zv-ops-stbtc-0", "kind": "strategy-idle", "assets": ["stBTC", "sBTC"], "evidence": "source", "note": "As above." }
+          ],
+          "excluded": [
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.zvstBTC", "reason": "Share token of the strategy vault; its positions are counted through v0-vault-stbtc and the idle-balance contracts." },
+            { "contract": "SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.dao-treasury", "reason": "Protocol fee treasury, not user deposits. Revisit if fees are held in mapped assets." }
+          ]
+        },
+        {
+          "name": "Zest legacy borrow deployment (contracts currently in config/protocols.json)",
+          "deployer": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N",
+          "source": "https://github.com/Zest-Protocol/zest-contracts",
+          "holders": [],
+          "evidence": "unverified",
+          "note": "Asset-holding contract not identified and residual balances unknown. Open question: whether DefiLlama's zest-v2 figure covers this deployment, the v2 deployment above, or both."
+        }
+      ]
+    },
+    "stackingdao": {
+      "registrySlug": "stackingdao",
+      "llamaSlug": "stackingdao",
+      "deployments": [
+        {
+          "name": "StackingDAO (stSTX, stSTXbtc, stBTC)",
+          "deployer": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG",
+          "source": "https://docs.stackingdao.com",
+          "holders": [
+            { "contract": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.reserve-v1", "kind": "stx-reserve", "asset": "STX", "evidence": "documented", "note": "Vault for all protocol STX. STX delegated to stacking pools and delegates is not in its own balance, so the native balance alone undercounts. A reserve read-only total (function not confirmed) or enumeration of the stacking delegate contracts is needed." },
+            { "contract": null, "kind": "sbtc-reserve", "asset": "sBTC", "evidence": "unverified", "note": "Contract holding sBTC behind stBTC not identified." }
+          ],
+          "crossChecks": [
+            { "name": "STX backing from supply", "formula": "stSTX total supply × STX-per-stSTX + stSTXbtc total supply", "evidence": "unverified", "note": "Needs the stSTX ratio function (assets.stSTX.ratio)." },
+            { "name": "stBTC backing from supply", "formula": "stBTC total supply × get-sbtc-per-stbtc", "evidence": "source" }
+          ]
+        }
+      ]
+    }
+  },
+  "openItems": [
+    "Run `npm run tvl:verify` where api.hiro.so is reachable and promote confirmed entries to evidence: onchain.",
+    "Confirm the StackingDAO STX total (reserve read-only or delegate list), the stSTX ratio function and the stBTC sBTC reserve contract.",
+    "Resolve which Zest deployment(s) DefiLlama's zest-v2 covers before comparing figures.",
+    "config/protocols.json tracks the legacy Zest contracts (SP2VCQJ...) for Activity and Transparency inputs. Updating it would change scoring inputs, so it is out of scope here and needs a separate decision.",
+    "Choose price sources for STX, BTC and USD assets."
+  ]
+}
