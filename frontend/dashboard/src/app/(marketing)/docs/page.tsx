@@ -188,7 +188,27 @@ const TIMESTAMPS: [string, string][] = [
   ['staking.nextCycleEta', 'An estimate, not an observed time.'],
 ];
 
-const STATUS_TAG: Record<string, string> = { Live: 'tag-Low', Derived: 'tag-neutral', Estimated: 'tag-Moderate', 'Cited (static)': 'tag-outline', 'N/A': 'tag-High' };
+/** [area, output, effect, persists] — current behaviour when the DefiLlama request for one protocol fails. */
+const LLAMA_FAILURE: [string, string, string, string][] = [
+  ['Scores', 'Liquidity Health', 'Scores 0. The depth factor maps $0 to 0; trend, drawdown and volatility have no history and are excluded.', 'This run'],
+  ['Scores', 'Collateral Health', 'N/A for lending protocols that report borrowing (Zest): borrowed value is null, so the component is dropped and its weight redistributed. Utilisation is N/A.', 'This run'],
+  ['Scores', 'overall_score, band, effective_weights', 'Recomputed with Liquidity at 0. Applied to the 2026-10-06 snapshot this would move Zest from 72 (Moderate) to 34 (High) and StackingDAO from 73 to 45 (Elevated).', 'This run'],
+  ['Scores', 'Protocol Activity, Security & Transparency', 'Unaffected (Hiro data).', '—'],
+  ['Histories', 'score_history', 'The day records the lowered overall score and Liquidity 0. A later successful run on the same UTC day replaces it; if the failed run is the last of the day, the point is kept.', 'Can be permanent'],
+  ['Histories', 'Risk Index history', 'That day’s index point averages in the lowered score, under the same same-day rule. Later index change7d / change30d and score_delta_7d can compare against it.', 'Can be permanent'],
+  ['Histories', 'tvl_history, liquidityScoreHistory', 'Empty for the protocol in that snapshot. Rebuilt from DefiLlama on the next successful run.', 'This run'],
+  ['Totals', 'market-health liquidity_usd', 'Omits the protocol’s TVL (for Zest, about $79M of $147M on 2026-10-06).', 'This run'],
+  ['Totals', 'market-health tvl_history', 'The protocol is missing from every day of the 90-day series, not only today. liquidity_change_7d / 30d are computed over the remaining protocols, so they do not show the gap.', 'This run'],
+  ['Totals', 'avg_risk_score, Risk Index, band_distribution', 'Lowered and shifted by the protocol’s lowered score (one protocol is a fifth of the average).', 'This run (index history as above)'],
+  ['Totals', 'staking.liquidStackedUsd', 'N/A when the failed protocol is StackingDAO (a 0 sum is reported as null).', 'This run'],
+  ['Totals', 'active_addresses_7d, transactions_7d', 'Unaffected.', '—'],
+  ['Alerts', 'score events', 'A drop of 3+ points against the previous day fires a watch event, 8+ an alert. If the bad history point is kept, the next day’s recovery fires an “up” event too.', 'Permanent (event log)'],
+  ['Alerts', 'liquidity events', 'Not fired: with no history there is nothing to compare against, so the zero itself raises no TVL alert.', '—'],
+  ['Alerts', 'collateral events', 'Suppressed for the run because utilisation is N/A, so a real 80% / 90% crossing would be missed.', 'This run'],
+  ['Visibility', 'warnings', 'A llama: warning appears in dataQuality.warnings on /v1/snapshot and on the protocol page. /v1/protocol-risk and /v1/market-health return the figures with no warning.', '—'],
+];
+
+const STATUS_TAG:Record<string, string> = { Live: 'tag-Low', Derived: 'tag-neutral', Estimated: 'tag-Moderate', 'Cited (static)': 'tag-outline', 'N/A': 'tag-High' };
 
 const h2 = { fontFamily: 'var(--font-heading)', textTransform: 'uppercase' } as const;
 
@@ -219,6 +239,7 @@ export default async function DocsPage() {
         <a href="#timestamps">Timestamps &amp; freshness</a>
         <a href="#double-counting">Double counting</a>
         <a href="#status">N/A, partial, estimated, stale</a>
+        <a href="#llama-failure">DefiLlama failures</a>
         <a href="#staking">Bitcoin Staking (informational)</a>
         <div className="k k-muted">Concepts</div>
         <a href="#definitions">Data definitions</a>
@@ -354,7 +375,7 @@ npm run dashboard     # http://localhost:3000  (reads API_URL when set, else the
             The value is <code>null</code> in the API and shown as N/A on the dashboard. It means there is no authoritative public source, the source failed this run, or the input does not apply. N/A is never reported as zero. Examples: <code>staking.btcBonded</code> (always), <code>borrowed_usd</code> and <code>utilization</code> when the DefiLlama adapter reports no borrowing, <code>collateral_health</code> for protocols without collateralised borrowing (its weight is redistributed per the methodology), <code>score_delta_7d</code> until 7 days of history exist, and TVL changes when no earlier point exists.
           </p>
           <p>
-            Known exception: if the DefiLlama request fails for a protocol, the indexer records its TVL as 0 and adds a <code>llama:</code> warning; if activity fetching fails, counts are 0 with an <code>activity:</code> warning. These warnings are in <code>protocols[].dataQuality.warnings</code> on <code>/v1/snapshot</code> only. Check them before treating a 0 as real.
+            Known exceptions: if the DefiLlama request fails for a protocol, the indexer records its TVL as 0 and adds a <code>llama:</code> warning (effects listed <a href="#llama-failure">below</a>). If activity fetching fails, counts are 0 with an <code>activity:</code> warning, which also lowers the Activity score. These warnings are in <code>protocols[].dataQuality.warnings</code> on <code>/v1/snapshot</code> and on the protocol page only. Check them before treating a 0 as real.
           </p>
           <h3>Partial</h3>
           <p>The value covers less than its intended scope. There is no single partial flag; it shows up as:</p>
@@ -381,6 +402,14 @@ npm run dashboard     # http://localhost:3000  (reads API_URL when set, else the
             <li>Cited static values (<code>targetBtcApy</code>, <code>cumulativeBtcDistributed</code> as of 2026-09, <code>bondPeriodBlocks</code>) are constants that change only when the code is updated.</li>
             <li>Protocol data has no stale flag. Compare <code>updated_at</code> with the current time: anything older than about 6 hours means a scheduled run was missed. DefiLlama daily points can also lag the current TVL value.</li>
           </ul>
+        </div>
+
+        <div id="llama-failure" className="endpoint prose">
+          <h2 style={h2}>When a DefiLlama fetch fails</h2>
+          <p>
+            Current behaviour, documented as-is. When the DefiLlama request for a protocol still fails after retries, the indexer stores TVL 0, borrowed null, an empty history and no token breakdown, and the run continues. Scoring treats that 0 as a real value. The table lists what this changes. As of 2026-10-06 no such failure appears in the committed score history. A correction is under review; scoring behaviour and the methodology are unchanged until it is approved.
+          </p>
+          <Table head={['Area', 'Output', 'Effect', 'Persists']} rows={LLAMA_FAILURE.map(([a, o, e, p]) => [a, <code key="o">{o}</code>, e, p])} />
         </div>
 
         <div id="staking" className="endpoint prose">
