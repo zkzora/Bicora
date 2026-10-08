@@ -123,11 +123,18 @@ export interface ScorePoint {
   transparency: number | null;
 }
 
+/**
+ * Bicora's estimate of value counted twice in the summed TVL. Coverage is limited to the receipt tokens in
+ * `mappedTokens`; any other overlap (unmapped receipt or LP tokens, wrapped or bridged assets) is not
+ * detected, so this is never proof of complete de-duplication.
+ */
 export interface ReceiptOverlap {
   totalUsd: number;
   items: { holder: string; token: string; backedBy: string; usd: number }[];
-  /** true when a tracked protocol had no token breakdown, so the overlap may be understated. */
-  partial: boolean;
+  /** Receipt-token symbols the estimate looks for (StackingDAO stSTX, stSTXbtc, stBTC today). */
+  mappedTokens: string[];
+  /** Tracked protocols with no DefiLlama token breakdown this run; their holdings could not be checked. */
+  missingBreakdowns: string[];
 }
 
 /** Denormalised view served to the dashboard and API. */
@@ -232,13 +239,13 @@ export interface Snapshot {
     bandDistribution: Record<Band, number>;
     ecosystemTvlHistory: TvlPoint[];
     /**
-     * StackingDAO receipt tokens (stSTX, stSTXbtc, stBTC) held in other tracked protocols, valued from
+     * Mapped StackingDAO receipt tokens (stSTX, stSTXbtc, stBTC) held in other tracked protocols, valued from
      * those protocols' DefiLlama token breakdowns. Their backing is already in StackingDAO's TVL, so
-     * totalTvlUsd counts them twice. Null when no breakdown is available.
+     * totalTvlUsd counts them twice. Null when no breakdown is available. Secondary detail only.
      */
     receiptOverlap?: ReceiptOverlap | null;
-    /** totalTvlUsd − receiptOverlap.totalUsd (estimate). Null when the overlap is unknown. */
-    totalTvlDedupedUsd?: number | null;
+    /** Bicora estimate: totalTvlUsd − receiptOverlap.totalUsd. Covers mapped tokens only. Null when unknown. */
+    overlapAdjustedEstimateUsd?: number | null;
   };
   protocols: SnapshotProtocol[];
   events: RiskEvent[];

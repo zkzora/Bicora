@@ -14,7 +14,8 @@ test('receipt tokens held in Zest are counted once, against StackingDAO', () => 
   assert.equal(o.totalUsd, 51_495_696 + 3_916_229 + 2_654_036);
   assert.deepEqual(o.items.map((i) => i.token), ['STBTC', 'STSTX', 'STSTXBTC']);
   assert.ok(o.items.every((i) => i.holder === 'zest' && i.backedBy === 'stackingdao'));
-  assert.equal(o.partial, false);
+  assert.deepEqual(o.mappedTokens, ['STSTX', 'STSTXBTC', 'STBTC']);
+  assert.deepEqual(o.missingBreakdowns, []);
 });
 
 test('no overlap when the backing protocol is not tracked', () => {
@@ -26,9 +27,14 @@ test('overlap is capped at the backing protocol TVL', () => {
   assert.equal(receiptOverlap([smallSd, zest])!.totalUsd, 10_000_000);
 });
 
-test('missing breakdowns: null when none, partial when some', () => {
+test('missing breakdowns: null when none, listed when some', () => {
   assert.equal(receiptOverlap([{ ...sd, tokens: {} }, { ...zest, tokens: {} }]), null);
-  assert.equal(receiptOverlap([sd, zest, { slug: 'alex', category: 'DEX / AMM', tvlUsd: 1, tokens: {} }])!.partial, true);
+  assert.deepEqual(receiptOverlap([sd, zest, { slug: 'alex', category: 'DEX / AMM', tvlUsd: 1, tokens: {} }])!.missingBreakdowns, ['alex']);
+});
+
+test('unmapped tokens are not treated as overlap, even with full breakdowns', () => {
+  const lp = { slug: 'bitflow', category: 'DEX / AMM', tvlUsd: 5, tokens: { 'LISTX': 3, 'STX-STSTX-LP': 2 } };
+  assert.equal(receiptOverlap([sd, lp])!.totalUsd, 0);
 });
 
 test('liquid-stacked overlap is the STX row only, not sBTC', () => {

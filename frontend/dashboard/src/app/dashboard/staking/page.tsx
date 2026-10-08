@@ -136,7 +136,7 @@ export default async function StakingPage() {
         <div className="card-head"><div><div className="card-title">How this relates to tracked TVL</div><div className="muted" style={{ fontSize: 11.5, marginTop: 2 }}>Stacking value is separate from the scored DeFi index — and overlaps it only through liquid-staking</div></div></div>
         <div className="dash-secondary" style={{ marginTop: 4 }}>
           <MetricCard label="Stacking TVL (STX)" value={na(fmtUsd(s.stackingTvlUsd), s.stackingTvlUsd != null)} sub="STX committed to PoX" />
-          <MetricCard label="Sum of protocol TVL · DefiLlama" value={fmtUsd(snapshot.market.totalTvlUsd)} sub={`${snapshot.market.protocolsTracked} protocols · not de-duplicated`} delay={30} />
+          <MetricCard label="Tracked protocol TVL · DefiLlama sum" value={fmtUsd(snapshot.market.totalTvlUsd)} sub={`${snapshot.market.protocolsTracked} protocols · no overlap adjustment`} delay={30} />
           <MetricCard label="Liquid-stacked overlap" value={na(fmtUsd(s.liquidStackedUsd), s.liquidStackedUsd != null)} sub="STX held by StackingDAO · in both figures" delay={60} />
         </div>
         <p className="muted" style={{ fontSize: 12, lineHeight: 1.6, marginTop: 14 }}>

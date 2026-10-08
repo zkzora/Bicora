@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSnapshot } from '@/lib/data';
-import { componentColor, ecosystemTvl, fmtInt, fmtUsd } from '@/lib/format';
+import { componentColor, fmtInt, fmtUsd, overlapEstimateNote, TRACKED_TVL_LABEL } from '@/lib/format';
 import { BandTag, PctDelta, StatTile } from '@/components/ui';
 import LineChart from '@/components/charts/LineChart';
 import ProtocolLogo from '@/components/ProtocolLogo';
@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: 'Market metrics' };
 export default async function MarketPage() {
   const { snapshot } = await getSnapshot();
   const m = snapshot.market;
-  const eco = ecosystemTvl(m);
+  const estimate = overlapEstimateNote(m);
   const byTvl = [...snapshot.protocols].sort((a, b) => b.metrics.tvlUsd - a.metrics.tvlUsd);
   const byCategory = new Map<string, { tvl: number; n: number; scores: number[] }>();
   for (const p of snapshot.protocols) {
@@ -24,7 +24,7 @@ export default async function MarketPage() {
   return (
     <>
       <div className="grid-cells tiles">
-        <StatTile label={eco.label} value={fmtUsd(eco.value)} sub={<>{eco.note} · <PctDelta r={m.totalTvlChange7d} suffix="sum 7d" /> · <PctDelta r={m.totalTvlChange30d} suffix="sum 30d" /></>} />
+        <StatTile label={TRACKED_TVL_LABEL} value={fmtUsd(m.totalTvlUsd)} sub={<><PctDelta r={m.totalTvlChange7d} suffix="7d" /> · <PctDelta r={m.totalTvlChange30d} suffix="30d" />{estimate && <div className="muted" style={{ marginTop: 4, fontSize: 10.5, lineHeight: 1.4 }}>{estimate}</div>}</>} />
         <StatTile label="Transactions · 7d" value={fmtInt(m.tx7d)} sub="Direct calls to tracked contracts" delay={30} />
         <StatTile label="Active addresses · 7d" value={fmtInt(m.activeAddresses7d)} sub="Unique senders, summed per protocol" delay={60} />
         <StatTile label="Avg. risk score" value={m.avgScore} sub={`${m.bandDistribution.Low} low · ${m.bandDistribution.Moderate} moderate · ${m.bandDistribution.Elevated} elevated · ${m.bandDistribution.High} high`} accent delay={90} />
@@ -32,12 +32,12 @@ export default async function MarketPage() {
 
       <div className="card">
         <div className="card-head">
-          <span className="k k-ink">Sum of protocol TVL · DefiLlama · 90 days</span>
-          <span className="muted" style={{ fontSize: 11 }}>Forward-filled daily sum, not de-duplicated: receipt tokens and their backing both count</span>
+          <span className="k k-ink">{TRACKED_TVL_LABEL} · 90 days</span>
+          <span className="muted" style={{ fontSize: 11 }}>Same series as the headline: forward-filled daily sum, no overlap adjustment</span>
         </div>
         <LineChart
-          ariaLabel="Sum of protocol TVL over 90 days"
-          series={[{ key: 'tvl', label: 'Sum of protocol TVL', color: componentColor.liquidity, area: true, points: m.ecosystemTvlHistory.map((x) => ({ date: x.date, value: x.tvlUsd })) }]}
+          ariaLabel="Tracked protocol TVL over 90 days"
+          series={[{ key: 'tvl', label: 'Tracked protocol TVL', color: componentColor.liquidity, area: true, points: m.ecosystemTvlHistory.map((x) => ({ date: x.date, value: x.tvlUsd })) }]}
           formatKind="usd"
           height={240}
         />

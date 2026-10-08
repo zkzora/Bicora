@@ -140,8 +140,8 @@ async function main() {
   await store.saveEvents(allEvents.filter((e) => !known.has(e.id)));
   const feed = (await store.getEvents(new Date(now.getTime() - 30 * 864e5).toISOString())).slice(0, 100);
 
-  // Display-only de-duplication: receipt tokens held in one protocol whose backing another tracked protocol
-  // already counts. Not a scoring input.
+  // Display-only Bicora estimate: mapped receipt tokens held in one protocol whose backing another tracked
+  // protocol already counts. Secondary detail; the headline stays the plain sum. Not a scoring input.
   const tokenRows = protocols.map((p) => ({ slug: p.slug, category: p.category, tvlUsd: p.metrics.tvlUsd, tokens: p.metrics.tokens }));
   const overlap = receiptOverlap(tokenRows);
 
@@ -173,7 +173,7 @@ async function main() {
       bandDistribution,
       ecosystemTvlHistory: complete.slice(-90),
       receiptOverlap: overlap,
-      totalTvlDedupedUsd: overlap ? totalTvl - overlap.totalUsd : null,
+      overlapAdjustedEstimateUsd: overlap ? totalTvl - overlap.totalUsd : null,
     },
     protocols,
     events: feed,

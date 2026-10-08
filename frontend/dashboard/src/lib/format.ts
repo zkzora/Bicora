@@ -32,17 +32,14 @@ export const componentColor: Record<string, string> = {
   overall: 'var(--series-ink)',
 };
 
+/** Headline label for the summed tracked-protocol TVL. The 7d / 30d changes and the 90-day chart use the same series. */
+export const TRACKED_TVL_LABEL = 'Tracked protocol TVL · DefiLlama sum';
+
 /**
- * Ecosystem TVL for headlines. Prefers the de-duplicated estimate (sum of protocol TVL minus StackingDAO
- * receipt tokens held elsewhere); falls back to the plain sum, labelled as such, when the overlap is unknown.
+ * Secondary detail: Bicora's overlap-adjusted estimate, or null when it is unavailable. Covers only the
+ * mapped StackingDAO receipt tokens, so it is not a complete de-duplication.
  */
-export function ecosystemTvl(m: { totalTvlUsd: number; totalTvlDedupedUsd?: number | null; receiptOverlap?: { totalUsd: number; partial: boolean } | null }) {
-  const deduped = m.totalTvlDedupedUsd != null && m.receiptOverlap != null;
-  return deduped
-    ? {
-        value: m.totalTvlDedupedUsd as number,
-        label: 'TVL · DefiLlama, de-duplicated',
-        note: `est. · sum ${fmtUsd(m.totalTvlUsd)} − ${fmtUsd(m.receiptOverlap!.totalUsd)} receipt tokens${m.receiptOverlap!.partial ? ' · partial' : ''}`,
-      }
-    : { value: m.totalTvlUsd, label: 'Sum of protocol TVL · DefiLlama', note: 'not de-duplicated' };
+export function overlapEstimateNote(m: { overlapAdjustedEstimateUsd?: number | null; receiptOverlap?: { totalUsd: number; mappedTokens: string[] } | null }): string | null {
+  if (m.overlapAdjustedEstimateUsd == null || !m.receiptOverlap) return null;
+  return `Bicora estimate ${fmtUsd(m.overlapAdjustedEstimateUsd)} after removing ${fmtUsd(m.receiptOverlap.totalUsd)} of mapped StackingDAO receipt tokens; other overlaps not checked`;
 }

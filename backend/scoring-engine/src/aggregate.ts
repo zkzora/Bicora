@@ -19,8 +19,9 @@ interface ProtocolTokens {
 }
 
 /**
- * Value of receipt tokens held by other tracked protocols whose backing protocol is also tracked.
+ * Value of mapped receipt tokens held by other tracked protocols whose backing protocol is also tracked.
  * Valued at the holder's DefiLlama price, capped at the backer's TVL. Null when no protocol has a breakdown.
+ * Only RECEIPT_TOKENS are looked for: a token breakdown being present does not mean every overlap was found.
  */
 export function receiptOverlap(protocols: ProtocolTokens[]): ReceiptOverlap | null {
   const withTokens = protocols.filter((p) => Object.keys(p.tokens).length > 0);
@@ -41,7 +42,12 @@ export function receiptOverlap(protocols: ProtocolTokens[]): ReceiptOverlap | nu
     totalUsd += Math.min(held, tracked.get(backer)!.tvlUsd);
   }
   items.sort((a, b) => b.usd - a.usd);
-  return { totalUsd, items, partial: withTokens.length < protocols.length };
+  return {
+    totalUsd,
+    items,
+    mappedTokens: Object.keys(RECEIPT_TOKENS),
+    missingBreakdowns: protocols.filter((p) => !Object.keys(p.tokens).length).map((p) => p.slug),
+  };
 }
 
 /**

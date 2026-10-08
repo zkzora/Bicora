@@ -58,7 +58,7 @@ export const COVERAGE: Record<string, Coverage> = {
     withdrawable: 'N/A. Only the vaults’ idle balances can be withdrawn by suppliers, but DefiLlama reports TVL by token, not by holder, so Bicora cannot separate them from collateral. Collateral backing open loans is not withdrawable.',
     official: { status: 'na', reason: 'No reliable timestamped total from Zest is available to Bicora.' },
     differences: [
-      { text: 'stBTC in Zest (about $51M on 2026-10-08) is a StackingDAO receipt token whose sBTC backing is also in StackingDAO’s TVL; Bicora removes it from the de-duplicated ecosystem total.', status: 'verified' },
+      { text: 'stBTC in Zest (about $51M on 2026-10-08) is a StackingDAO receipt token whose sBTC backing is also in StackingDAO’s TVL; The headline tracked-TVL sum counts it in both protocols; Bicora’s secondary overlap-adjusted estimate subtracts it.', status: 'verified' },
       { text: 'Borrowed rose from about $16M to $43M on 2026-10-07 (DefiLlama). The matching token moves fit the stBTC strategy vault borrowing sBTC to mint stBTC; that attribution is inferred, not traced on-chain.', status: 'verified' },
     ],
   },

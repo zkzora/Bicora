@@ -10,8 +10,8 @@ export interface RiskScore { slug: string; computedAt: string; methodologyVersio
 export interface RiskEvent { id: string; slug: string; ts: string; kind: 'liquidity' | 'activity' | 'collateral' | 'transparency' | 'score'; severity: 'info' | 'watch' | 'alert'; message: string; delta: number | null; impact?: 'Low' | 'Medium' | 'High'; reason?: string }
 export interface ScorePoint { date: string; overall: number; liquidity: number | null; activity: number | null; collateral: number | null; transparency: number | null }
 
-/** StackingDAO receipt tokens held in other tracked protocols (counted twice in totalTvlUsd). */
-export interface ReceiptOverlap { totalUsd: number; items: { holder: string; token: string; backedBy: string; usd: number }[]; partial: boolean }
+/** Bicora estimate of mapped StackingDAO receipt tokens held in other tracked protocols (counted twice in totalTvlUsd). Not proof of complete de-duplication. */
+export interface ReceiptOverlap { totalUsd: number; items: { holder: string; token: string; backedBy: string; usd: number }[]; mappedTokens: string[]; missingBreakdowns: string[] }
 
 export interface SnapshotProtocol {
   slug: string; name: string; category: string; description: string; website: string; docs: string | null; github: string | null;
@@ -22,7 +22,7 @@ export interface SnapshotProtocol {
 }
 export interface Snapshot {
   generatedAt: string; methodologyVersion: string;
-  market: { protocolsTracked: number; totalTvlUsd: number; totalTvlChange7d: number | null; totalTvlChange30d: number | null; activeAddresses7d: number; tx7d: number; avgScore: number; index: { score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; history: { date: string; score: number }[] }; bandDistribution: Record<Band, number>; ecosystemTvlHistory: TvlPoint[]; receiptOverlap?: ReceiptOverlap | null; totalTvlDedupedUsd?: number | null };
+  market: { protocolsTracked: number; totalTvlUsd: number; totalTvlChange7d: number | null; totalTvlChange30d: number | null; activeAddresses7d: number; tx7d: number; avgScore: number; index: { score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; history: { date: string; score: number }[] }; bandDistribution: Record<Band, number>; ecosystemTvlHistory: TvlPoint[]; receiptOverlap?: ReceiptOverlap | null; overlapAdjustedEstimateUsd?: number | null };
   protocols: SnapshotProtocol[]; events: RiskEvent[];
   staking?: StakingSnapshot;
 }
