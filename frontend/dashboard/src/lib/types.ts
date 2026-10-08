@@ -10,16 +10,19 @@ export interface RiskScore { slug: string; computedAt: string; methodologyVersio
 export interface RiskEvent { id: string; slug: string; ts: string; kind: 'liquidity' | 'activity' | 'collateral' | 'transparency' | 'score'; severity: 'info' | 'watch' | 'alert'; message: string; delta: number | null; impact?: 'Low' | 'Medium' | 'High'; reason?: string }
 export interface ScorePoint { date: string; overall: number; liquidity: number | null; activity: number | null; collateral: number | null; transparency: number | null }
 
+/** StackingDAO receipt tokens held in other tracked protocols (counted twice in totalTvlUsd). */
+export interface ReceiptOverlap { totalUsd: number; items: { holder: string; token: string; backedBy: string; usd: number }[]; partial: boolean }
+
 export interface SnapshotProtocol {
   slug: string; name: string; category: string; description: string; website: string; docs: string | null; github: string | null;
   assets: string[]; contracts: ContractInfo[]; hasCollateral: boolean;
-  metrics: { tvlUsd: number; borrowedUsd: number | null; utilization: number | null; tvlChange24h: number | null; tvlChange7d: number | null; tvlChange30d: number | null; tx7d: number; uniqueSenders7d: number; activitySampled: boolean; tokens: Record<string, number> };
+  metrics: { tvlUsd: number; borrowedUsd: number | null; utilization: number | null; tvlChange24h: number | null; tvlChange7d: number | null; tvlChange30d: number | null; tx7d: number; uniqueSenders7d: number; activitySampled: boolean; tokens: Record<string, number>; tvlSource?: 'DefiLlama'; tvlFetchedAt?: string; tvlAsOf?: string | null };
   dataQuality: { excludedTvlPoints: number; note: string | null; activitySampled: boolean; warnings: string[] };
   score: RiskScore; delta7d: number | null; tvlHistory: TvlPoint[]; liquidityScoreHistory: { date: string; score: number }[]; scoreHistory: ScorePoint[]; events: RiskEvent[];
 }
 export interface Snapshot {
   generatedAt: string; methodologyVersion: string;
-  market: { protocolsTracked: number; totalTvlUsd: number; totalTvlChange7d: number | null; totalTvlChange30d: number | null; activeAddresses7d: number; tx7d: number; avgScore: number; index: { score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; history: { date: string; score: number }[] }; bandDistribution: Record<Band, number>; ecosystemTvlHistory: TvlPoint[] };
+  market: { protocolsTracked: number; totalTvlUsd: number; totalTvlChange7d: number | null; totalTvlChange30d: number | null; activeAddresses7d: number; tx7d: number; avgScore: number; index: { score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; history: { date: string; score: number }[] }; bandDistribution: Record<Band, number>; ecosystemTvlHistory: TvlPoint[]; receiptOverlap?: ReceiptOverlap | null; totalTvlDedupedUsd?: number | null };
   protocols: SnapshotProtocol[]; events: RiskEvent[];
   staking?: StakingSnapshot;
 }

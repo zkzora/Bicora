@@ -86,7 +86,7 @@ const SOURCES = [
  *
  * @param prev previous snapshot (for fallback)
  * @param now  run timestamp
- * @param liquidStackedUsd TVL of tracked liquid-staking protocols (StackingDAO) — the overlap figure
+ * @param liquidStackedUsd STX held by tracked liquid-staking protocols (StackingDAO's STX row) — the overlap figure
  */
 export async function buildStaking(prev: Snapshot | null, now: Date, liquidStackedUsd: number | null): Promise<StakingSnapshot> {
   const [pox, cyclesRes, rewardsRes, priceRes] = await Promise.all([
@@ -142,7 +142,7 @@ export async function buildStaking(prev: Snapshot | null, now: Date, liquidStack
     'BTC bonded (native Bitcoin Staking) is N/A: BTC sits in individual Bitcoin L1 timelocks with no public aggregate API (whitepaper 2026-05-13, PoX-5 bootstrap).',
     'Stacking TVL (STX value) is distinct from DeFi-app TVL and from the chain-wide "Stacks TVL" shown on stacks.co.',
     liquidStackedUsd != null
-      ? 'Liquid-stacked overlap shows STX stacked via tracked liquid-staking protocols (StackingDAO), already counted in their DeFi TVL; it excludes LISA and other untracked LSTs.'
+      ? 'Liquid-stacked overlap is the STX held by tracked liquid-staking protocols (StackingDAO\'s STX row on DefiLlama), already counted in their DeFi TVL. Their sBTC is excluded, and so are LISA and other untracked LSTs.'
       : 'Liquid-stacked overlap is N/A this run.',
   ];
 

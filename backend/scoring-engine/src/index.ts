@@ -14,6 +14,7 @@ import type { Band, RiskEvent, Snapshot, SnapshotProtocol, TvlPoint } from '@bic
 import { backfillLiquidity, band, cleanTvlHistory, pointDaysAgo, scoreProtocol } from './scoring.js';
 import { detectEvents } from './events.js';
 import { buildStaking } from './staking.js';
+import { liquidStackedStxUsd, receiptOverlap } from './aggregate.js';
 
 const info = log('scoring');
 
@@ -73,6 +74,9 @@ async function main() {
         uniqueSenders7d: raw.activity.current7d.uniqueSenders,
         activitySampled: raw.activity.current7d.sampled,
         tokens: raw.tvl.tokens,
+        tvlSource: 'DefiLlama',
+        tvlFetchedAt: raw.fetchedAt,
+        tvlAsOf: raw.tvl.asOf ?? null,
       },
       dataQuality: { excludedTvlPoints: clean.excluded, note: clean.note, activitySampled: raw.activity.current7d.sampled, warnings: raw.errors },
       score,
@@ -136,11 +140,14 @@ async function main() {
   await store.saveEvents(allEvents.filter((e) => !known.has(e.id)));
   const feed = (await store.getEvents(new Date(now.getTime() - 30 * 864e5).toISOString())).slice(0, 100);
 
-  // Bitcoin Staking / PoX tracker — informational, outside the scored index. StackingDAO's TVL is the
-  // tracked liquid-staking overlap passed in so the UI can flag double counting against the DeFi index.
-  const liquidStackedUsd = protocols
-    .filter((p) => p.category === 'Liquid Stacking')
-    .reduce((s, p) => s + p.metrics.tvlUsd, 0) || null;
+  // Display-only de-duplication: receipt tokens held in one protocol whose backing another tracked protocol
+  // already counts. Not a scoring input.
+  const tokenRows = protocols.map((p) => ({ slug: p.slug, category: p.category, tvlUsd: p.metrics.tvlUsd, tokens: p.metrics.tokens }));
+  const overlap = receiptOverlap(tokenRows);
+
+  // Bitcoin Staking / PoX tracker — informational, outside the scored index. The STX held by tracked
+  // liquid-staking protocols is the overlap with STX committed to PoX (their sBTC is not stacked STX).
+  const liquidStackedUsd = liquidStackedStxUsd(tokenRows);
   const staking = await buildStaking(await store.getSnapshot(), now, liquidStackedUsd);
   info(`staking: ${staking.stackedStx != null ? (staking.stackedStx / 1e6).toFixed(1) + 'M STX' : 'N/A'} (${staking.source})`);
 
@@ -165,6 +172,8 @@ async function main() {
       },
       bandDistribution,
       ecosystemTvlHistory: complete.slice(-90),
+      receiptOverlap: overlap,
+      totalTvlDedupedUsd: overlap ? totalTvl - overlap.totalUsd : null,
     },
     protocols,
     events: feed,

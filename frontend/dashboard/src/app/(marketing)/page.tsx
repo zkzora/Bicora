@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getSnapshot } from '@/lib/data';
-import { fmtUsd } from '@/lib/format';
+import { ecosystemTvl, fmtUsd } from '@/lib/format';
 import { BandTag } from '@/components/ui';
 import ProtocolLogo from '@/components/ProtocolLogo';
 import OrbitingCirclesGlobe from '@/components/ui/orbiting-circles-02';
@@ -11,6 +11,7 @@ import { dash } from '@/lib/urls';
 export default async function HomePage() {
   const { snapshot } = await getSnapshot();
   const m = snapshot.market;
+  const eco = ecosystemTvl(m);
 
   return (
     <>
@@ -30,7 +31,7 @@ export default async function HomePage() {
             <div className="hero-live" aria-label="Live ecosystem figures">
               <div><div className="l">Risk index</div><div className={`v tnum c-${m.index.band}`}>{m.index.score}<span style={{ fontSize: 12, color: 'var(--color-faint)' }}> /100</span></div></div>
               <div><div className="l">Protocols</div><div className="v tnum">{m.protocolsTracked}</div></div>
-              <div><div className="l">Liquidity tracked</div><div className="v tnum">{fmtUsd(m.totalTvlUsd, 0)}</div></div>
+              <div><div className="l">{eco.label}</div><div className="v tnum">{fmtUsd(eco.value, 0)}</div></div>
             </div>
             <div style={{ fontSize: 11.5, color: 'var(--color-muted)' }}>Updated every 6 hours · Analytics, not financial advice</div>
           </div>
@@ -109,7 +110,7 @@ export default async function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '28px 24px', marginTop: 6 }}>
             {[
               [m.protocolsTracked, 'Protocols tracked'],
-              [fmtUsd(m.totalTvlUsd, 0), 'Liquidity tracked'],
+              [fmtUsd(eco.value, 0), eco.label],
               [4, 'Risk dimensions'],
               [m.avgScore, 'Avg. ecosystem score'],
             ].map(([v, label], i) => (

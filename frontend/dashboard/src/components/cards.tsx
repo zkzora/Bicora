@@ -9,10 +9,10 @@ import { BandTag, PctDelta, ScoreDelta } from './ui';
 
 /* ------------------------------------------------------------------ RiskScoreCard */
 export function RiskScoreCard({
-  score, band, previous, change7d, change30d, updatedAt, protocols, liquidityUsd, liquidityChange7d, activeAddresses, history, title = 'Bicora Risk Index',
+  score, band, previous, change7d, change30d, updatedAt, protocols, liquidityUsd, liquidityChange7d, liquidityLabel, liquidityNote, activeAddresses, history, title = 'Bicora Risk Index',
 }: {
   score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; updatedAt: string;
-  protocols: number; liquidityUsd: number; liquidityChange7d: number | null; activeAddresses: number; history: { date: string; score: number }[]; title?: string;
+  protocols: number; liquidityUsd: number; liquidityChange7d: number | null; liquidityLabel?: string; liquidityNote?: string; activeAddresses: number; history: { date: string; score: number }[]; title?: string;
 }) {
   const movement = change7d ?? (previous != null ? score - previous : null);
   return (
@@ -28,7 +28,7 @@ export function RiskScoreCard({
       </div>
       <div className="facts">
         <div className="fact"><div className="l">Protocols tracked</div><div className="v tnum">{protocols}</div><div className="s">Stacks mainnet</div></div>
-        <div className="fact"><div className="l">Liquidity tracked</div><div className="v tnum">{fmtUsd(liquidityUsd)}</div><div className="s"><PctDelta r={liquidityChange7d} suffix="7d" /></div></div>
+        <div className="fact"><div className="l">{liquidityLabel ?? 'Sum of protocol TVL · DefiLlama'}</div><div className="v tnum">{fmtUsd(liquidityUsd)}</div><div className="s">{liquidityNote && <span className="muted" style={{ marginRight: 6 }}>{liquidityNote}</span>}<PctDelta r={liquidityChange7d} suffix="sum 7d" /></div></div>
         <div className="fact"><div className="l">Active addresses · 7d</div><div className="v tnum">{fmtInt(activeAddresses)}</div><div className="s">unique senders</div></div>
         <div className="fact"><div className="l">Risk movement</div><div className="v tnum"><ScoreDelta d={movement} /></div><div className="s">{change7d != null ? 'vs 7 days ago' : previous != null ? 'vs previous run' : '30d ' + fmtDelta(change30d)}</div></div>
         {history.length > 1 && (

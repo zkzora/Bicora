@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSnapshot } from '@/lib/data';
 import { dash, APP_URL } from '@/lib/urls';
+import { COVERAGE } from '@/lib/coverage';
 
 export const metadata: Metadata = { title: 'API Documentation' };
 
@@ -39,7 +40,7 @@ const ENDPOINTS = [
     "btcYieldPerCycleEst": 9.2278,
     "targetBtcApy": 0.03,
     "btcBonded": null,
-    "liquidStackedUsd": 56335195.09,
+    "liquidStackedUsd": 30240635.31,
     "history": [ { "cycle": 144, "stackedStx": 448279555.39, "signers": 31 }, ... ],
     ...
   }
@@ -71,6 +72,9 @@ const ENDPOINTS = [
     "effective_weights": { "liquidity": 30, "activity": 25, "collateral": 25, "transparency": 20 },
     "liquidity_usd": 65385202,
     "borrowed_usd": 13581728,
+    "tvl_source": "DefiLlama",
+    "tvl_fetched_at": "2026-09-18T06:21:04.000Z",
+    "tvl_as_of": "2026-09-18T06:00:00.000Z",
     "utilization": 0.172,
     "tx_7d": 104,
     "unique_senders_7d": 34,
@@ -92,6 +96,8 @@ const ENDPOINTS = [
   "updated_at": "2026-09-18T06:25:31.000Z",
   "protocols": 5,
   "liquidity_usd": 109789459,
+  "liquidity_usd_deduplicated": 104512010,
+  "receipt_token_overlap_usd": 5277449,
   "liquidity_change_7d": 0.015,
   "liquidity_change_30d": -0.042,
   "active_addresses_7d": 223,
@@ -170,7 +176,7 @@ const STAKING_FIELDS: [string, string, string, string][] = [
   ['btcBonded', 'null', 'BTC bonded in the native Bitcoin Staking program. Always null.', 'N/A'],
   ['bondPeriodBlocks', 'number', 'Bitcoin Staking bond period, 25,200 Bitcoin blocks (~6 months), per the whitepaper.', 'Cited (static)'],
   ['programStatus', 'string', 'Program status label, fixed in code.', 'Cited (static)'],
-  ['liquidStackedUsd', 'number | null', 'DefiLlama TVL of tracked protocols in the Liquid Stacking category (StackingDAO today): the overlap with the scored DeFi figures.', 'Derived'],
+  ['liquidStackedUsd', 'number | null', 'STX held by tracked Liquid Stacking protocols (StackingDAO’s STX row in its DefiLlama token breakdown): the part of the DeFi figures that is also in stackedStx. Its sBTC is excluded. Null when no STX row is reported.', 'Derived'],
   ['history[]', '{ cycle, stackedStx, signers }[]', 'Up to the last 16 reward cycles, ascending. From the cycles endpoint, so the latest entry can differ slightly from stackedStx.', 'Live'],
   ['sources[], notes[]', 'object[], string[]', 'Source links and plain-language caveats written by the pipeline for this run.', '—'],
 ];
@@ -179,6 +185,8 @@ const STAKING_FIELDS: [string, string, string, string][] = [
 const TIMESTAMPS: [string, string][] = [
   ['generatedAt / updated_at', 'When the scoring run that built the snapshot finished computing (UTC). Every protocol, market and staking value in a response comes from that run.'],
   ['tvl_history[].date, ecosystemTvlHistory[].date', 'UTC calendar day (YYYY-MM-DD) of a DefiLlama daily point. When DefiLlama reports several points for one day, the latest wins.'],
+  ['tvl_fetched_at (metrics.tvlFetchedAt)', 'When Bicora’s indexer fetched the protocol’s DefiLlama figures. N/A on snapshots written before this field existed.'],
+  ['tvl_as_of (metrics.tvlAsOf)', 'Time of DefiLlama’s latest Stacks data point in that response; TVL and borrowed come from the same response. N/A when unknown.'],
   ['liquidity_usd (current)', 'DefiLlama current value at fetch time, which can be more recent than the last daily point. The final ecosystem series point is replaced with the sum of current values so the chart ends on the headline figure.'],
   ['score_history[].date, score.computedAt', 'Day and time of the scoring run. One point per protocol per day; a later run on the same day replaces it.'],
   ['events[].ts', 'Time of the scoring run that detected the event.'],
@@ -237,10 +245,13 @@ export default async function DocsPage() {
         <a href="#contracts">Contract coverage</a>
         <a href="#pricing">Pricing sources</a>
         <a href="#timestamps">Timestamps &amp; freshness</a>
+        <a href="#tvl-terms">TVL, supplied, borrowed, withdrawable</a>
+        <a href="#coverage">Protocol TVL coverage</a>
         <a href="#double-counting">Double counting</a>
         <a href="#status">N/A, partial, estimated, stale</a>
         <a href="#llama-failure">DefiLlama failures</a>
         <a href="#staking">Bitcoin Staking (informational)</a>
+        <a href="#scoring-impact">Findings affecting scores</a>
         <div className="k k-muted">Concepts</div>
         <a href="#definitions">Data definitions</a>
         <Link href="/methodology">Risk methodology</Link>
@@ -302,7 +313,7 @@ npm run dashboard     # http://localhost:3000  (reads API_URL when set, else the
           </ol>
           <h3>Where TVL comes from today</h3>
           <ul>
-            <li>Every protocol TVL value Bicora serves (<code>liquidity_usd</code>, <code>borrowed_usd</code>, <code>tvl_history</code>, <code>market-health</code> totals, <code>liquidStackedUsd</code>) is <b>DefiLlama&rsquo;s figure</b> for the Stacks chain. These are the only TVL values used by the Risk Index.</li>
+            <li>Every protocol TVL value Bicora serves (<code>liquidity_usd</code>, <code>borrowed_usd</code>, <code>tvl_history</code>, <code>market-health</code> totals, <code>liquidStackedUsd</code>) is <b>DefiLlama&rsquo;s figure</b> for the Stacks chain, labelled &ldquo;TVL · DefiLlama&rdquo; on the dashboard with its fetch time. These are the only TVL values used by the Risk Index. What each adapter covers is listed under <a href="#coverage">protocol TVL coverage</a>.</li>
             <li>On-chain data from Hiro is used for contract existence, contract age and transaction activity, not for TVL.</li>
             <li>The one USD value Bicora computes itself is <code>staking.stackingTvlUsd</code> (on-chain PoX state × CoinGecko price). It is informational and outside the Risk Index.</li>
           </ul>
@@ -357,13 +368,49 @@ npm run dashboard     # http://localhost:3000  (reads API_URL when set, else the
           <Table head={['Field', 'Meaning']} rows={TIMESTAMPS.map(([f, m]) => [<code key="f">{f}</code>, m])} />
         </div>
 
+        <div id="tvl-terms" className="endpoint prose">
+          <h2 style={h2}>TVL, supplied, borrowed, withdrawable</h2>
+          <p>Four different measures. The dashboard shows them separately and never adds one to another.</p>
+          <Table
+            head={['Measure', 'Field', 'Definition', 'Status']}
+            rows={[
+              ['TVL · DefiLlama', <code key="f">liquidity_usd</code>, 'Value of assets held in the contracts the DefiLlama adapter reads, on the Stacks chain, excluding borrowed value. The only TVL that feeds the Liquidity score. Shown with its source and fetch time.', 'Scored'],
+              ['Borrowed · DefiLlama', <code key="f">borrowed_usd</code>, 'Outstanding loans as reported by the adapter (lending protocols only). Not part of TVL.', 'Context; utilisation input'],
+              ['Gross supplied · estimate', '— (dashboard only)', 'TVL + borrowed. Derived from the two DefiLlama inputs above, from the same response; not an official protocol figure. It can include collateral that is not lendable and miss what the adapter does not read.', 'Estimate'],
+              ['Withdrawable now', '—', 'Assets that could be withdrawn immediately (idle lending liquidity, unlocked STX). No source Bicora reads reports this, so it is N/A. TVL is not all immediately withdrawable: collateral backing loans and STX locked in a reward cycle are in TVL.', 'N/A'],
+              ['Official reported total', '—', 'A protocol’s own headline figure. Shown separately only when a reliable, timestamped source with stated product coverage is available. None is today.', 'N/A'],
+            ]}
+          />
+          <p><code>utilization</code> = borrowed ÷ (TVL + borrowed) uses the same estimated denominator; see <a href="#scoring-impact">findings</a>.</p>
+        </div>
+
+        <div id="coverage" className="endpoint prose">
+          <h2 style={h2}>Protocol TVL coverage</h2>
+          <p>What the DefiLlama adapter behind each protocol&rsquo;s TVL reads, checked against the adapter source. Protocols not listed (ALEX, Bitflow, Granite) have not been reviewed: their coverage is <b>partial / unverified</b>.</p>
+          {Object.entries(COVERAGE).map(([slug, c]) => (
+            <div key={slug} style={{ marginTop: 18 }}>
+              <h3 style={{ marginTop: 0 }}>{snapshot.protocols.find((x) => x.slug === slug)?.name ?? slug} <span className="muted" style={{ fontSize: 12, fontWeight: 400 }}>· reviewed {c.reviewedAt} · <a href={c.adapter.url} target="_blank" rel="noreferrer">{c.adapter.label} ↗</a></span></h3>
+              <ul>
+                <li><b>Counts:</b> {c.tvlCovers.join('; ')}.</li>
+                <li><b>Leaves out:</b> {c.tvlExcludes.join('; ')}.</li>
+                {c.borrowed && <li><b>Borrowed:</b> {c.borrowed}</li>}
+                {c.grossSuppliedCaveat && <li><b>Gross supplied:</b> {c.grossSuppliedCaveat}</li>}
+                <li><b>Withdrawable now:</b> {c.withdrawable}</li>
+                <li><b>Official total:</b> {c.official.status === 'na' ? `N/A. ${c.official.reason}` : `${c.official.label} (${c.official.covers}, ${c.official.asOf})`}</li>
+                {c.differences.map((d) => (<li key={d.text}><span className={`tag ${d.status === 'verified' ? 'tag-neutral' : 'tag-watch'}`} style={{ marginRight: 6 }}>{d.status}</span>{d.text}</li>))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
         <div id="double-counting" className="endpoint prose">
           <h2 style={h2}>Double counting</h2>
           <ul>
-            <li><b>Borrowed value.</b> <code>liquidity_usd</code> excludes borrowed value; <code>borrowed_usd</code> is reported separately. Supplied = liquidity + borrowed; <code>utilization</code> = borrowed ÷ supplied. Borrowed value is never added to ecosystem totals.</li>
-            <li><b>Ecosystem total.</b> <code>market-health.liquidity_usd</code> is the sum of each tracked protocol&rsquo;s DefiLlama Stacks TVL. Bicora does not remove cross-protocol re-deposits: for example, stSTX supplied to a lending market or pooled on a DEX is also backed by STX counted in StackingDAO&rsquo;s TVL. The total can therefore include some double counting.</li>
+            <li><b>Borrowed value.</b> <code>liquidity_usd</code> excludes borrowed value; <code>borrowed_usd</code> is reported separately and never added to TVL or to ecosystem totals. Gross supplied (TVL + borrowed) is an estimate, see <a href="#tvl-terms">definitions</a>.</li>
+            <li><b>Receipt tokens across protocols.</b> stSTX, stSTXbtc and stBTC are StackingDAO receipt tokens; their backing (STX, sBTC) is already in StackingDAO&rsquo;s TVL. When another tracked protocol holds them (Zest vaults, Bitflow and ALEX pools), its DefiLlama TVL counts them again. <code>market.receiptOverlap</code> lists those holdings from each protocol&rsquo;s token breakdown, capped at StackingDAO&rsquo;s TVL. On 2026-10-08 13:45 UTC it was $58.3M of a $170.6M sum, almost all stBTC in Zest.</li>
+            <li><b>Ecosystem total.</b> <code>market-health.liquidity_usd</code> stays the plain sum of protocol TVL (it feeds the 90-day series and 7d / 30d changes, which are not de-duplicated). <code>liquidity_usd_deduplicated</code> = sum − receipt-token overlap is the headline on the dashboard. It is an estimate: receipt tokens are valued at the holder&rsquo;s DefiLlama price, not at their backing, and it is <b>partial</b> when a protocol has no token breakdown.</li>
             <li><b>Bitcoin Staking vs DeFi TVL.</b> <code>stackingTvlUsd</code> is never added to the ecosystem total, the Risk Index or any protocol figure. PoX stacking is not a DefiLlama protocol, so it is outside the DeFi figures except for STX stacked through liquid-staking protocols, which is counted both in that protocol&rsquo;s DeFi TVL and in total STX stacked.</li>
-            <li><b>Liquid-stacked overlap.</b> <code>liquidStackedUsd</code> shows that overlap so it can be subtracted rather than summed. It uses the full DefiLlama TVL of tracked Liquid Stacking protocols (StackingDAO), so it approximates the overlap. Untracked liquid-staking protocols such as LISA are not included.</li>
+            <li><b>Liquid-stacked overlap.</b> <code>liquidStackedUsd</code> shows that overlap so it can be subtracted rather than summed. It is the STX row of tracked Liquid Stacking protocols (StackingDAO) in their DefiLlama token breakdown. Until 2026-10-08 it used StackingDAO&rsquo;s whole TVL, which also included the sBTC behind stBTC (about $53M) and overstated the overlap; corrected. Untracked liquid-staking protocols such as LISA are not included.</li>
             <li><b>Chain-wide TVL.</b> The &ldquo;Stacks TVL&rdquo; on stacks.co combines stacked STX, BTC on Stacks and DeFi. It is a different figure from both the ecosystem total and <code>stackingTvlUsd</code> and is not reproduced by Bicora.</li>
           </ul>
         </div>
@@ -443,11 +490,24 @@ npm run dashboard     # http://localhost:3000  (reads API_URL when set, else the
           />
         </div>
 
+        <div id="scoring-impact" className="endpoint prose">
+          <h2 style={h2}>Findings affecting scores (reported, not applied)</h2>
+          <p>Found during the 2026-10-08 TVL review. Scoring inputs, weights, thresholds and the methodology are unchanged; each correction below is a proposal for separate review.</p>
+          <ul>
+            <li><b>Zest activity is measured on the legacy deployment.</b> <code>config/protocols.json</code> registers Zest&rsquo;s older contracts (<code>SP2VCQJ…</code>), while DefiLlama&rsquo;s <code>zest-v2</code> TVL and borrowed come from the v2 deployment (<code>SP1A27KFY…</code> vaults and market). On 2026-10-08 the registered contracts showed 39 transactions in 7 days, and two of them have 1 and 2 lifetime transactions. Zest&rsquo;s Protocol Activity (28.2) and the contract-age and source factors therefore describe a deployment that is not the one its TVL measures. Proposed: register the v2 market entry point and vaults; this changes Activity and Transparency inputs and needs review.</li>
+            <li><b>Zest utilisation denominator includes collateral that is not lendable.</b> TVL + borrowed includes sBTC posted in the market vault and strategy-vault stBTC, so borrowed ÷ (TVL + borrowed) understates vault utilisation and can overstate Collateral Health. The size is not measured. Proposed: compute utilisation per vault from on-chain reads (see the TVL mapping branch) before using it in scoring.</li>
+            <li><b>Looped capital raises StackingDAO&rsquo;s TVL and Liquidity score.</b> About $27M of the jump on 2026-10-07 matches sBTC borrowed from Zest and minted into stBTC. Per-protocol TVL counts it correctly as StackingDAO deposits, but it is leveraged, recursive liquidity (30-day trend +135%, trend factor 100). Proposed: decide in the methodology review whether receipt-token loops should be discounted in Liquidity Health.</li>
+            <li><b>Historical StackingDAO points.</b> DefiLlama stored StackingDAO at about 1% of actual from 2026-08-09 to 09-07 (DefiLlama-Adapters issue #20960). Bicora&rsquo;s outlier rule already excludes those points (32 excluded); no change needed.</li>
+          </ul>
+        </div>
+
         <div id="definitions" className="endpoint prose">
           <h2 style={h2}>Data definitions</h2>
           <ul>
-            <li><code>liquidity_usd</code> — value locked on Stacks per DefiLlama, excluding borrowed value.</li>
-            <li><code>borrowed_usd</code> / <code>utilization</code> — outstanding borrows and borrowed ÷ (liquidity + borrowed); lending protocols only, null when the adapter reports no borrowing.</li>
+            <li><code>liquidity_usd</code> — TVL · DefiLlama: value locked on Stacks per DefiLlama, excluding borrowed value. Not all of it is immediately withdrawable.</li>
+            <li><code>tvl_source</code> / <code>tvl_fetched_at</code> / <code>tvl_as_of</code> — source of the TVL figures (always DefiLlama), when Bicora fetched them, and DefiLlama&rsquo;s latest data-point time. The two times are null on snapshots written before 2026-10-08.</li>
+            <li><code>borrowed_usd</code> / <code>utilization</code> — outstanding borrows and borrowed ÷ (liquidity + borrowed), where the denominator is the estimated gross supplied; lending protocols only, null when the adapter reports no borrowing.</li>
+            <li><code>liquidity_usd_deduplicated</code> / <code>receipt_token_overlap_usd</code> (<code>/v1/market-health</code>) — the summed TVL minus StackingDAO receipt tokens held by other tracked protocols (estimate), and that overlap. Null when no token breakdown is available.</li>
             <li><code>tx_7d</code> / <code>unique_senders_7d</code> — confirmed transactions on the registered contracts in the last 7 days and the distinct sender principals. Raw counts over the covered period; see <a href="#status">sampled activity</a>.</li>
             <li><code>score_delta_7d</code> — overall score minus the score recorded 7 days earlier (null until history exists).</li>
             <li><code>components[].factors[]</code> — the exact inputs behind each component score: label, observed value, mapped 0–100 score and weight within the component.</li>

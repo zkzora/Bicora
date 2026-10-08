@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSnapshot } from '@/lib/data';
-import { componentColor, fmtInt, fmtUsd } from '@/lib/format';
+import { componentColor, ecosystemTvl, fmtInt, fmtUsd } from '@/lib/format';
 import { BandTag, PctDelta, StatTile } from '@/components/ui';
 import LineChart from '@/components/charts/LineChart';
 import ProtocolLogo from '@/components/ProtocolLogo';
@@ -12,6 +12,7 @@ export const metadata: Metadata = { title: 'Market metrics' };
 export default async function MarketPage() {
   const { snapshot } = await getSnapshot();
   const m = snapshot.market;
+  const eco = ecosystemTvl(m);
   const byTvl = [...snapshot.protocols].sort((a, b) => b.metrics.tvlUsd - a.metrics.tvlUsd);
   const byCategory = new Map<string, { tvl: number; n: number; scores: number[] }>();
   for (const p of snapshot.protocols) {
@@ -23,7 +24,7 @@ export default async function MarketPage() {
   return (
     <>
       <div className="grid-cells tiles">
-        <StatTile label="Liquidity tracked" value={fmtUsd(m.totalTvlUsd)} sub={<><PctDelta r={m.totalTvlChange7d} suffix="7d" /> · <PctDelta r={m.totalTvlChange30d} suffix="30d" /></>} />
+        <StatTile label={eco.label} value={fmtUsd(eco.value)} sub={<>{eco.note} · <PctDelta r={m.totalTvlChange7d} suffix="sum 7d" /> · <PctDelta r={m.totalTvlChange30d} suffix="sum 30d" /></>} />
         <StatTile label="Transactions · 7d" value={fmtInt(m.tx7d)} sub="Direct calls to tracked contracts" delay={30} />
         <StatTile label="Active addresses · 7d" value={fmtInt(m.activeAddresses7d)} sub="Unique senders, summed per protocol" delay={60} />
         <StatTile label="Avg. risk score" value={m.avgScore} sub={`${m.bandDistribution.Low} low · ${m.bandDistribution.Moderate} moderate · ${m.bandDistribution.Elevated} elevated · ${m.bandDistribution.High} high`} accent delay={90} />
@@ -31,12 +32,12 @@ export default async function MarketPage() {
 
       <div className="card">
         <div className="card-head">
-          <span className="k k-ink">Ecosystem liquidity · 90 days</span>
-          <span className="muted" style={{ fontSize: 11 }}>Sum of tracked protocols, forward-filled on a daily calendar</span>
+          <span className="k k-ink">Sum of protocol TVL · DefiLlama · 90 days</span>
+          <span className="muted" style={{ fontSize: 11 }}>Forward-filled daily sum, not de-duplicated: receipt tokens and their backing both count</span>
         </div>
         <LineChart
-          ariaLabel="Ecosystem TVL over 90 days"
-          series={[{ key: 'tvl', label: 'Tracked TVL', color: componentColor.liquidity, area: true, points: m.ecosystemTvlHistory.map((x) => ({ date: x.date, value: x.tvlUsd })) }]}
+          ariaLabel="Sum of protocol TVL over 90 days"
+          series={[{ key: 'tvl', label: 'Sum of protocol TVL', color: componentColor.liquidity, area: true, points: m.ecosystemTvlHistory.map((x) => ({ date: x.date, value: x.tvlUsd })) }]}
           formatKind="usd"
           height={240}
         />
@@ -44,14 +45,14 @@ export default async function MarketPage() {
 
       <div className="two-up">
         <div className="card">
-          <span className="k k-ink">Liquidity share by protocol</span>
+          <span className="k k-ink">Share of summed TVL · DefiLlama</span>
           <div style={{ display: 'flex', height: 16, borderRadius: 4, overflow: 'hidden', gap: 2 }}>
             {byTvl.map((p, i) => (
               <div key={p.slug} style={{ width: `${(p.metrics.tvlUsd / m.totalTvlUsd) * 100}%`, background: ['var(--ink)', 'var(--color-accent)', 'var(--color-accent-300)', 'var(--color-neutral-400)', 'var(--color-neutral-300)'][i] ?? 'var(--color-neutral-200)' }} title={p.name} />
             ))}
           </div>
           <div className="table-wrap"><table className="table">
-            <thead><tr><th>Protocol</th><th className="r">TVL</th><th className="r">Share</th><th className="r">7d</th><th className="r hide-sm">30d</th></tr></thead>
+            <thead><tr><th>Protocol</th><th className="r">TVL · DefiLlama</th><th className="r">Share of sum</th><th className="r">7d</th><th className="r hide-sm">30d</th></tr></thead>
             <tbody>
               {byTvl.map((p, i) => (
                 <tr key={p.slug} className="row">

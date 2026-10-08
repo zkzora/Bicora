@@ -83,7 +83,7 @@ export function ProtocolTable({ protocols, compact = false }: { protocols: Snaps
             <th className="hide-xs">#</th>
             <th>Protocol</th>
             <th className="hide-sm">Category</th>
-            <th className="r">Liquidity</th>
+            <th className="r">TVL · DefiLlama</th>
             {!compact && <th className="r">7d TVL</th>}
             <th>Overall</th>
             {!compact && (

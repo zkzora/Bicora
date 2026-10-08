@@ -10,6 +10,7 @@ import Sparkline from '@/components/charts/Sparkline';
 import ProtocolHistory from '@/components/ProtocolHistory';
 import ProtocolLogo from '@/components/ProtocolLogo';
 import RiskFactorCard from '@/components/RiskFactorCard';
+import TvlBreakdown from '@/components/TvlBreakdown';
 
 export async function generateStaticParams() {
   const { snapshot } = await getSnapshot();
@@ -122,27 +123,15 @@ export default async function ProtocolPage({ params }: { params: Promise<{ slug:
             <span className="sub">Observed inputs behind the score</span>
           </div>
           <div className="dash-secondary">
-            <MetricCard label="TVL" value={fmtUsd(m.tvlUsd)} sub={<><PctDelta r={m.tvlChange7d} suffix="7d" /><PctDelta r={m.tvlChange30d} suffix="30d" /></>} />
+            <MetricCard label="TVL · DefiLlama" value={fmtUsd(m.tvlUsd)} sub={<><PctDelta r={m.tvlChange7d} suffix="7d" /><PctDelta r={m.tvlChange30d} suffix="30d" /></>} />
             <MetricCard label="Transactions · 7d" value={<>{fmtInt(m.tx7d)}{m.activitySampled ? '*' : ''}</>} sub={`${fmtInt(m.uniqueSenders7d)} unique senders`} delay={30} />
-            <MetricCard label={p.hasCollateral ? 'Utilisation' : 'Collateral'} value={m.utilization == null ? '—' : `${(m.utilization * 100).toFixed(1)}%`} sub={m.borrowedUsd != null ? `${fmtUsd(m.borrowedUsd)} borrowed` : p.hasCollateral ? 'no borrowed data' : 'not applicable'} delay={60} />
+            <MetricCard label={p.hasCollateral ? 'Utilisation · est.' : 'Collateral'} value={m.utilization == null ? '—' : `${(m.utilization * 100).toFixed(1)}%`} sub={m.borrowedUsd != null ? `${fmtUsd(m.borrowedUsd)} borrowed` : p.hasCollateral ? 'no borrowed data' : 'not applicable'} delay={60} />
             <MetricCard label="Liquidity score · 30d" value={<span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>{Math.round(p.score.components[0].score ?? 0)}<Sparkline values={p.liquidityScoreHistory.slice(-30).map((x) => x.score)} color={componentColor.liquidity} width={72} height={24} /></span>} sub={`${fmtPct(m.tvlChange30d)} TVL over 30 days`} delay={90} />
           </div>
-          {m.borrowedUsd != null && (
-            <div className="card" style={{ marginTop: 20 }}>
-              <div className="card-head"><div><div className="card-title">Supply &amp; borrow · data availability</div><div className="muted" style={{ fontSize: 11.5, marginTop: 2 }}>Shown for transparency — the Liquidity score uses net TVL (DefiLlama), not gross supplied</div></div></div>
-              <div className="dash-secondary">
-                <MetricCard label="Supplied (gross)" value={fmtUsd(m.tvlUsd + m.borrowedUsd)} sub="deposits · net + borrowed" />
-                <MetricCard label="Borrowed" value={fmtUsd(m.borrowedUsd)} sub={m.utilization != null ? `${(m.utilization * 100).toFixed(1)}% utilisation` : 'borrowed value'} delay={30} />
-                <MetricCard label="Net TVL · scored" value={fmtUsd(m.tvlUsd)} sub="DefiLlama Stacks · used by the Liquidity score" delay={60} />
-              </div>
-              <p className="muted" style={{ fontSize: 11.5, lineHeight: 1.6, marginTop: 12 }}>
-                Protocol dashboards often headline gross supplied (≈ {fmtUsd(m.tvlUsd + m.borrowedUsd)} here), while Bicora scores on DefiLlama&rsquo;s net Stacks TVL ({fmtUsd(m.tvlUsd)}) for consistency across protocols. Borrowed value is shown as context and does not change the score.
-              </p>
-            </div>
-          )}
+          <TvlBreakdown p={p} snapshotAt={snapshot.generatedAt} />
           <div className="two-up">
             {tokens.length > 0 && (
-              <ChartCard title="Liquidity by asset" sub="Latest token breakdown from DefiLlama">
+              <ChartCard title="TVL by asset · DefiLlama" sub="Latest token breakdown; receipt tokens (stSTX, stSTXbtc, stBTC) are claims on StackingDAO's backing">
                 <div style={{ display: 'flex', height: 12, borderRadius: 4, overflow: 'hidden', gap: 2 }}>
                   {tokens.map(([t, v], i) => (<div key={t} style={{ width: `${(v / tokenTotal) * 100}%`, background: swatch[i] }} title={t} />))}
                 </div>

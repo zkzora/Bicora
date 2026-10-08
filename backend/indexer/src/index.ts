@@ -21,7 +21,7 @@ async function indexProtocol(cfg: ReturnType<typeof loadRegistry>[number]): Prom
 
   const llama = await fetchLlama(cfg.llamaSlug).catch((e: Error) => {
     errors.push(`llama: ${e.message}`);
-    return { currentUsd: 0, borrowedUsd: null, history: [], tokens: {} };
+    return { currentUsd: 0, borrowedUsd: null, history: [], tokens: {}, asOf: undefined };
   });
   info(`${cfg.slug}: tvl $${Math.round(llama.currentUsd).toLocaleString()} (${llama.history.length} daily points)`);
 
@@ -44,7 +44,7 @@ async function indexProtocol(cfg: ReturnType<typeof loadRegistry>[number]): Prom
   return {
     slug: cfg.slug,
     fetchedAt,
-    tvl: { currentUsd: llama.currentUsd, borrowedUsd: llama.borrowedUsd, history: llama.history, tokens: llama.tokens },
+    tvl: { currentUsd: llama.currentUsd, borrowedUsd: llama.borrowedUsd, history: llama.history, tokens: llama.tokens, asOf: llama.asOf },
     activity: { current7d: activity.current, prior7d: activity.prior },
     contracts,
     errors,

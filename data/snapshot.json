@@ -469,7 +469,44 @@
         "date": "2026-10-08",
         "tvlUsd": 170618971.4298
       }
-    ]
+    ],
+    "receiptOverlap": {
+      "totalUsd": 58325376.01274001,
+      "items": [
+        {
+          "holder": "zest",
+          "token": "STBTC",
+          "backedBy": "stackingdao",
+          "usd": 51495695.56879
+        },
+        {
+          "holder": "zest",
+          "token": "STSTX",
+          "backedBy": "stackingdao",
+          "usd": 3916229.17185
+        },
+        {
+          "holder": "zest",
+          "token": "STSTXBTC",
+          "backedBy": "stackingdao",
+          "usd": 2654036.33138
+        },
+        {
+          "holder": "bitflow",
+          "token": "STSTX",
+          "backedBy": "stackingdao",
+          "usd": 259330.62002
+        },
+        {
+          "holder": "alex",
+          "token": "STSTX",
+          "backedBy": "stackingdao",
+          "usd": 84.3207
+        }
+      ],
+      "partial": false
+    },
+    "totalTvlDedupedUsd": 112293595.41705999
   },
   "protocols": [
     {
@@ -538,7 +575,8 @@
         "tokens": {
           "STX": 30240634.74841,
           "SBTC": 52783935.55943
-        }
+        },
+        "tvlSource": "DefiLlama"
       },
       "dataQuality": {
         "excludedTvlPoints": 32,
@@ -1700,7 +1738,8 @@
           "USDH": 16.68241,
           "STSTX": 84.3207,
           "SBTC": 494.80088
-        }
+        },
+        "tvlSource": "DefiLlama"
       },
       "dataQuality": {
         "excludedTvlPoints": 0,
@@ -2848,7 +2887,8 @@
           "USDCX": 2851238.40678,
           "STSTX": 3916229.17185,
           "STBTC": 51495695.56879
-        }
+        },
+        "tvlSource": "DefiLlama"
       },
       "dataQuality": {
         "excludedTvlPoints": 1,
@@ -4118,7 +4158,8 @@
           "USDT": 182.8499,
           "STSTX": 259330.62002,
           "USDH": 9546.53941
-        }
+        },
+        "tvlSource": "DefiLlama"
       },
       "dataQuality": {
         "excludedTvlPoints": 0,
@@ -5276,7 +5317,8 @@
           "USDCX": 3821902.80836,
           "SBTC": 3073603.94083,
           "AEUSDC": 56355.34673
-        }
+        },
+        "tvlSource": "DefiLlama"
       },
       "dataQuality": {
         "excludedTvlPoints": 0,
@@ -7496,7 +7538,7 @@
     "btcBonded": null,
     "bondPeriodBlocks": 25200,
     "programStatus": "PoX-5 bootstrap (Bitcoin Staking whitepaper, 2026-05-13)",
-    "liquidStackedUsd": 83024570.30784,
+    "liquidStackedUsd": 30240634.74841,
     "stackingTvlUsd": 168655309.83721027,
     "history": [
       {
@@ -7608,7 +7650,7 @@
       "The headline \"Stacks TVL\" (STX & BTC) on stacks.co is a chain-wide figure: stacked STX + BTC held on Stacks (sBTC) + DeFi. The Staking TVL here is only the STX committed to PoX, so it is several times smaller by design.",
       "BTC bonded (native Bitcoin Staking) is N/A: BTC sits in individual Bitcoin L1 timelocks with no public aggregate API (whitepaper 2026-05-13, PoX-5 bootstrap).",
       "Stacking TVL (STX value) is distinct from DeFi-app TVL and from the chain-wide \"Stacks TVL\" shown on stacks.co.",
-      "Liquid-stacked overlap shows STX stacked via tracked liquid-staking protocols (StackingDAO), already counted in their DeFi TVL; it excludes LISA and other untracked LSTs."
+      "Liquid-stacked overlap is the STX held by tracked liquid-staking protocols (StackingDAO's STX row on DefiLlama), already counted in their DeFi TVL. Their sBTC is excluded, and so are LISA and other untracked LSTs."
     ]
   }
 }

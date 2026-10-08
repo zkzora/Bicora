@@ -39,6 +39,8 @@ interface LlamaProtocol {
 
 export interface LlamaResult {
   currentUsd: number;
+  /** Time of DefiLlama's latest Stacks data point (ISO); undefined when the series is empty. */
+  asOf?: string;
   borrowedUsd: number | null;
   history: TvlPoint[];
   tokens: Record<string, number>;
@@ -62,8 +64,10 @@ export async function fetchLlama(slug: string): Promise<LlamaResult> {
   }
   const history = [...byDay.values()].sort((a, b) => (a.date < b.date ? -1 : 1));
   const tokensLatest = chain.tokensInUsd?.at(-1)?.tokens ?? {};
+  const lastTs = chain.tvl.at(-1)?.date;
   return {
     currentUsd: p.currentChainTvls['Stacks'] ?? history.at(-1)?.tvlUsd ?? 0,
+    asOf: lastTs != null ? new Date(lastTs * 1000).toISOString() : undefined,
     borrowedUsd: p.currentChainTvls['Stacks-borrowed'] ?? null,
     history,
     tokens: tokensLatest,

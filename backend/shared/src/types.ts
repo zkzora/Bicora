@@ -55,6 +55,7 @@ export interface ProtocolRaw {
     borrowedUsd: number | null;
     history: TvlPoint[]; // daily, ascending
     tokens: Record<string, number>; // latest token breakdown in USD
+    asOf?: string; // time of DefiLlama's latest data point (ISO)
   };
   activity: {
     current7d: ActivityWindow;
@@ -122,6 +123,13 @@ export interface ScorePoint {
   transparency: number | null;
 }
 
+export interface ReceiptOverlap {
+  totalUsd: number;
+  items: { holder: string; token: string; backedBy: string; usd: number }[];
+  /** true when a tracked protocol had no token breakdown, so the overlap may be understated. */
+  partial: boolean;
+}
+
 /** Denormalised view served to the dashboard and API. */
 export interface SnapshotProtocol {
   slug: string;
@@ -145,6 +153,12 @@ export interface SnapshotProtocol {
     uniqueSenders7d: number;
     activitySampled: boolean;
     tokens: Record<string, number>;
+    /** Source of tvlUsd / borrowedUsd. Always DefiLlama today. */
+    tvlSource?: 'DefiLlama';
+    /** When Bicora's indexer fetched the DefiLlama figures (ISO). */
+    tvlFetchedAt?: string;
+    /** Time of DefiLlama's latest data point at fetch (ISO); null when unknown. */
+    tvlAsOf?: string | null;
   };
   dataQuality: { excludedTvlPoints: number; note: string | null; activitySampled: boolean; warnings: string[] };
   score: RiskScore;
@@ -192,7 +206,7 @@ export interface StakingSnapshot {
   btcBonded: number | null; // N/A
   bondPeriodBlocks: number; // ~25,200 Bitcoin blocks (~6 months)
   programStatus: string;
-  // Double-count guard: STX stacked via tracked liquid-staking protocols (overlaps their DeFi TVL)
+  // Double-count guard: STX held by tracked liquid-staking protocols (their DefiLlama STX row; overlaps their DeFi TVL)
   liquidStackedUsd: number | null;
   stackingTvlUsd: number | null; // stackedStx × price — distinct from DeFi TVL and chain-wide TVL
   history: StakingCyclePoint[];
@@ -217,6 +231,14 @@ export interface Snapshot {
     index: { score: number; band: Band; previous: number | null; change7d: number | null; change30d: number | null; history: { date: string; score: number }[] };
     bandDistribution: Record<Band, number>;
     ecosystemTvlHistory: TvlPoint[];
+    /**
+     * StackingDAO receipt tokens (stSTX, stSTXbtc, stBTC) held in other tracked protocols, valued from
+     * those protocols' DefiLlama token breakdowns. Their backing is already in StackingDAO's TVL, so
+     * totalTvlUsd counts them twice. Null when no breakdown is available.
+     */
+    receiptOverlap?: ReceiptOverlap | null;
+    /** totalTvlUsd − receiptOverlap.totalUsd (estimate). Null when the overlap is unknown. */
+    totalTvlDedupedUsd?: number | null;
   };
   protocols: SnapshotProtocol[];
   events: RiskEvent[];
