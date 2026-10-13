@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-13T00:53:41.720Z",
+  "generatedAt": "2026-10-13T14:25:06.273Z",
   "methodologyVersion": "1.0.0",
   "market": {
     "protocolsTracked": 5,
-    "totalTvlUsd": 173878679.87254998,
-    "totalTvlChange7d": 0.1833616769654667,
-    "totalTvlChange30d": 0.5879170528275922,
-    "activeAddresses7d": 435,
-    "tx7d": 2998,
+    "totalTvlUsd": 174975831.23618,
+    "totalTvlChange7d": 0.1908285318927173,
+    "totalTvlChange30d": 0.5979365984160344,
+    "activeAddresses7d": 453,
+    "tx7d": 3082,
     "avgScore": 66,
     "index": {
       "score": 66,
@@ -483,45 +483,45 @@
       },
       {
         "date": "2026-10-12",
-        "tvlUsd": 173576174
+        "tvlUsd": 173781205
       },
       {
         "date": "2026-10-13",
-        "tvlUsd": 173878679.87254998
+        "tvlUsd": 174975831.23618
       }
     ],
     "receiptOverlap": {
-      "totalUsd": 59170599.886199996,
+      "totalUsd": 59417769.98858,
       "items": [
         {
           "holder": "zest",
           "token": "STBTC",
           "backedBy": "stackingdao",
-          "usd": 51366194.51164
+          "usd": 51916468.55909
         },
         {
           "holder": "zest",
           "token": "STSTX",
           "backedBy": "stackingdao",
-          "usd": 4589701.77981
+          "usd": 4324882.91926
         },
         {
           "holder": "zest",
           "token": "STSTXBTC",
           "backedBy": "stackingdao",
-          "usd": 2936265.68968
+          "usd": 2902546.14989
         },
         {
           "holder": "bitflow",
           "token": "STSTX",
           "backedBy": "stackingdao",
-          "usd": 278335.94417
+          "usd": 273777.86935
         },
         {
           "holder": "alex",
           "token": "STSTX",
           "backedBy": "stackingdao",
-          "usd": 101.9609
+          "usd": 94.49099
         }
       ],
       "mappedTokens": [
@@ -531,9 +531,1308 @@
       ],
       "missingBreakdowns": []
     },
-    "overlapAdjustedEstimateUsd": 114708079.98634999
+    "overlapAdjustedEstimateUsd": 115558061.2476
   },
   "protocols": [
+    {
+      "slug": "zest",
+      "name": "Zest Protocol",
+      "category": "Lending",
+      "description": "Bitcoin-backed lending market on Stacks. Users supply sBTC, STX and stablecoins and borrow against them.",
+      "website": "https://www.zestprotocol.com/",
+      "docs": "https://docs.zestprotocol.com/",
+      "github": "https://github.com/Zest-Protocol",
+      "assets": [
+        "sBTC",
+        "STX",
+        "stSTX",
+        "USDh",
+        "USDCx",
+        "stSTXbtc"
+      ],
+      "contracts": [
+        {
+          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v2-1-8",
+          "role": "User entry point (supply / withdraw / borrow / repay / liquidation-call)",
+          "found": true,
+          "blockHeight": 8754810,
+          "deployedAt": "2026-08-13T18:04:49.000Z",
+          "sourceBytes": 15073,
+          "txTotal": 717
+        },
+        {
+          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-borrow-v2-1",
+          "role": "Pool borrow core",
+          "found": true,
+          "blockHeight": 943312,
+          "deployedAt": "2025-04-10T12:45:03.000Z",
+          "sourceBytes": 38048,
+          "txTotal": 1
+        },
+        {
+          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-0-reserve-v2-0",
+          "role": "Reserve state",
+          "found": true,
+          "blockHeight": 343142,
+          "deployedAt": "2024-12-17T00:43:12.000Z",
+          "sourceBytes": 66591,
+          "txTotal": 2
+        }
+      ],
+      "hasCollateral": true,
+      "metrics": {
+        "tvlUsd": 77407804.66593,
+        "borrowedUsd": 43352954.23204,
+        "utilization": 0.35899868986968386,
+        "tvlChange24h": 0.003241369817905982,
+        "tvlChange7d": -0.014401231691786275,
+        "tvlChange30d": 0.1871290257050399,
+        "tx7d": 48,
+        "uniqueSenders7d": 25,
+        "activitySampled": false,
+        "tokens": {
+          "STX": 722678.48443,
+          "USDH": 311857.31137,
+          "USDCX": 2825999.38632,
+          "STSTX": 4324882.91926,
+          "SBTC": 14403371.85556,
+          "STSTXBTC": 2902546.14989,
+          "STBTC": 51916468.55909
+        },
+        "tvlSource": "DefiLlama",
+        "tvlFetchedAt": "2026-10-13T14:20:42.710Z",
+        "tvlAsOf": "2026-10-13T14:01:47.000Z"
+      },
+      "dataQuality": {
+        "excludedTvlPoints": 1,
+        "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
+        "activitySampled": false,
+        "warnings": []
+      },
+      "score": {
+        "slug": "zest",
+        "computedAt": "2026-10-13T14:25:06.273Z",
+        "methodologyVersion": "1.0.0",
+        "overall": 71,
+        "band": "Moderate",
+        "components": [
+          {
+            "key": "liquidity",
+            "label": "Liquidity Health",
+            "weight": 0.3,
+            "score": 81.5,
+            "factors": [
+              {
+                "key": "depth",
+                "label": "Liquidity depth (TVL)",
+                "value": "$77.4M",
+                "raw": 77407804.66593,
+                "score": 72.2,
+                "weight": 0.5,
+                "explanation": "Deep liquidity: $77.4M locked places it among the largest pools on Stacks."
+              },
+              {
+                "key": "trend30d",
+                "label": "30-day TVL trend",
+                "value": "+18.7%",
+                "raw": 0.1871290257050399,
+                "score": 88.4,
+                "weight": 0.25,
+                "explanation": "TVL grew +18.7% over 30 days, attracting capital."
+              },
+              {
+                "key": "stability",
+                "label": "30-day stability (drawdown, volatility)",
+                "value": "dd 3.8% · vol 2.0%/d",
+                "raw": 0.0381892220209305,
+                "score": 93.2,
+                "weight": 0.25,
+                "explanation": "Capital has been stable (max drawdown 4%)."
+              }
+            ],
+            "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
+            "explanation": "Deep liquidity: $77.4M locked places it among the largest pools on Stacks. TVL grew +18.7% over 30 days, attracting capital. Capital has been stable (max drawdown 4%)."
+          },
+          {
+            "key": "activity",
+            "label": "Protocol Activity",
+            "weight": 0.25,
+            "score": 35.4,
+            "factors": [
+              {
+                "key": "tx7d",
+                "label": "Transactions, 7 days",
+                "value": "48",
+                "raw": 48,
+                "score": 23,
+                "weight": 0.4,
+                "explanation": "Only 48 transactions in 7 days on the tracked entry points: low direct usage."
+              },
+              {
+                "key": "senders7d",
+                "label": "Unique senders, 7 days",
+                "value": "25",
+                "raw": 25,
+                "score": 26.5,
+                "weight": 0.35,
+                "explanation": "25 distinct addresses interacted: activity is concentrated in few users."
+              },
+              {
+                "key": "trend7d",
+                "label": "7-day transaction trend vs prior week",
+                "value": "+23.1%",
+                "raw": 0.23076923076923084,
+                "score": 79.2,
+                "weight": 0.15,
+                "explanation": "Weekly transactions stable (+23.1%) versus the prior week."
+              },
+              {
+                "key": "success",
+                "label": "Transaction success rate",
+                "value": "87.5%",
+                "raw": 0.875,
+                "score": 50,
+                "weight": 0.1,
+                "explanation": "13% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
+              }
+            ],
+            "explanation": "Only 48 transactions in 7 days on the tracked entry points: low direct usage. 25 distinct addresses interacted: activity is concentrated in few users. Weekly transactions stable (+23.1%) versus the prior week. 13% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
+          },
+          {
+            "key": "collateral",
+            "label": "Collateral Health",
+            "weight": 0.25,
+            "score": 73.8,
+            "factors": [
+              {
+                "key": "utilization",
+                "label": "Utilisation (borrowed / supplied)",
+                "value": "35.9%",
+                "raw": 0.35899868986968386,
+                "score": 100,
+                "weight": 0.7,
+                "explanation": "Utilisation of 36% leaves ample liquidity available for withdrawals."
+              },
+              {
+                "key": "utilTrend7d",
+                "label": "Utilisation change, 7 days",
+                "value": "+19.1 pts",
+                "raw": 0.19107023278715057,
+                "score": 12.7,
+                "weight": 0.3,
+                "explanation": "Utilisation rose 19.1 points in 7 days."
+              }
+            ],
+            "explanation": "Utilisation of 36% leaves ample liquidity available for withdrawals. Utilisation rose 19.1 points in 7 days."
+          },
+          {
+            "key": "transparency",
+            "label": "Security & Transparency",
+            "weight": 0.2,
+            "score": 94.1,
+            "factors": [
+              {
+                "key": "source",
+                "label": "Contract source verifiable on-chain",
+                "value": "3/3 contracts",
+                "raw": 1,
+                "score": 100,
+                "weight": 0.2,
+                "explanation": "All tracked contracts are found on-chain with readable Clarity source."
+              },
+              {
+                "key": "audits",
+                "label": "Public audits listed",
+                "value": "7",
+                "raw": 7,
+                "score": 100,
+                "weight": 0.25,
+                "explanation": "7 public audits listed."
+              },
+              {
+                "key": "github",
+                "label": "Public source repository",
+                "value": "yes",
+                "raw": 1,
+                "score": 100,
+                "weight": 0.15,
+                "explanation": "Source repository is public."
+              },
+              {
+                "key": "docs",
+                "label": "Public documentation",
+                "value": "yes",
+                "raw": 1,
+                "score": 100,
+                "weight": 0.1,
+                "explanation": "Public documentation is available."
+              },
+              {
+                "key": "age",
+                "label": "Oldest tracked contract age",
+                "value": "22 months",
+                "raw": 21.865005493882926,
+                "score": 93.8,
+                "weight": 0.15,
+                "explanation": "Contracts have 22 months of production history."
+              },
+              {
+                "key": "governance",
+                "label": "Governance / upgrade control",
+                "value": "governance-contract",
+                "raw": null,
+                "note": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.zest-governance observed on-chain",
+                "score": 100,
+                "weight": 0.1,
+                "explanation": "Upgrades are controlled by an on-chain governance contract or DAO."
+              },
+              {
+                "key": "bounty",
+                "label": "Bug bounty programme",
+                "value": "no",
+                "raw": 0,
+                "score": 0,
+                "weight": 0.05,
+                "explanation": "No public bug bounty programme."
+              }
+            ],
+            "explanation": "Strong public information: contract source verifiable on-chain, public audits listed, public source repository. No public bug bounty programme."
+          }
+        ],
+        "effectiveWeights": {
+          "liquidity": 30,
+          "activity": 25,
+          "collateral": 25,
+          "transparency": 20
+        }
+      },
+      "delta7d": -1,
+      "tvlHistory": [
+        {
+          "date": "2026-07-12",
+          "tvlUsd": 64998043,
+          "borrowedUsd": 6709255
+        },
+        {
+          "date": "2026-07-13",
+          "tvlUsd": 64822199,
+          "borrowedUsd": 6760030
+        },
+        {
+          "date": "2026-07-14",
+          "tvlUsd": 63703476,
+          "borrowedUsd": 6745331
+        },
+        {
+          "date": "2026-07-15",
+          "tvlUsd": 65382356,
+          "borrowedUsd": 6736701
+        },
+        {
+          "date": "2026-07-16",
+          "tvlUsd": 65893214,
+          "borrowedUsd": 6789229
+        },
+        {
+          "date": "2026-07-17",
+          "tvlUsd": 64833761,
+          "borrowedUsd": 6655561
+        },
+        {
+          "date": "2026-07-18",
+          "tvlUsd": 64808947,
+          "borrowedUsd": 6664316
+        },
+        {
+          "date": "2026-07-19",
+          "tvlUsd": 65561539,
+          "borrowedUsd": 6749172
+        },
+        {
+          "date": "2026-07-20",
+          "tvlUsd": 65654358,
+          "borrowedUsd": 6784845
+        },
+        {
+          "date": "2026-07-21",
+          "tvlUsd": 66040347,
+          "borrowedUsd": 6785612
+        },
+        {
+          "date": "2026-07-22",
+          "tvlUsd": 67036569,
+          "borrowedUsd": 5852876
+        },
+        {
+          "date": "2026-07-23",
+          "tvlUsd": 66196681,
+          "borrowedUsd": 6880307
+        },
+        {
+          "date": "2026-07-24",
+          "tvlUsd": 65047460,
+          "borrowedUsd": 6834913
+        },
+        {
+          "date": "2026-07-25",
+          "tvlUsd": 63490285,
+          "borrowedUsd": 6607295
+        },
+        {
+          "date": "2026-07-26",
+          "tvlUsd": 63158709,
+          "borrowedUsd": 6547917
+        },
+        {
+          "date": "2026-07-27",
+          "tvlUsd": 64299109,
+          "borrowedUsd": 6659026
+        },
+        {
+          "date": "2026-07-28",
+          "tvlUsd": 63517509,
+          "borrowedUsd": 6607372
+        },
+        {
+          "date": "2026-07-29",
+          "tvlUsd": 63000211,
+          "borrowedUsd": 6626139
+        },
+        {
+          "date": "2026-07-30",
+          "tvlUsd": 62804487,
+          "borrowedUsd": 6604433
+        },
+        {
+          "date": "2026-07-31",
+          "tvlUsd": 63485051,
+          "borrowedUsd": 6636085
+        },
+        {
+          "date": "2026-08-01",
+          "tvlUsd": 62298002,
+          "borrowedUsd": 6620291
+        },
+        {
+          "date": "2026-08-02",
+          "tvlUsd": 62146430,
+          "borrowedUsd": 6608738
+        },
+        {
+          "date": "2026-08-03",
+          "tvlUsd": 62210570,
+          "borrowedUsd": 6638745
+        },
+        {
+          "date": "2026-08-04",
+          "tvlUsd": 62692578,
+          "borrowedUsd": 6645855
+        },
+        {
+          "date": "2026-08-05",
+          "tvlUsd": 63028184,
+          "borrowedUsd": 6640574
+        },
+        {
+          "date": "2026-08-06",
+          "tvlUsd": 62985867,
+          "borrowedUsd": 6582928
+        },
+        {
+          "date": "2026-08-07",
+          "tvlUsd": 62472470,
+          "borrowedUsd": 6528766
+        },
+        {
+          "date": "2026-08-08",
+          "tvlUsd": 63607926,
+          "borrowedUsd": 6606732
+        },
+        {
+          "date": "2026-08-09",
+          "tvlUsd": 59656999,
+          "borrowedUsd": 6593670
+        },
+        {
+          "date": "2026-08-10",
+          "tvlUsd": 59703118,
+          "borrowedUsd": 6682476
+        },
+        {
+          "date": "2026-08-11",
+          "tvlUsd": 58951437,
+          "borrowedUsd": 6660189
+        },
+        {
+          "date": "2026-08-12",
+          "tvlUsd": 58611139,
+          "borrowedUsd": 6630788
+        },
+        {
+          "date": "2026-08-13",
+          "tvlUsd": 58279499,
+          "borrowedUsd": 6598171
+        },
+        {
+          "date": "2026-08-14",
+          "tvlUsd": 58333996,
+          "borrowedUsd": 6600587
+        },
+        {
+          "date": "2026-08-19",
+          "tvlUsd": 59534013,
+          "borrowedUsd": 6209547
+        },
+        {
+          "date": "2026-08-20",
+          "tvlUsd": 63240401,
+          "borrowedUsd": 6233917
+        },
+        {
+          "date": "2026-08-21",
+          "tvlUsd": 69700595,
+          "borrowedUsd": 6553318
+        },
+        {
+          "date": "2026-08-22",
+          "tvlUsd": 71260135,
+          "borrowedUsd": 6812511
+        },
+        {
+          "date": "2026-08-23",
+          "tvlUsd": 71157713,
+          "borrowedUsd": 6911152
+        },
+        {
+          "date": "2026-08-24",
+          "tvlUsd": 71677918,
+          "borrowedUsd": 6900108
+        },
+        {
+          "date": "2026-08-25",
+          "tvlUsd": 72766446,
+          "borrowedUsd": 6917645
+        },
+        {
+          "date": "2026-08-26",
+          "tvlUsd": 73483386,
+          "borrowedUsd": 7134050
+        },
+        {
+          "date": "2026-08-27",
+          "tvlUsd": 74141738,
+          "borrowedUsd": 7146998
+        },
+        {
+          "date": "2026-08-28",
+          "tvlUsd": 74404559,
+          "borrowedUsd": 7159739
+        },
+        {
+          "date": "2026-08-29",
+          "tvlUsd": 72205461,
+          "borrowedUsd": 7105367
+        },
+        {
+          "date": "2026-08-30",
+          "tvlUsd": 72481858,
+          "borrowedUsd": 7043481
+        },
+        {
+          "date": "2026-08-31",
+          "tvlUsd": 73242488,
+          "borrowedUsd": 7048963
+        },
+        {
+          "date": "2026-09-01",
+          "tvlUsd": 75134297,
+          "borrowedUsd": 6723179
+        },
+        {
+          "date": "2026-09-02",
+          "tvlUsd": 70519189,
+          "borrowedUsd": 7754438
+        },
+        {
+          "date": "2026-09-03",
+          "tvlUsd": 70852883,
+          "borrowedUsd": 7803360
+        },
+        {
+          "date": "2026-09-04",
+          "tvlUsd": 74088536,
+          "borrowedUsd": 7917095
+        },
+        {
+          "date": "2026-09-05",
+          "tvlUsd": 71601546,
+          "borrowedUsd": 13617152
+        },
+        {
+          "date": "2026-09-06",
+          "tvlUsd": 71648206,
+          "borrowedUsd": 13623966
+        },
+        {
+          "date": "2026-09-07",
+          "tvlUsd": 71642576,
+          "borrowedUsd": 13630300
+        },
+        {
+          "date": "2026-09-08",
+          "tvlUsd": 66424022,
+          "borrowedUsd": 13591939
+        },
+        {
+          "date": "2026-09-09",
+          "tvlUsd": 66393220,
+          "borrowedUsd": 13567984
+        },
+        {
+          "date": "2026-09-10",
+          "tvlUsd": 66561337,
+          "borrowedUsd": 13634033
+        },
+        {
+          "date": "2026-09-11",
+          "tvlUsd": 65050360,
+          "borrowedUsd": 13417633
+        },
+        {
+          "date": "2026-09-12",
+          "tvlUsd": 65293965,
+          "borrowedUsd": 13445881
+        },
+        {
+          "date": "2026-09-13",
+          "tvlUsd": 65205890,
+          "borrowedUsd": 13527336
+        },
+        {
+          "date": "2026-09-14",
+          "tvlUsd": 64847677,
+          "borrowedUsd": 13472101
+        },
+        {
+          "date": "2026-09-15",
+          "tvlUsd": 66085900,
+          "borrowedUsd": 13585476
+        },
+        {
+          "date": "2026-09-16",
+          "tvlUsd": 63846158,
+          "borrowedUsd": 13243888
+        },
+        {
+          "date": "2026-09-17",
+          "tvlUsd": 64310668,
+          "borrowedUsd": 13345712
+        },
+        {
+          "date": "2026-09-18",
+          "tvlUsd": 64410693,
+          "borrowedUsd": 13438652
+        },
+        {
+          "date": "2026-09-19",
+          "tvlUsd": 68766937,
+          "borrowedUsd": 14066578
+        },
+        {
+          "date": "2026-09-20",
+          "tvlUsd": 69498984,
+          "borrowedUsd": 14410175
+        },
+        {
+          "date": "2026-09-21",
+          "tvlUsd": 70001884,
+          "borrowedUsd": 14526154
+        },
+        {
+          "date": "2026-09-22",
+          "tvlUsd": 73507201,
+          "borrowedUsd": 15656092
+        },
+        {
+          "date": "2026-09-23",
+          "tvlUsd": 73860056,
+          "borrowedUsd": 14859769
+        },
+        {
+          "date": "2026-09-24",
+          "tvlUsd": 71756687,
+          "borrowedUsd": 14673137
+        },
+        {
+          "date": "2026-09-25",
+          "tvlUsd": 71670416,
+          "borrowedUsd": 14572515
+        },
+        {
+          "date": "2026-09-26",
+          "tvlUsd": 71744048,
+          "borrowedUsd": 14624515
+        },
+        {
+          "date": "2026-09-27",
+          "tvlUsd": 72432169,
+          "borrowedUsd": 14736921
+        },
+        {
+          "date": "2026-09-28",
+          "tvlUsd": 72621737,
+          "borrowedUsd": 14750340
+        },
+        {
+          "date": "2026-09-29",
+          "tvlUsd": 71632557,
+          "borrowedUsd": 14532117
+        },
+        {
+          "date": "2026-09-30",
+          "tvlUsd": 71340061,
+          "borrowedUsd": 14605110
+        },
+        {
+          "date": "2026-10-01",
+          "tvlUsd": 72021860,
+          "borrowedUsd": 14754764
+        },
+        {
+          "date": "2026-10-02",
+          "tvlUsd": 72911784,
+          "borrowedUsd": 14813215
+        },
+        {
+          "date": "2026-10-03",
+          "tvlUsd": 74858601,
+          "borrowedUsd": 14817512
+        },
+        {
+          "date": "2026-10-04",
+          "tvlUsd": 74953511,
+          "borrowedUsd": 14948043
+        },
+        {
+          "date": "2026-10-05",
+          "tvlUsd": 76130747,
+          "borrowedUsd": 15142905
+        },
+        {
+          "date": "2026-10-06",
+          "tvlUsd": 78538861,
+          "borrowedUsd": 15850692
+        },
+        {
+          "date": "2026-10-07",
+          "tvlUsd": 78062159,
+          "borrowedUsd": 16008332
+        },
+        {
+          "date": "2026-10-08",
+          "tvlUsd": 76432094,
+          "borrowedUsd": 42961003
+        },
+        {
+          "date": "2026-10-09",
+          "tvlUsd": 75539523,
+          "borrowedUsd": 42559868
+        },
+        {
+          "date": "2026-10-10",
+          "tvlUsd": 76258341,
+          "borrowedUsd": 42824213
+        },
+        {
+          "date": "2026-10-11",
+          "tvlUsd": 76707483,
+          "borrowedUsd": 42917151
+        },
+        {
+          "date": "2026-10-12",
+          "tvlUsd": 77157708,
+          "borrowedUsd": 43238352
+        },
+        {
+          "date": "2026-10-13",
+          "tvlUsd": 77407804,
+          "borrowedUsd": 43352954
+        }
+      ],
+      "liquidityScoreHistory": [
+        {
+          "date": "2026-07-12",
+          "score": 66.4
+        },
+        {
+          "date": "2026-07-13",
+          "score": 66.3
+        },
+        {
+          "date": "2026-07-14",
+          "score": 65.2
+        },
+        {
+          "date": "2026-07-15",
+          "score": 66
+        },
+        {
+          "date": "2026-07-16",
+          "score": 67.4
+        },
+        {
+          "date": "2026-07-17",
+          "score": 66.9
+        },
+        {
+          "date": "2026-07-18",
+          "score": 67.3
+        },
+        {
+          "date": "2026-07-19",
+          "score": 68.7
+        },
+        {
+          "date": "2026-07-20",
+          "score": 68.8
+        },
+        {
+          "date": "2026-07-21",
+          "score": 67.8
+        },
+        {
+          "date": "2026-07-22",
+          "score": 69
+        },
+        {
+          "date": "2026-07-23",
+          "score": 68.2
+        },
+        {
+          "date": "2026-07-24",
+          "score": 70.1
+        },
+        {
+          "date": "2026-07-25",
+          "score": 70.5
+        },
+        {
+          "date": "2026-07-26",
+          "score": 74.9
+        },
+        {
+          "date": "2026-07-27",
+          "score": 76.3
+        },
+        {
+          "date": "2026-07-28",
+          "score": 75.8
+        },
+        {
+          "date": "2026-07-29",
+          "score": 75.8
+        },
+        {
+          "date": "2026-07-30",
+          "score": 75.3
+        },
+        {
+          "date": "2026-07-31",
+          "score": 76.3
+        },
+        {
+          "date": "2026-08-01",
+          "score": 74.7
+        },
+        {
+          "date": "2026-08-02",
+          "score": 73.9
+        },
+        {
+          "date": "2026-08-03",
+          "score": 73.1
+        },
+        {
+          "date": "2026-08-04",
+          "score": 73.3
+        },
+        {
+          "date": "2026-08-05",
+          "score": 73.2
+        },
+        {
+          "date": "2026-08-06",
+          "score": 72.9
+        },
+        {
+          "date": "2026-08-07",
+          "score": 72.8
+        },
+        {
+          "date": "2026-08-08",
+          "score": 74.3
+        },
+        {
+          "date": "2026-08-09",
+          "score": 68.8
+        },
+        {
+          "date": "2026-08-10",
+          "score": 68.4
+        },
+        {
+          "date": "2026-08-11",
+          "score": 67.5
+        },
+        {
+          "date": "2026-08-12",
+          "score": 67.1
+        },
+        {
+          "date": "2026-08-13",
+          "score": 67.4
+        },
+        {
+          "date": "2026-08-14",
+          "score": 66.4
+        },
+        {
+          "date": "2026-08-19",
+          "score": 67.2
+        },
+        {
+          "date": "2026-08-20",
+          "score": 69.4
+        },
+        {
+          "date": "2026-08-21",
+          "score": 72.3
+        },
+        {
+          "date": "2026-08-22",
+          "score": 73.5
+        },
+        {
+          "date": "2026-08-23",
+          "score": 74
+        },
+        {
+          "date": "2026-08-24",
+          "score": 75.2
+        },
+        {
+          "date": "2026-08-25",
+          "score": 75.9
+        },
+        {
+          "date": "2026-08-26",
+          "score": 76.2
+        },
+        {
+          "date": "2026-08-27",
+          "score": 77.5
+        },
+        {
+          "date": "2026-08-28",
+          "score": 78.4
+        },
+        {
+          "date": "2026-08-29",
+          "score": 77.2
+        },
+        {
+          "date": "2026-08-30",
+          "score": 76.9
+        },
+        {
+          "date": "2026-08-31",
+          "score": 78.5
+        },
+        {
+          "date": "2026-09-01",
+          "score": 79.4
+        },
+        {
+          "date": "2026-09-02",
+          "score": 76.7
+        },
+        {
+          "date": "2026-09-03",
+          "score": 76.6
+        },
+        {
+          "date": "2026-09-04",
+          "score": 78.2
+        },
+        {
+          "date": "2026-09-05",
+          "score": 76.7
+        },
+        {
+          "date": "2026-09-06",
+          "score": 77.1
+        },
+        {
+          "date": "2026-09-07",
+          "score": 76.4
+        },
+        {
+          "date": "2026-09-08",
+          "score": 74.1
+        },
+        {
+          "date": "2026-09-09",
+          "score": 74.1
+        },
+        {
+          "date": "2026-09-10",
+          "score": 74.6
+        },
+        {
+          "date": "2026-09-11",
+          "score": 73.2
+        },
+        {
+          "date": "2026-09-12",
+          "score": 73.8
+        },
+        {
+          "date": "2026-09-13",
+          "score": 73.7
+        },
+        {
+          "date": "2026-09-14",
+          "score": 73.4
+        },
+        {
+          "date": "2026-09-15",
+          "score": 74.2
+        },
+        {
+          "date": "2026-09-16",
+          "score": 72.2
+        },
+        {
+          "date": "2026-09-17",
+          "score": 72.5
+        },
+        {
+          "date": "2026-09-18",
+          "score": 71.9
+        },
+        {
+          "date": "2026-09-19",
+          "score": 72.4
+        },
+        {
+          "date": "2026-09-20",
+          "score": 70.1
+        },
+        {
+          "date": "2026-09-21",
+          "score": 69.6
+        },
+        {
+          "date": "2026-09-22",
+          "score": 71.5
+        },
+        {
+          "date": "2026-09-23",
+          "score": 71.4
+        },
+        {
+          "date": "2026-09-24",
+          "score": 69.7
+        },
+        {
+          "date": "2026-09-25",
+          "score": 69.2
+        },
+        {
+          "date": "2026-09-26",
+          "score": 68.9
+        },
+        {
+          "date": "2026-09-27",
+          "score": 69.2
+        },
+        {
+          "date": "2026-09-28",
+          "score": 70.6
+        },
+        {
+          "date": "2026-09-29",
+          "score": 69.8
+        },
+        {
+          "date": "2026-09-30",
+          "score": 69.2
+        },
+        {
+          "date": "2026-10-01",
+          "score": 68.6
+        },
+        {
+          "date": "2026-10-02",
+          "score": 72.2
+        },
+        {
+          "date": "2026-10-03",
+          "score": 73
+        },
+        {
+          "date": "2026-10-04",
+          "score": 71.8
+        },
+        {
+          "date": "2026-10-05",
+          "score": 74.5
+        },
+        {
+          "date": "2026-10-06",
+          "score": 75.7
+        },
+        {
+          "date": "2026-10-07",
+          "score": 75.4
+        },
+        {
+          "date": "2026-10-08",
+          "score": 80.2
+        },
+        {
+          "date": "2026-10-09",
+          "score": 79.7
+        },
+        {
+          "date": "2026-10-10",
+          "score": 80
+        },
+        {
+          "date": "2026-10-11",
+          "score": 81.2
+        },
+        {
+          "date": "2026-10-12",
+          "score": 81.3
+        },
+        {
+          "date": "2026-10-13",
+          "score": 81.5
+        }
+      ],
+      "scoreHistory": [
+        {
+          "date": "2026-09-18",
+          "overall": 68,
+          "liquidity": 72.5,
+          "activity": 16.3,
+          "collateral": 93.9,
+          "transparency": 93.7
+        },
+        {
+          "date": "2026-09-19",
+          "overall": 71,
+          "liquidity": 72.8,
+          "activity": 25.9,
+          "collateral": 94,
+          "transparency": 93.7
+        },
+        {
+          "date": "2026-09-20",
+          "overall": 71,
+          "liquidity": 70,
+          "activity": 32.3,
+          "collateral": 94,
+          "transparency": 93.7
+        },
+        {
+          "date": "2026-09-21",
+          "overall": 73,
+          "liquidity": 71.5,
+          "activity": 36.7,
+          "collateral": 94.1,
+          "transparency": 93.8
+        },
+        {
+          "date": "2026-09-22",
+          "overall": 73,
+          "liquidity": 71.3,
+          "activity": 38.9,
+          "collateral": 93.3,
+          "transparency": 93.8
+        },
+        {
+          "date": "2026-09-23",
+          "overall": 74,
+          "liquidity": 70.4,
+          "activity": 41.6,
+          "collateral": 94.1,
+          "transparency": 93.8
+        },
+        {
+          "date": "2026-09-24",
+          "overall": 73,
+          "liquidity": 69.9,
+          "activity": 40.8,
+          "collateral": 94.2,
+          "transparency": 93.8
+        },
+        {
+          "date": "2026-09-25",
+          "overall": 75,
+          "liquidity": 69.3,
+          "activity": 47.5,
+          "collateral": 94.2,
+          "transparency": 93.8
+        },
+        {
+          "date": "2026-09-26",
+          "overall": 75,
+          "liquidity": 69.2,
+          "activity": 46,
+          "collateral": 94,
+          "transparency": 93.8
+        },
+        {
+          "date": "2026-09-27",
+          "overall": 75,
+          "liquidity": 69.4,
+          "activity": 46.1,
+          "collateral": 94.2,
+          "transparency": 93.8
+        },
+        {
+          "date": "2026-09-28",
+          "overall": 75,
+          "liquidity": 69.9,
+          "activity": 46.8,
+          "collateral": 94.2,
+          "transparency": 93.9
+        },
+        {
+          "date": "2026-09-29",
+          "overall": 73,
+          "liquidity": 69.4,
+          "activity": 39.9,
+          "collateral": 94.3,
+          "transparency": 93.9
+        },
+        {
+          "date": "2026-09-30",
+          "overall": 72,
+          "liquidity": 69.8,
+          "activity": 35.1,
+          "collateral": 93.8,
+          "transparency": 93.9
+        },
+        {
+          "date": "2026-10-01",
+          "overall": 72,
+          "liquidity": 69.2,
+          "activity": 35.8,
+          "collateral": 94.1,
+          "transparency": 93.9
+        },
+        {
+          "date": "2026-10-02",
+          "overall": 73,
+          "liquidity": 73,
+          "activity": 37,
+          "collateral": 94.2,
+          "transparency": 93.9
+        },
+        {
+          "date": "2026-10-03",
+          "overall": 73,
+          "liquidity": 73.1,
+          "activity": 36.7,
+          "collateral": 94.2,
+          "transparency": 93.9
+        },
+        {
+          "date": "2026-10-04",
+          "overall": 72,
+          "liquidity": 71.9,
+          "activity": 33.9,
+          "collateral": 94.2,
+          "transparency": 93.9
+        },
+        {
+          "date": "2026-10-05",
+          "overall": 74,
+          "liquidity": 71.3,
+          "activity": 39.9,
+          "collateral": 94.2,
+          "transparency": 94
+        },
+        {
+          "date": "2026-10-06",
+          "overall": 72,
+          "liquidity": 75.8,
+          "activity": 27.1,
+          "collateral": 94,
+          "transparency": 94
+        },
+        {
+          "date": "2026-10-07",
+          "overall": 67,
+          "liquidity": 74.5,
+          "activity": 29.7,
+          "collateral": 73.9,
+          "transparency": 94
+        },
+        {
+          "date": "2026-10-08",
+          "overall": 68,
+          "liquidity": 79.5,
+          "activity": 28.1,
+          "collateral": 73.9,
+          "transparency": 94
+        },
+        {
+          "date": "2026-10-09",
+          "overall": 68,
+          "liquidity": 80.1,
+          "activity": 26.5,
+          "collateral": 73.8,
+          "transparency": 94
+        },
+        {
+          "date": "2026-10-10",
+          "overall": 68,
+          "liquidity": 80.2,
+          "activity": 25.6,
+          "collateral": 73.6,
+          "transparency": 94
+        },
+        {
+          "date": "2026-10-11",
+          "overall": 70,
+          "liquidity": 81.4,
+          "activity": 34,
+          "collateral": 73.6,
+          "transparency": 94
+        },
+        {
+          "date": "2026-10-12",
+          "overall": 70,
+          "liquidity": 80.9,
+          "activity": 34,
+          "collateral": 73.6,
+          "transparency": 94.1
+        },
+        {
+          "date": "2026-10-13",
+          "overall": 71,
+          "liquidity": 81.5,
+          "activity": 35.4,
+          "collateral": 73.8,
+          "transparency": 94.1
+        }
+      ],
+      "events": []
+    },
     {
       "slug": "stackingdao",
       "name": "StackingDAO",
@@ -556,7 +1855,7 @@
           "blockHeight": 8712018,
           "deployedAt": "2026-08-06T14:33:10.000Z",
           "sourceBytes": 8462,
-          "txTotal": 984
+          "txTotal": 995
         },
         {
           "id": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-ststxbtc-v2",
@@ -565,7 +1864,7 @@
           "blockHeight": 8712020,
           "deployedAt": "2026-08-06T14:33:10.000Z",
           "sourceBytes": 8079,
-          "txTotal": 510
+          "txTotal": 517
         },
         {
           "id": "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.stacking-dao-core-stbtc-v1",
@@ -588,22 +1887,22 @@
       ],
       "hasCollateral": false,
       "metrics": {
-        "tvlUsd": 85147230.23704,
+        "tvlUsd": 85887069.14395,
         "borrowedUsd": null,
         "utilization": null,
-        "tvlChange24h": 0.0012147397742371128,
-        "tvlChange7d": 0.5041358144574782,
-        "tvlChange30d": 1.5388286515205827,
-        "tx7d": 175,
-        "uniqueSenders7d": 133,
+        "tvlChange24h": 0.009914231426456761,
+        "tvlChange7d": 0.5172051555706824,
+        "tvlChange30d": 1.560888373359376,
+        "tx7d": 163,
+        "uniqueSenders7d": 122,
         "activitySampled": false,
         "tokens": {
-          "STX": 32359867.89006,
-          "SBTC": 52787362.34698
+          "STX": 32514721.49243,
+          "SBTC": 53372347.65151
         },
         "tvlSource": "DefiLlama",
-        "tvlFetchedAt": "2026-10-13T00:48:03.565Z",
-        "tvlAsOf": "2026-10-13T00:37:11.000Z"
+        "tvlFetchedAt": "2026-10-13T14:20:44.576Z",
+        "tvlAsOf": "2026-10-13T13:40:11.000Z"
       },
       "dataQuality": {
         "excludedTvlPoints": 7,
@@ -613,9 +1912,9 @@
       },
       "score": {
         "slug": "stackingdao",
-        "computedAt": "2026-10-13T00:53:41.720Z",
+        "computedAt": "2026-10-13T14:25:06.273Z",
         "methodologyVersion": "1.0.0",
-        "overall": 72,
+        "overall": 71,
         "band": "Moderate",
         "components": [
           {
@@ -627,20 +1926,20 @@
               {
                 "key": "depth",
                 "label": "Liquidity depth (TVL)",
-                "value": "$85.1M",
-                "raw": 85147230.23704,
+                "value": "$85.9M",
+                "raw": 85887069.14395,
                 "score": 73.3,
                 "weight": 0.5,
-                "explanation": "Deep liquidity: $85.1M locked places it among the largest pools on Stacks."
+                "explanation": "Deep liquidity: $85.9M locked places it among the largest pools on Stacks."
               },
               {
                 "key": "trend30d",
                 "label": "30-day TVL trend",
-                "value": "+153.9%",
-                "raw": 1.5388286515205827,
+                "value": "+156.1%",
+                "raw": 1.560888373359376,
                 "score": 100,
                 "weight": 0.25,
-                "explanation": "TVL grew +153.9% over 30 days, attracting capital."
+                "explanation": "TVL grew +156.1% over 30 days, attracting capital."
               },
               {
                 "key": "stability",
@@ -653,52 +1952,52 @@
               }
             ],
             "note": "7 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
-            "explanation": "Deep liquidity: $85.1M locked places it among the largest pools on Stacks. TVL grew +153.9% over 30 days, attracting capital. Capital has been stable (max drawdown 10%)."
+            "explanation": "Deep liquidity: $85.9M locked places it among the largest pools on Stacks. TVL grew +156.1% over 30 days, attracting capital. Capital has been stable (max drawdown 10%)."
           },
           {
             "key": "activity",
             "label": "Protocol Activity",
             "weight": 0.25,
-            "score": 48.5,
+            "score": 45.7,
             "factors": [
               {
                 "key": "tx7d",
                 "label": "Transactions, 7 days",
-                "value": "175",
-                "raw": 175,
-                "score": 41.5,
+                "value": "163",
+                "raw": 163,
+                "score": 40.5,
                 "weight": 0.4,
-                "explanation": "175 transactions in 7 days: moderate usage."
+                "explanation": "163 transactions in 7 days: moderate usage."
               },
               {
                 "key": "senders7d",
                 "label": "Unique senders, 7 days",
-                "value": "133",
-                "raw": 133,
-                "score": 52.9,
+                "value": "122",
+                "raw": 122,
+                "score": 51.5,
                 "weight": 0.35,
-                "explanation": "133 distinct addresses interacted: a modest user base."
+                "explanation": "122 distinct addresses interacted: a modest user base."
               },
               {
                 "key": "trend7d",
                 "label": "7-day transaction trend vs prior week",
-                "value": "-34.9%",
-                "raw": -0.34944237918215615,
-                "score": 30.9,
+                "value": "-44.6%",
+                "raw": -0.44557823129251706,
+                "score": 22.9,
                 "weight": 0.15,
-                "explanation": "Weekly transactions down −34.9% versus the prior week."
+                "explanation": "Weekly transactions down −44.6% versus the prior week."
               },
               {
                 "key": "success",
                 "label": "Transaction success rate",
-                "value": "96.6%",
-                "raw": 0.9657142857142857,
-                "score": 87.9,
+                "value": "95.1%",
+                "raw": 0.950920245398773,
+                "score": 80.5,
                 "weight": 0.1,
-                "explanation": "97% of transactions succeeded."
+                "explanation": "95% of transactions succeeded."
               }
             ],
-            "explanation": "175 transactions in 7 days: moderate usage. 133 distinct addresses interacted: a modest user base. Weekly transactions down −34.9% versus the prior week."
+            "explanation": "163 transactions in 7 days: moderate usage. 122 distinct addresses interacted: a modest user base. Weekly transactions down −44.6% versus the prior week."
           },
           {
             "key": "collateral",
@@ -755,7 +2054,7 @@
                 "key": "age",
                 "label": "Oldest tracked contract age",
                 "value": "34 months",
-                "raw": 33.91112249431182,
+                "raw": 33.9296336193392,
                 "score": 100,
                 "weight": 0.15,
                 "explanation": "Contracts have been live for 34 months."
@@ -790,7 +2089,7 @@
           "transparency": 26.669999999999998
         }
       },
-      "delta7d": -4,
+      "delta7d": -5,
       "tvlHistory": [
         {
           "date": "2026-07-09",
@@ -1150,7 +2449,7 @@
         },
         {
           "date": "2026-10-13",
-          "tvlUsd": 85147230
+          "tvlUsd": 85887069
         }
       ],
       "liquidityScoreHistory": [
@@ -1718,9 +3017,9 @@
         },
         {
           "date": "2026-10-13",
-          "overall": 72,
+          "overall": 71,
           "liquidity": 76.5,
-          "activity": 48.5,
+          "activity": 45.7,
           "collateral": null,
           "transparency": 95
         }
@@ -1729,24 +3028,35 @@
         {
           "id": "8a3fde4f6c4447e2",
           "slug": "stackingdao",
-          "ts": "2026-10-13T00:53:41.720Z",
+          "ts": "2026-10-13T14:25:06.273Z",
           "kind": "score",
           "severity": "watch",
-          "message": "StackingDAO overall score down 3 points to 72",
-          "delta": -3,
+          "message": "StackingDAO overall score down 4 points to 71",
+          "delta": -4,
           "impact": "Medium",
           "reason": "Composite score change"
         },
         {
           "id": "cba5bc3eedfac20e",
           "slug": "stackingdao",
-          "ts": "2026-10-13T00:53:41.720Z",
+          "ts": "2026-10-13T14:25:06.273Z",
           "kind": "liquidity",
           "severity": "alert",
-          "message": "StackingDAO TVL +50.4% over 7 days",
-          "delta": 0.5041358144574782,
+          "message": "StackingDAO TVL +51.7% over 7 days",
+          "delta": 0.5172051555706824,
           "impact": "High",
           "reason": "TVL movement detected"
+        },
+        {
+          "id": "c7e48be49511113d",
+          "slug": "stackingdao",
+          "ts": "2026-10-13T14:25:06.273Z",
+          "kind": "activity",
+          "severity": "watch",
+          "message": "StackingDAO weekly transactions −44.6% vs prior week",
+          "delta": -0.44557823129251706,
+          "impact": "Medium",
+          "reason": "Activity change detected"
         }
       ]
     },
@@ -1774,7 +3084,7 @@
           "blockHeight": 152429,
           "deployedAt": "2024-06-02T10:07:20.000Z",
           "sourceBytes": 40659,
-          "txTotal": 346815
+          "txTotal": 346916
         },
         {
           "id": "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.amm-vault-v2-01",
@@ -1783,32 +3093,32 @@
           "blockHeight": 152429,
           "deployedAt": "2024-06-02T10:07:20.000Z",
           "sourceBytes": 5222,
-          "txTotal": 608527
+          "txTotal": 608764
         }
       ],
       "hasCollateral": false,
       "metrics": {
-        "tvlUsd": 1509859.48249,
+        "tvlUsd": 1472179.26408,
         "borrowedUsd": null,
         "utilization": null,
-        "tvlChange24h": 0.03804299169144572,
-        "tvlChange7d": 0.018082066730364582,
-        "tvlChange30d": 0.3607547777211996,
+        "tvlChange24h": 0.03817308305501655,
+        "tvlChange7d": 0.04373975198601907,
+        "tvlChange30d": 0.2970239603751045,
         "tx7d": 2400,
-        "uniqueSenders7d": 204,
+        "uniqueSenders7d": 222,
         "activitySampled": true,
         "tokens": {
-          "STX": 250336.44875,
-          "ALEX": 407715.89224,
-          "WSTX": 391851.16874,
-          "WBTC": 459338.39412,
-          "USDH": 16.68735,
-          "STSTX": 101.9609,
-          "SBTC": 498.93039
+          "STX": 240983.62877,
+          "ALEX": 399862.0791,
+          "USDH": 16.69615,
+          "STSTX": 94.49099,
+          "SBTC": 501.22702,
+          "WSTX": 370203.93595,
+          "WBTC": 460517.20611
         },
         "tvlSource": "DefiLlama",
-        "tvlFetchedAt": "2026-10-13T00:49:25.878Z",
-        "tvlAsOf": "2026-10-12T20:45:59.000Z"
+        "tvlFetchedAt": "2026-10-13T14:21:23.036Z",
+        "tvlAsOf": "2026-10-13T10:49:23.000Z"
       },
       "dataQuality": {
         "excludedTvlPoints": 0,
@@ -1818,52 +3128,52 @@
       },
       "score": {
         "slug": "alex",
-        "computedAt": "2026-10-13T00:53:41.720Z",
+        "computedAt": "2026-10-13T14:25:06.273Z",
         "methodologyVersion": "1.0.0",
-        "overall": 71,
+        "overall": 70,
         "band": "Moderate",
         "components": [
           {
             "key": "liquidity",
             "label": "Liquidity Health",
             "weight": 0.3,
-            "score": 57.1,
+            "score": 56.4,
             "factors": [
               {
                 "key": "depth",
                 "label": "Liquidity depth (TVL)",
                 "value": "$1.5M",
-                "raw": 1509859.48249,
-                "score": 29.5,
+                "raw": 1472179.26408,
+                "score": 29.2,
                 "weight": 0.5,
                 "explanation": "Thin liquidity ($1.5M) limits exit capacity under stress."
               },
               {
                 "key": "trend30d",
                 "label": "30-day TVL trend",
-                "value": "+36.1%",
-                "raw": 0.3607547777211996,
-                "score": 95.4,
+                "value": "+29.7%",
+                "raw": 0.2970239603751045,
+                "score": 93.2,
                 "weight": 0.25,
-                "explanation": "TVL grew +36.1% over 30 days, attracting capital."
+                "explanation": "TVL grew +29.7% over 30 days, attracting capital."
               },
               {
                 "key": "stability",
                 "label": "30-day stability (drawdown, volatility)",
                 "value": "dd 10.1% · vol 4.5%/d",
                 "raw": 0.10107932360407976,
-                "score": 73.9,
+                "score": 73.8,
                 "weight": 0.25,
                 "explanation": "Moderate swings: 10% max drawdown in 30 days."
               }
             ],
-            "explanation": "Thin liquidity ($1.5M) limits exit capacity under stress. TVL grew +36.1% over 30 days, attracting capital. Moderate swings: 10% max drawdown in 30 days."
+            "explanation": "Thin liquidity ($1.5M) limits exit capacity under stress. TVL grew +29.7% over 30 days, attracting capital. Moderate swings: 10% max drawdown in 30 days."
           },
           {
             "key": "activity",
             "label": "Protocol Activity",
             "weight": 0.25,
-            "score": 75.1,
+            "score": 75.7,
             "factors": [
               {
                 "key": "tx7d",
@@ -1878,11 +3188,11 @@
               {
                 "key": "senders7d",
                 "label": "Unique senders, 7 days",
-                "value": "227 (est.)",
-                "raw": 227,
-                "score": 61.4,
+                "value": "247 (est.)",
+                "raw": 247,
+                "score": 62.8,
                 "weight": 0.35,
-                "explanation": "227 distinct addresses interacted: a modest user base."
+                "explanation": "247 distinct addresses interacted: a modest user base."
               },
               {
                 "key": "trend7d",
@@ -1898,13 +3208,13 @@
                 "key": "success",
                 "label": "Transaction success rate",
                 "value": "99.6%",
-                "raw": 0.9958333333333333,
+                "raw": 0.99625,
                 "score": 100,
                 "weight": 0.1,
                 "explanation": "100% of transactions succeeded."
               }
             ],
-            "explanation": "2,667 transactions in 7 days: sustained usage. 227 distinct addresses interacted: a modest user base. Prior week not covered; trend excluded from the score."
+            "explanation": "2,667 transactions in 7 days: sustained usage. 247 distinct addresses interacted: a modest user base. Prior week not covered; trend excluded from the score."
           },
           {
             "key": "collateral",
@@ -1961,7 +3271,7 @@
                 "key": "age",
                 "label": "Oldest tracked contract age",
                 "value": "28 months",
-                "raw": 28.33822370282158,
+                "raw": 28.356734828609408,
                 "score": 100,
                 "weight": 0.15,
                 "explanation": "Contracts have been live for 28 months."
@@ -1996,12 +3306,8 @@
           "transparency": 26.669999999999998
         }
       },
-      "delta7d": 1,
+      "delta7d": 0,
       "tvlHistory": [
-        {
-          "date": "2026-06-25",
-          "tvlUsd": 808386
-        },
         {
           "date": "2026-06-26",
           "tvlUsd": 821349
@@ -2356,14 +3662,14 @@
         },
         {
           "date": "2026-10-12",
-          "tvlUsd": 1509859
+          "tvlUsd": 1418048
+        },
+        {
+          "date": "2026-10-13",
+          "tvlUsd": 1472179
         }
       ],
       "liquidityScoreHistory": [
-        {
-          "date": "2026-06-25",
-          "score": 33
-        },
         {
           "date": "2026-06-26",
           "score": 36
@@ -2718,7 +4024,11 @@
         },
         {
           "date": "2026-10-12",
-          "score": 57.1
+          "score": 56
+        },
+        {
+          "date": "2026-10-13",
+          "score": 56.4
         }
       ],
       "scoreHistory": [
@@ -2924,1310 +4234,11 @@
         },
         {
           "date": "2026-10-13",
-          "overall": 71,
-          "liquidity": 57.1,
-          "activity": 75.1,
+          "overall": 70,
+          "liquidity": 56.4,
+          "activity": 75.7,
           "collateral": null,
           "transparency": 85
-        }
-      ],
-      "events": []
-    },
-    {
-      "slug": "zest",
-      "name": "Zest Protocol",
-      "category": "Lending",
-      "description": "Bitcoin-backed lending market on Stacks. Users supply sBTC, STX and stablecoins and borrow against them.",
-      "website": "https://www.zestprotocol.com/",
-      "docs": "https://docs.zestprotocol.com/",
-      "github": "https://github.com/Zest-Protocol",
-      "assets": [
-        "sBTC",
-        "STX",
-        "stSTX",
-        "USDh",
-        "USDCx",
-        "stSTXbtc"
-      ],
-      "contracts": [
-        {
-          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.borrow-helper-v2-1-8",
-          "role": "User entry point (supply / withdraw / borrow / repay / liquidation-call)",
-          "found": true,
-          "blockHeight": 8754810,
-          "deployedAt": "2026-08-13T18:04:49.000Z",
-          "sourceBytes": 15073,
-          "txTotal": 714
-        },
-        {
-          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-borrow-v2-1",
-          "role": "Pool borrow core",
-          "found": true,
-          "blockHeight": 943312,
-          "deployedAt": "2025-04-10T12:45:03.000Z",
-          "sourceBytes": 38048,
-          "txTotal": 1
-        },
-        {
-          "id": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.pool-0-reserve-v2-0",
-          "role": "Reserve state",
-          "found": true,
-          "blockHeight": 343142,
-          "deployedAt": "2024-12-17T00:43:12.000Z",
-          "sourceBytes": 66591,
-          "txTotal": 2
-        }
-      ],
-      "hasCollateral": true,
-      "metrics": {
-        "tvlUsd": 76950207.75369,
-        "borrowedUsd": 42926717.6915,
-        "utilization": 0.35808991206674634,
-        "tvlChange24h": 0.003164290421183607,
-        "tvlChange7d": 0.010763860673664536,
-        "tvlChange30d": 0.1785194505141479,
-        "tx7d": 46,
-        "uniqueSenders7d": 25,
-        "activitySampled": false,
-        "tokens": {
-          "STX": 694005.78445,
-          "SBTC": 14198281.20039,
-          "USDH": 327803.43576,
-          "USDCX": 2837955.35196,
-          "STSTX": 4589701.77981,
-          "STSTXBTC": 2936265.68968,
-          "STBTC": 51366194.51164
-        },
-        "tvlSource": "DefiLlama",
-        "tvlFetchedAt": "2026-10-13T00:47:59.704Z",
-        "tvlAsOf": "2026-10-12T23:11:59.000Z"
-      },
-      "dataQuality": {
-        "excludedTvlPoints": 1,
-        "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
-        "activitySampled": false,
-        "warnings": []
-      },
-      "score": {
-        "slug": "zest",
-        "computedAt": "2026-10-13T00:53:41.720Z",
-        "methodologyVersion": "1.0.0",
-        "overall": 70,
-        "band": "Moderate",
-        "components": [
-          {
-            "key": "liquidity",
-            "label": "Liquidity Health",
-            "weight": 0.3,
-            "score": 81.2,
-            "factors": [
-              {
-                "key": "depth",
-                "label": "Liquidity depth (TVL)",
-                "value": "$77.0M",
-                "raw": 76950207.75369,
-                "score": 72.2,
-                "weight": 0.5,
-                "explanation": "Deep liquidity: $77.0M locked places it among the largest pools on Stacks."
-              },
-              {
-                "key": "trend30d",
-                "label": "30-day TVL trend",
-                "value": "+17.9%",
-                "raw": 0.1785194505141479,
-                "score": 87.3,
-                "weight": 0.25,
-                "explanation": "TVL grew +17.9% over 30 days, attracting capital."
-              },
-              {
-                "key": "stability",
-                "label": "30-day stability (drawdown, volatility)",
-                "value": "dd 3.8% · vol 2.0%/d",
-                "raw": 0.0381892220209305,
-                "score": 93.1,
-                "weight": 0.25,
-                "explanation": "Capital has been stable (max drawdown 4%)."
-              }
-            ],
-            "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
-            "explanation": "Deep liquidity: $77.0M locked places it among the largest pools on Stacks. TVL grew +17.9% over 30 days, attracting capital. Capital has been stable (max drawdown 4%)."
-          },
-          {
-            "key": "activity",
-            "label": "Protocol Activity",
-            "weight": 0.25,
-            "score": 33.5,
-            "factors": [
-              {
-                "key": "tx7d",
-                "label": "Transactions, 7 days",
-                "value": "46",
-                "raw": 46,
-                "score": 22.4,
-                "weight": 0.4,
-                "explanation": "Only 46 transactions in 7 days on the tracked entry points: low direct usage."
-              },
-              {
-                "key": "senders7d",
-                "label": "Unique senders, 7 days",
-                "value": "25",
-                "raw": 25,
-                "score": 26.5,
-                "weight": 0.35,
-                "explanation": "25 distinct addresses interacted: activity is concentrated in few users."
-              },
-              {
-                "key": "trend7d",
-                "label": "7-day transaction trend vs prior week",
-                "value": "+4.5%",
-                "raw": 0.045454545454545414,
-                "score": 63.8,
-                "weight": 0.15,
-                "explanation": "Weekly transactions stable (+4.5%) versus the prior week."
-              },
-              {
-                "key": "success",
-                "label": "Transaction success rate",
-                "value": "89.1%",
-                "raw": 0.8913043478260869,
-                "score": 56.5,
-                "weight": 0.1,
-                "explanation": "11% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
-              }
-            ],
-            "explanation": "Only 46 transactions in 7 days on the tracked entry points: low direct usage. 25 distinct addresses interacted: activity is concentrated in few users. Weekly transactions stable (+4.5%) versus the prior week. 11% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
-          },
-          {
-            "key": "collateral",
-            "label": "Collateral Health",
-            "weight": 0.25,
-            "score": 73.7,
-            "factors": [
-              {
-                "key": "utilization",
-                "label": "Utilisation (borrowed / supplied)",
-                "value": "35.8%",
-                "raw": 0.35808991206674634,
-                "score": 100,
-                "weight": 0.7,
-                "explanation": "Utilisation of 36% leaves ample liquidity available for withdrawals."
-              },
-              {
-                "key": "utilTrend7d",
-                "label": "Utilisation change, 7 days",
-                "value": "+19.2 pts",
-                "raw": 0.19218327123243414,
-                "score": 12.3,
-                "weight": 0.3,
-                "explanation": "Utilisation rose 19.2 points in 7 days."
-              }
-            ],
-            "explanation": "Utilisation of 36% leaves ample liquidity available for withdrawals. Utilisation rose 19.2 points in 7 days."
-          },
-          {
-            "key": "transparency",
-            "label": "Security & Transparency",
-            "weight": 0.2,
-            "score": 94.1,
-            "factors": [
-              {
-                "key": "source",
-                "label": "Contract source verifiable on-chain",
-                "value": "3/3 contracts",
-                "raw": 1,
-                "score": 100,
-                "weight": 0.2,
-                "explanation": "All tracked contracts are found on-chain with readable Clarity source."
-              },
-              {
-                "key": "audits",
-                "label": "Public audits listed",
-                "value": "7",
-                "raw": 7,
-                "score": 100,
-                "weight": 0.25,
-                "explanation": "7 public audits listed."
-              },
-              {
-                "key": "github",
-                "label": "Public source repository",
-                "value": "yes",
-                "raw": 1,
-                "score": 100,
-                "weight": 0.15,
-                "explanation": "Source repository is public."
-              },
-              {
-                "key": "docs",
-                "label": "Public documentation",
-                "value": "yes",
-                "raw": 1,
-                "score": 100,
-                "weight": 0.1,
-                "explanation": "Public documentation is available."
-              },
-              {
-                "key": "age",
-                "label": "Oldest tracked contract age",
-                "value": "22 months",
-                "raw": 21.846494368855552,
-                "score": 93.7,
-                "weight": 0.15,
-                "explanation": "Contracts have 22 months of production history."
-              },
-              {
-                "key": "governance",
-                "label": "Governance / upgrade control",
-                "value": "governance-contract",
-                "raw": null,
-                "note": "SP2VCQJGH7PHP2DJK7Z0V48AGBHQAW3R3ZW1QF4N.zest-governance observed on-chain",
-                "score": 100,
-                "weight": 0.1,
-                "explanation": "Upgrades are controlled by an on-chain governance contract or DAO."
-              },
-              {
-                "key": "bounty",
-                "label": "Bug bounty programme",
-                "value": "no",
-                "raw": 0,
-                "score": 0,
-                "weight": 0.05,
-                "explanation": "No public bug bounty programme."
-              }
-            ],
-            "explanation": "Strong public information: contract source verifiable on-chain, public audits listed, public source repository. No public bug bounty programme."
-          }
-        ],
-        "effectiveWeights": {
-          "liquidity": 30,
-          "activity": 25,
-          "collateral": 25,
-          "transparency": 20
-        }
-      },
-      "delta7d": -2,
-      "tvlHistory": [
-        {
-          "date": "2026-07-11",
-          "tvlUsd": 64970189,
-          "borrowedUsd": 6710211
-        },
-        {
-          "date": "2026-07-12",
-          "tvlUsd": 64998043,
-          "borrowedUsd": 6709255
-        },
-        {
-          "date": "2026-07-13",
-          "tvlUsd": 64822199,
-          "borrowedUsd": 6760030
-        },
-        {
-          "date": "2026-07-14",
-          "tvlUsd": 63703476,
-          "borrowedUsd": 6745331
-        },
-        {
-          "date": "2026-07-15",
-          "tvlUsd": 65382356,
-          "borrowedUsd": 6736701
-        },
-        {
-          "date": "2026-07-16",
-          "tvlUsd": 65893214,
-          "borrowedUsd": 6789229
-        },
-        {
-          "date": "2026-07-17",
-          "tvlUsd": 64833761,
-          "borrowedUsd": 6655561
-        },
-        {
-          "date": "2026-07-18",
-          "tvlUsd": 64808947,
-          "borrowedUsd": 6664316
-        },
-        {
-          "date": "2026-07-19",
-          "tvlUsd": 65561539,
-          "borrowedUsd": 6749172
-        },
-        {
-          "date": "2026-07-20",
-          "tvlUsd": 65654358,
-          "borrowedUsd": 6784845
-        },
-        {
-          "date": "2026-07-21",
-          "tvlUsd": 66040347,
-          "borrowedUsd": 6785612
-        },
-        {
-          "date": "2026-07-22",
-          "tvlUsd": 67036569,
-          "borrowedUsd": 5852876
-        },
-        {
-          "date": "2026-07-23",
-          "tvlUsd": 66196681,
-          "borrowedUsd": 6880307
-        },
-        {
-          "date": "2026-07-24",
-          "tvlUsd": 65047460,
-          "borrowedUsd": 6834913
-        },
-        {
-          "date": "2026-07-25",
-          "tvlUsd": 63490285,
-          "borrowedUsd": 6607295
-        },
-        {
-          "date": "2026-07-26",
-          "tvlUsd": 63158709,
-          "borrowedUsd": 6547917
-        },
-        {
-          "date": "2026-07-27",
-          "tvlUsd": 64299109,
-          "borrowedUsd": 6659026
-        },
-        {
-          "date": "2026-07-28",
-          "tvlUsd": 63517509,
-          "borrowedUsd": 6607372
-        },
-        {
-          "date": "2026-07-29",
-          "tvlUsd": 63000211,
-          "borrowedUsd": 6626139
-        },
-        {
-          "date": "2026-07-30",
-          "tvlUsd": 62804487,
-          "borrowedUsd": 6604433
-        },
-        {
-          "date": "2026-07-31",
-          "tvlUsd": 63485051,
-          "borrowedUsd": 6636085
-        },
-        {
-          "date": "2026-08-01",
-          "tvlUsd": 62298002,
-          "borrowedUsd": 6620291
-        },
-        {
-          "date": "2026-08-02",
-          "tvlUsd": 62146430,
-          "borrowedUsd": 6608738
-        },
-        {
-          "date": "2026-08-03",
-          "tvlUsd": 62210570,
-          "borrowedUsd": 6638745
-        },
-        {
-          "date": "2026-08-04",
-          "tvlUsd": 62692578,
-          "borrowedUsd": 6645855
-        },
-        {
-          "date": "2026-08-05",
-          "tvlUsd": 63028184,
-          "borrowedUsd": 6640574
-        },
-        {
-          "date": "2026-08-06",
-          "tvlUsd": 62985867,
-          "borrowedUsd": 6582928
-        },
-        {
-          "date": "2026-08-07",
-          "tvlUsd": 62472470,
-          "borrowedUsd": 6528766
-        },
-        {
-          "date": "2026-08-08",
-          "tvlUsd": 63607926,
-          "borrowedUsd": 6606732
-        },
-        {
-          "date": "2026-08-09",
-          "tvlUsd": 59656999,
-          "borrowedUsd": 6593670
-        },
-        {
-          "date": "2026-08-10",
-          "tvlUsd": 59703118,
-          "borrowedUsd": 6682476
-        },
-        {
-          "date": "2026-08-11",
-          "tvlUsd": 58951437,
-          "borrowedUsd": 6660189
-        },
-        {
-          "date": "2026-08-12",
-          "tvlUsd": 58611139,
-          "borrowedUsd": 6630788
-        },
-        {
-          "date": "2026-08-13",
-          "tvlUsd": 58279499,
-          "borrowedUsd": 6598171
-        },
-        {
-          "date": "2026-08-14",
-          "tvlUsd": 58333996,
-          "borrowedUsd": 6600587
-        },
-        {
-          "date": "2026-08-19",
-          "tvlUsd": 59534013,
-          "borrowedUsd": 6209547
-        },
-        {
-          "date": "2026-08-20",
-          "tvlUsd": 63240401,
-          "borrowedUsd": 6233917
-        },
-        {
-          "date": "2026-08-21",
-          "tvlUsd": 69700595,
-          "borrowedUsd": 6553318
-        },
-        {
-          "date": "2026-08-22",
-          "tvlUsd": 71260135,
-          "borrowedUsd": 6812511
-        },
-        {
-          "date": "2026-08-23",
-          "tvlUsd": 71157713,
-          "borrowedUsd": 6911152
-        },
-        {
-          "date": "2026-08-24",
-          "tvlUsd": 71677918,
-          "borrowedUsd": 6900108
-        },
-        {
-          "date": "2026-08-25",
-          "tvlUsd": 72766446,
-          "borrowedUsd": 6917645
-        },
-        {
-          "date": "2026-08-26",
-          "tvlUsd": 73483386,
-          "borrowedUsd": 7134050
-        },
-        {
-          "date": "2026-08-27",
-          "tvlUsd": 74141738,
-          "borrowedUsd": 7146998
-        },
-        {
-          "date": "2026-08-28",
-          "tvlUsd": 74404559,
-          "borrowedUsd": 7159739
-        },
-        {
-          "date": "2026-08-29",
-          "tvlUsd": 72205461,
-          "borrowedUsd": 7105367
-        },
-        {
-          "date": "2026-08-30",
-          "tvlUsd": 72481858,
-          "borrowedUsd": 7043481
-        },
-        {
-          "date": "2026-08-31",
-          "tvlUsd": 73242488,
-          "borrowedUsd": 7048963
-        },
-        {
-          "date": "2026-09-01",
-          "tvlUsd": 75134297,
-          "borrowedUsd": 6723179
-        },
-        {
-          "date": "2026-09-02",
-          "tvlUsd": 70519189,
-          "borrowedUsd": 7754438
-        },
-        {
-          "date": "2026-09-03",
-          "tvlUsd": 70852883,
-          "borrowedUsd": 7803360
-        },
-        {
-          "date": "2026-09-04",
-          "tvlUsd": 74088536,
-          "borrowedUsd": 7917095
-        },
-        {
-          "date": "2026-09-05",
-          "tvlUsd": 71601546,
-          "borrowedUsd": 13617152
-        },
-        {
-          "date": "2026-09-06",
-          "tvlUsd": 71648206,
-          "borrowedUsd": 13623966
-        },
-        {
-          "date": "2026-09-07",
-          "tvlUsd": 71642576,
-          "borrowedUsd": 13630300
-        },
-        {
-          "date": "2026-09-08",
-          "tvlUsd": 66424022,
-          "borrowedUsd": 13591939
-        },
-        {
-          "date": "2026-09-09",
-          "tvlUsd": 66393220,
-          "borrowedUsd": 13567984
-        },
-        {
-          "date": "2026-09-10",
-          "tvlUsd": 66561337,
-          "borrowedUsd": 13634033
-        },
-        {
-          "date": "2026-09-11",
-          "tvlUsd": 65050360,
-          "borrowedUsd": 13417633
-        },
-        {
-          "date": "2026-09-12",
-          "tvlUsd": 65293965,
-          "borrowedUsd": 13445881
-        },
-        {
-          "date": "2026-09-13",
-          "tvlUsd": 65205890,
-          "borrowedUsd": 13527336
-        },
-        {
-          "date": "2026-09-14",
-          "tvlUsd": 64847677,
-          "borrowedUsd": 13472101
-        },
-        {
-          "date": "2026-09-15",
-          "tvlUsd": 66085900,
-          "borrowedUsd": 13585476
-        },
-        {
-          "date": "2026-09-16",
-          "tvlUsd": 63846158,
-          "borrowedUsd": 13243888
-        },
-        {
-          "date": "2026-09-17",
-          "tvlUsd": 64310668,
-          "borrowedUsd": 13345712
-        },
-        {
-          "date": "2026-09-18",
-          "tvlUsd": 64410693,
-          "borrowedUsd": 13438652
-        },
-        {
-          "date": "2026-09-19",
-          "tvlUsd": 68766937,
-          "borrowedUsd": 14066578
-        },
-        {
-          "date": "2026-09-20",
-          "tvlUsd": 69498984,
-          "borrowedUsd": 14410175
-        },
-        {
-          "date": "2026-09-21",
-          "tvlUsd": 70001884,
-          "borrowedUsd": 14526154
-        },
-        {
-          "date": "2026-09-22",
-          "tvlUsd": 73507201,
-          "borrowedUsd": 15656092
-        },
-        {
-          "date": "2026-09-23",
-          "tvlUsd": 73860056,
-          "borrowedUsd": 14859769
-        },
-        {
-          "date": "2026-09-24",
-          "tvlUsd": 71756687,
-          "borrowedUsd": 14673137
-        },
-        {
-          "date": "2026-09-25",
-          "tvlUsd": 71670416,
-          "borrowedUsd": 14572515
-        },
-        {
-          "date": "2026-09-26",
-          "tvlUsd": 71744048,
-          "borrowedUsd": 14624515
-        },
-        {
-          "date": "2026-09-27",
-          "tvlUsd": 72432169,
-          "borrowedUsd": 14736921
-        },
-        {
-          "date": "2026-09-28",
-          "tvlUsd": 72621737,
-          "borrowedUsd": 14750340
-        },
-        {
-          "date": "2026-09-29",
-          "tvlUsd": 71632557,
-          "borrowedUsd": 14532117
-        },
-        {
-          "date": "2026-09-30",
-          "tvlUsd": 71340061,
-          "borrowedUsd": 14605110
-        },
-        {
-          "date": "2026-10-01",
-          "tvlUsd": 72021860,
-          "borrowedUsd": 14754764
-        },
-        {
-          "date": "2026-10-02",
-          "tvlUsd": 72911784,
-          "borrowedUsd": 14813215
-        },
-        {
-          "date": "2026-10-03",
-          "tvlUsd": 74858601,
-          "borrowedUsd": 14817512
-        },
-        {
-          "date": "2026-10-04",
-          "tvlUsd": 74953511,
-          "borrowedUsd": 14948043
-        },
-        {
-          "date": "2026-10-05",
-          "tvlUsd": 76130747,
-          "borrowedUsd": 15142905
-        },
-        {
-          "date": "2026-10-06",
-          "tvlUsd": 78538861,
-          "borrowedUsd": 15850692
-        },
-        {
-          "date": "2026-10-07",
-          "tvlUsd": 78062159,
-          "borrowedUsd": 16008332
-        },
-        {
-          "date": "2026-10-08",
-          "tvlUsd": 76432094,
-          "borrowedUsd": 42961003
-        },
-        {
-          "date": "2026-10-09",
-          "tvlUsd": 75539523,
-          "borrowedUsd": 42559868
-        },
-        {
-          "date": "2026-10-10",
-          "tvlUsd": 76258341,
-          "borrowedUsd": 42824213
-        },
-        {
-          "date": "2026-10-11",
-          "tvlUsd": 76707483,
-          "borrowedUsd": 42917151
-        },
-        {
-          "date": "2026-10-12",
-          "tvlUsd": 76950207,
-          "borrowedUsd": 42926717
-        }
-      ],
-      "liquidityScoreHistory": [
-        {
-          "date": "2026-07-11",
-          "score": 67.3
-        },
-        {
-          "date": "2026-07-12",
-          "score": 66.4
-        },
-        {
-          "date": "2026-07-13",
-          "score": 66.3
-        },
-        {
-          "date": "2026-07-14",
-          "score": 65.2
-        },
-        {
-          "date": "2026-07-15",
-          "score": 66
-        },
-        {
-          "date": "2026-07-16",
-          "score": 67.4
-        },
-        {
-          "date": "2026-07-17",
-          "score": 66.9
-        },
-        {
-          "date": "2026-07-18",
-          "score": 67.3
-        },
-        {
-          "date": "2026-07-19",
-          "score": 68.7
-        },
-        {
-          "date": "2026-07-20",
-          "score": 68.8
-        },
-        {
-          "date": "2026-07-21",
-          "score": 67.8
-        },
-        {
-          "date": "2026-07-22",
-          "score": 69
-        },
-        {
-          "date": "2026-07-23",
-          "score": 68.2
-        },
-        {
-          "date": "2026-07-24",
-          "score": 70.1
-        },
-        {
-          "date": "2026-07-25",
-          "score": 70.5
-        },
-        {
-          "date": "2026-07-26",
-          "score": 74.9
-        },
-        {
-          "date": "2026-07-27",
-          "score": 76.3
-        },
-        {
-          "date": "2026-07-28",
-          "score": 75.8
-        },
-        {
-          "date": "2026-07-29",
-          "score": 75.8
-        },
-        {
-          "date": "2026-07-30",
-          "score": 75.3
-        },
-        {
-          "date": "2026-07-31",
-          "score": 76.3
-        },
-        {
-          "date": "2026-08-01",
-          "score": 74.7
-        },
-        {
-          "date": "2026-08-02",
-          "score": 73.9
-        },
-        {
-          "date": "2026-08-03",
-          "score": 73.1
-        },
-        {
-          "date": "2026-08-04",
-          "score": 73.3
-        },
-        {
-          "date": "2026-08-05",
-          "score": 73.2
-        },
-        {
-          "date": "2026-08-06",
-          "score": 72.9
-        },
-        {
-          "date": "2026-08-07",
-          "score": 72.8
-        },
-        {
-          "date": "2026-08-08",
-          "score": 74.3
-        },
-        {
-          "date": "2026-08-09",
-          "score": 68.8
-        },
-        {
-          "date": "2026-08-10",
-          "score": 68.4
-        },
-        {
-          "date": "2026-08-11",
-          "score": 67.5
-        },
-        {
-          "date": "2026-08-12",
-          "score": 67.1
-        },
-        {
-          "date": "2026-08-13",
-          "score": 67.4
-        },
-        {
-          "date": "2026-08-14",
-          "score": 66.4
-        },
-        {
-          "date": "2026-08-19",
-          "score": 67.2
-        },
-        {
-          "date": "2026-08-20",
-          "score": 69.4
-        },
-        {
-          "date": "2026-08-21",
-          "score": 72.3
-        },
-        {
-          "date": "2026-08-22",
-          "score": 73.5
-        },
-        {
-          "date": "2026-08-23",
-          "score": 74
-        },
-        {
-          "date": "2026-08-24",
-          "score": 75.2
-        },
-        {
-          "date": "2026-08-25",
-          "score": 75.9
-        },
-        {
-          "date": "2026-08-26",
-          "score": 76.2
-        },
-        {
-          "date": "2026-08-27",
-          "score": 77.5
-        },
-        {
-          "date": "2026-08-28",
-          "score": 78.4
-        },
-        {
-          "date": "2026-08-29",
-          "score": 77.2
-        },
-        {
-          "date": "2026-08-30",
-          "score": 76.9
-        },
-        {
-          "date": "2026-08-31",
-          "score": 78.5
-        },
-        {
-          "date": "2026-09-01",
-          "score": 79.4
-        },
-        {
-          "date": "2026-09-02",
-          "score": 76.7
-        },
-        {
-          "date": "2026-09-03",
-          "score": 76.6
-        },
-        {
-          "date": "2026-09-04",
-          "score": 78.2
-        },
-        {
-          "date": "2026-09-05",
-          "score": 76.7
-        },
-        {
-          "date": "2026-09-06",
-          "score": 77.1
-        },
-        {
-          "date": "2026-09-07",
-          "score": 76.4
-        },
-        {
-          "date": "2026-09-08",
-          "score": 74.1
-        },
-        {
-          "date": "2026-09-09",
-          "score": 74.1
-        },
-        {
-          "date": "2026-09-10",
-          "score": 74.6
-        },
-        {
-          "date": "2026-09-11",
-          "score": 73.2
-        },
-        {
-          "date": "2026-09-12",
-          "score": 73.8
-        },
-        {
-          "date": "2026-09-13",
-          "score": 73.7
-        },
-        {
-          "date": "2026-09-14",
-          "score": 73.4
-        },
-        {
-          "date": "2026-09-15",
-          "score": 74.2
-        },
-        {
-          "date": "2026-09-16",
-          "score": 72.2
-        },
-        {
-          "date": "2026-09-17",
-          "score": 72.5
-        },
-        {
-          "date": "2026-09-18",
-          "score": 71.9
-        },
-        {
-          "date": "2026-09-19",
-          "score": 72.4
-        },
-        {
-          "date": "2026-09-20",
-          "score": 70.1
-        },
-        {
-          "date": "2026-09-21",
-          "score": 69.6
-        },
-        {
-          "date": "2026-09-22",
-          "score": 71.5
-        },
-        {
-          "date": "2026-09-23",
-          "score": 71.4
-        },
-        {
-          "date": "2026-09-24",
-          "score": 69.7
-        },
-        {
-          "date": "2026-09-25",
-          "score": 69.2
-        },
-        {
-          "date": "2026-09-26",
-          "score": 68.9
-        },
-        {
-          "date": "2026-09-27",
-          "score": 69.2
-        },
-        {
-          "date": "2026-09-28",
-          "score": 70.6
-        },
-        {
-          "date": "2026-09-29",
-          "score": 69.8
-        },
-        {
-          "date": "2026-09-30",
-          "score": 69.2
-        },
-        {
-          "date": "2026-10-01",
-          "score": 68.6
-        },
-        {
-          "date": "2026-10-02",
-          "score": 72.2
-        },
-        {
-          "date": "2026-10-03",
-          "score": 73
-        },
-        {
-          "date": "2026-10-04",
-          "score": 71.8
-        },
-        {
-          "date": "2026-10-05",
-          "score": 74.5
-        },
-        {
-          "date": "2026-10-06",
-          "score": 75.7
-        },
-        {
-          "date": "2026-10-07",
-          "score": 75.4
-        },
-        {
-          "date": "2026-10-08",
-          "score": 80.2
-        },
-        {
-          "date": "2026-10-09",
-          "score": 79.7
-        },
-        {
-          "date": "2026-10-10",
-          "score": 80
-        },
-        {
-          "date": "2026-10-11",
-          "score": 81.2
-        },
-        {
-          "date": "2026-10-12",
-          "score": 81.2
-        }
-      ],
-      "scoreHistory": [
-        {
-          "date": "2026-09-18",
-          "overall": 68,
-          "liquidity": 72.5,
-          "activity": 16.3,
-          "collateral": 93.9,
-          "transparency": 93.7
-        },
-        {
-          "date": "2026-09-19",
-          "overall": 71,
-          "liquidity": 72.8,
-          "activity": 25.9,
-          "collateral": 94,
-          "transparency": 93.7
-        },
-        {
-          "date": "2026-09-20",
-          "overall": 71,
-          "liquidity": 70,
-          "activity": 32.3,
-          "collateral": 94,
-          "transparency": 93.7
-        },
-        {
-          "date": "2026-09-21",
-          "overall": 73,
-          "liquidity": 71.5,
-          "activity": 36.7,
-          "collateral": 94.1,
-          "transparency": 93.8
-        },
-        {
-          "date": "2026-09-22",
-          "overall": 73,
-          "liquidity": 71.3,
-          "activity": 38.9,
-          "collateral": 93.3,
-          "transparency": 93.8
-        },
-        {
-          "date": "2026-09-23",
-          "overall": 74,
-          "liquidity": 70.4,
-          "activity": 41.6,
-          "collateral": 94.1,
-          "transparency": 93.8
-        },
-        {
-          "date": "2026-09-24",
-          "overall": 73,
-          "liquidity": 69.9,
-          "activity": 40.8,
-          "collateral": 94.2,
-          "transparency": 93.8
-        },
-        {
-          "date": "2026-09-25",
-          "overall": 75,
-          "liquidity": 69.3,
-          "activity": 47.5,
-          "collateral": 94.2,
-          "transparency": 93.8
-        },
-        {
-          "date": "2026-09-26",
-          "overall": 75,
-          "liquidity": 69.2,
-          "activity": 46,
-          "collateral": 94,
-          "transparency": 93.8
-        },
-        {
-          "date": "2026-09-27",
-          "overall": 75,
-          "liquidity": 69.4,
-          "activity": 46.1,
-          "collateral": 94.2,
-          "transparency": 93.8
-        },
-        {
-          "date": "2026-09-28",
-          "overall": 75,
-          "liquidity": 69.9,
-          "activity": 46.8,
-          "collateral": 94.2,
-          "transparency": 93.9
-        },
-        {
-          "date": "2026-09-29",
-          "overall": 73,
-          "liquidity": 69.4,
-          "activity": 39.9,
-          "collateral": 94.3,
-          "transparency": 93.9
-        },
-        {
-          "date": "2026-09-30",
-          "overall": 72,
-          "liquidity": 69.8,
-          "activity": 35.1,
-          "collateral": 93.8,
-          "transparency": 93.9
-        },
-        {
-          "date": "2026-10-01",
-          "overall": 72,
-          "liquidity": 69.2,
-          "activity": 35.8,
-          "collateral": 94.1,
-          "transparency": 93.9
-        },
-        {
-          "date": "2026-10-02",
-          "overall": 73,
-          "liquidity": 73,
-          "activity": 37,
-          "collateral": 94.2,
-          "transparency": 93.9
-        },
-        {
-          "date": "2026-10-03",
-          "overall": 73,
-          "liquidity": 73.1,
-          "activity": 36.7,
-          "collateral": 94.2,
-          "transparency": 93.9
-        },
-        {
-          "date": "2026-10-04",
-          "overall": 72,
-          "liquidity": 71.9,
-          "activity": 33.9,
-          "collateral": 94.2,
-          "transparency": 93.9
-        },
-        {
-          "date": "2026-10-05",
-          "overall": 74,
-          "liquidity": 71.3,
-          "activity": 39.9,
-          "collateral": 94.2,
-          "transparency": 94
-        },
-        {
-          "date": "2026-10-06",
-          "overall": 72,
-          "liquidity": 75.8,
-          "activity": 27.1,
-          "collateral": 94,
-          "transparency": 94
-        },
-        {
-          "date": "2026-10-07",
-          "overall": 67,
-          "liquidity": 74.5,
-          "activity": 29.7,
-          "collateral": 73.9,
-          "transparency": 94
-        },
-        {
-          "date": "2026-10-08",
-          "overall": 68,
-          "liquidity": 79.5,
-          "activity": 28.1,
-          "collateral": 73.9,
-          "transparency": 94
-        },
-        {
-          "date": "2026-10-09",
-          "overall": 68,
-          "liquidity": 80.1,
-          "activity": 26.5,
-          "collateral": 73.8,
-          "transparency": 94
-        },
-        {
-          "date": "2026-10-10",
-          "overall": 68,
-          "liquidity": 80.2,
-          "activity": 25.6,
-          "collateral": 73.6,
-          "transparency": 94
-        },
-        {
-          "date": "2026-10-11",
-          "overall": 70,
-          "liquidity": 81.4,
-          "activity": 34,
-          "collateral": 73.6,
-          "transparency": 94
-        },
-        {
-          "date": "2026-10-12",
-          "overall": 70,
-          "liquidity": 80.9,
-          "activity": 34,
-          "collateral": 73.6,
-          "transparency": 94.1
-        },
-        {
-          "date": "2026-10-13",
-          "overall": 70,
-          "liquidity": 81.2,
-          "activity": 33.5,
-          "collateral": 73.7,
-          "transparency": 94.1
         }
       ],
       "events": []
@@ -4256,7 +4267,7 @@
           "blockHeight": 135591,
           "deployedAt": "2024-01-14T06:46:58.000Z",
           "sourceBytes": 54105,
-          "txTotal": 151373
+          "txTotal": 151386
         },
         {
           "id": "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-usda-aeusdc-v-1-4",
@@ -4265,7 +4276,7 @@
           "blockHeight": 150427,
           "deployedAt": "2024-05-17T20:05:55.000Z",
           "sourceBytes": 51606,
-          "txTotal": 44432
+          "txTotal": 44487
         },
         {
           "id": "SPQC38PW542EQJ5M11CR25P7BS1CA6QT4TBXGB3M.stableswap-aeusdc-susdt-v-1-2",
@@ -4279,29 +4290,29 @@
       ],
       "hasCollateral": false,
       "metrics": {
-        "tvlUsd": 3287873.97901,
+        "tvlUsd": 3174186.0428,
         "borrowedUsd": null,
         "utilization": null,
-        "tvlChange24h": 0.06449299926894239,
-        "tvlChange7d": -0.0012594154926155086,
-        "tvlChange30d": 0.2065393338495327,
-        "tx7d": 377,
-        "uniqueSenders7d": 73,
+        "tvlChange24h": 0.027685015456460935,
+        "tvlChange7d": -0.03579381571193373,
+        "tvlChange30d": 0.16481967923465482,
+        "tx7d": 430,
+        "uniqueSenders7d": 80,
         "activitySampled": false,
         "tokens": {
-          "ABTC": 18201.50111,
-          "BTC": 4486.08259,
-          "STX": 639986.43919,
-          "STSTX": 278335.94417,
-          "USDT": 182.77693,
-          "AEUSDC": 94627.39507,
-          "USDH": 9556.82245,
-          "SBTC": 536489.29786,
-          "USDCX": 1706007.71966
+          "ABTC": 18576.85282,
+          "BTC": 4578.59467,
+          "USDT": 182.80214,
+          "AEUSDC": 92083.55292,
+          "STX": 607295.35256,
+          "STSTX": 273777.86935,
+          "USDH": 9554.89324,
+          "USDCX": 1776761.64667,
+          "SBTC": 391374.47844
         },
         "tvlSource": "DefiLlama",
-        "tvlFetchedAt": "2026-10-13T00:48:45.886Z",
-        "tvlAsOf": "2026-10-13T00:15:59.000Z"
+        "tvlFetchedAt": "2026-10-13T14:21:05.237Z",
+        "tvlAsOf": "2026-10-13T13:10:23.000Z"
       },
       "dataQuality": {
         "excludedTvlPoints": 0,
@@ -4311,7 +4322,7 @@
       },
       "score": {
         "slug": "bitflow",
-        "computedAt": "2026-10-13T00:53:41.720Z",
+        "computedAt": "2026-10-13T14:25:06.273Z",
         "methodologyVersion": "1.0.0",
         "overall": 62,
         "band": "Moderate",
@@ -4320,70 +4331,70 @@
             "key": "liquidity",
             "label": "Liquidity Health",
             "weight": 0.3,
-            "score": 52.5,
+            "score": 51.2,
             "factors": [
               {
                 "key": "depth",
                 "label": "Liquidity depth (TVL)",
-                "value": "$3.3M",
-                "raw": 3287873.97901,
-                "score": 37.9,
+                "value": "$3.2M",
+                "raw": 3174186.0428,
+                "score": 37.5,
                 "weight": 0.5,
-                "explanation": "Thin liquidity ($3.3M) limits exit capacity under stress."
+                "explanation": "Thin liquidity ($3.2M) limits exit capacity under stress."
               },
               {
                 "key": "trend30d",
                 "label": "30-day TVL trend",
-                "value": "+20.7%",
-                "raw": 0.2065393338495327,
-                "score": 90.2,
+                "value": "+16.5%",
+                "raw": 0.16481967923465482,
+                "score": 85.6,
                 "weight": 0.25,
-                "explanation": "TVL grew +20.7% over 30 days, attracting capital."
+                "explanation": "TVL grew +16.5% over 30 days, attracting capital."
               },
               {
                 "key": "stability",
                 "label": "30-day stability (drawdown, volatility)",
-                "value": "dd 22.6% · vol 8.7%/d",
+                "value": "dd 22.6% · vol 8.6%/d",
                 "raw": 0.22602468714897592,
-                "score": 44.1,
+                "score": 44.2,
                 "weight": 0.25,
                 "explanation": "Moderate swings: 23% max drawdown in 30 days."
               }
             ],
-            "explanation": "Thin liquidity ($3.3M) limits exit capacity under stress. TVL grew +20.7% over 30 days, attracting capital. Moderate swings: 23% max drawdown in 30 days."
+            "explanation": "Thin liquidity ($3.2M) limits exit capacity under stress. TVL grew +16.5% over 30 days, attracting capital. Moderate swings: 23% max drawdown in 30 days."
           },
           {
             "key": "activity",
             "label": "Protocol Activity",
             "weight": 0.25,
-            "score": 53.7,
+            "score": 56.9,
             "factors": [
               {
                 "key": "tx7d",
                 "label": "Transactions, 7 days",
-                "value": "377",
-                "raw": 377,
-                "score": 52.6,
+                "value": "430",
+                "raw": 430,
+                "score": 54.5,
                 "weight": 0.4,
-                "explanation": "377 transactions in 7 days: moderate usage."
+                "explanation": "430 transactions in 7 days: moderate usage."
               },
               {
                 "key": "senders7d",
                 "label": "Unique senders, 7 days",
-                "value": "73",
-                "raw": 73,
-                "score": 43.3,
+                "value": "80",
+                "raw": 80,
+                "score": 44.8,
                 "weight": 0.35,
-                "explanation": "73 distinct addresses interacted: a modest user base."
+                "explanation": "80 distinct addresses interacted: a modest user base."
               },
               {
                 "key": "trend7d",
                 "label": "7-day transaction trend vs prior week",
-                "value": "-12.3%",
-                "raw": -0.12325581395348839,
-                "score": 49.7,
+                "value": "+3.1%",
+                "raw": 0.031175059952038398,
+                "score": 62.6,
                 "weight": 0.15,
-                "explanation": "Weekly transactions stable (−12.3%) versus the prior week."
+                "explanation": "Weekly transactions stable (+3.1%) versus the prior week."
               },
               {
                 "key": "success",
@@ -4395,7 +4406,7 @@
                 "explanation": "100% of transactions succeeded."
               }
             ],
-            "explanation": "377 transactions in 7 days: moderate usage. 73 distinct addresses interacted: a modest user base. Weekly transactions stable (−12.3%) versus the prior week."
+            "explanation": "430 transactions in 7 days: moderate usage. 80 distinct addresses interacted: a modest user base. Weekly transactions stable (+3.1%) versus the prior week."
           },
           {
             "key": "collateral",
@@ -4452,7 +4463,7 @@
                 "key": "age",
                 "label": "Oldest tracked contract age",
                 "value": "33 months",
-                "raw": 32.942006340265614,
+                "raw": 32.96051746567321,
                 "score": 100,
                 "weight": 0.15,
                 "explanation": "Contracts have been live for 33 months."
@@ -4847,7 +4858,7 @@
         },
         {
           "date": "2026-10-13",
-          "tvlUsd": 3287873
+          "tvlUsd": 3174186
         }
       ],
       "liquidityScoreHistory": [
@@ -5209,7 +5220,7 @@
         },
         {
           "date": "2026-10-13",
-          "score": 52.5
+          "score": 51.2
         }
       ],
       "scoreHistory": [
@@ -5416,8 +5427,8 @@
         {
           "date": "2026-10-13",
           "overall": 62,
-          "liquidity": 52.5,
-          "activity": 53.7,
+          "liquidity": 51.2,
+          "activity": 56.9,
           "collateral": null,
           "transparency": 85
         }
@@ -5477,127 +5488,126 @@
         {
           "id": "SP26NGV9AFZBX7XBDBS2C7EC7FCPSAV9PKREQNMVS.liquidity-provider-v1",
           "role": "Liquidity provider (aeUSDC market)",
-          "found": false
+          "found": true,
+          "blockHeight": 2853789,
+          "deployedAt": "2025-08-18T07:35:33.000Z",
+          "sourceBytes": 3389,
+          "txTotal": 371
         }
       ],
       "hasCollateral": true,
       "metrics": {
-        "tvlUsd": 6983508.42032,
+        "tvlUsd": 7034592.11942,
         "borrowedUsd": null,
         "utilization": null,
-        "tvlChange24h": -0.0073705620705001905,
-        "tvlChange7d": -0.01684428438288564,
-        "tvlChange30d": 0.008354367990638793,
-        "tx7d": 0,
-        "uniqueSenders7d": 0,
-        "activitySampled": true,
+        "tvlChange24h": -0.005408977426211085,
+        "tvlChange7d": -0.007269702228558202,
+        "tvlChange30d": 0.01992989252490859,
+        "tx7d": 41,
+        "uniqueSenders7d": 4,
+        "activitySampled": false,
         "tokens": {
-          "AEUSDC": 45090.0773,
-          "SBTC": 3164107.28195,
-          "USDCX": 3774311.06107
+          "AEUSDC": 45093.91188,
+          "SBTC": 3214706.29003,
+          "USDCX": 3774791.91751
         },
         "tvlSource": "DefiLlama",
-        "tvlFetchedAt": "2026-10-13T00:48:09.125Z",
-        "tvlAsOf": "2026-10-12T23:38:35.000Z"
+        "tvlFetchedAt": "2026-10-13T14:20:47.884Z",
+        "tvlAsOf": "2026-10-13T13:22:47.000Z"
       },
       "dataQuality": {
         "excludedTvlPoints": 0,
         "note": null,
-        "activitySampled": true,
-        "warnings": [
-          "contract not found: SP26NGV9AFZBX7XBDBS2C7EC7FCPSAV9PKREQNMVS.liquidity-provider-v1",
-          "activity: 429 Too Many Requests for https://api.hiro.so/extended/v1/address/SPSX722NK9V3A8D3CVQT0CDY4EBQ3E9FSDDE61FT.borrower-v1/transactions?limit=50&offset=0"
-        ]
+        "activitySampled": false,
+        "warnings": []
       },
       "score": {
         "slug": "granite",
-        "computedAt": "2026-10-13T00:53:41.720Z",
+        "computedAt": "2026-10-13T14:25:06.273Z",
         "methodologyVersion": "1.0.0",
-        "overall": 53,
+        "overall": 56,
         "band": "Elevated",
         "components": [
           {
             "key": "liquidity",
             "label": "Liquidity Health",
             "weight": 0.3,
-            "score": 64,
+            "score": 64.4,
             "factors": [
               {
                 "key": "depth",
                 "label": "Liquidity depth (TVL)",
                 "value": "$7.0M",
-                "raw": 6983508.42032,
-                "score": 46.1,
+                "raw": 7034592.11942,
+                "score": 46.2,
                 "weight": 0.5,
                 "explanation": "Mid-sized liquidity ($7.0M): adequate for normal flows, thinner under stress."
               },
               {
                 "key": "trend30d",
                 "label": "30-day TVL trend",
-                "value": "+0.8%",
-                "raw": 0.008354367990638793,
-                "score": 66,
+                "value": "+2.0%",
+                "raw": 0.01992989252490859,
+                "score": 67.5,
                 "weight": 0.25,
-                "explanation": "TVL was broadly flat over 30 days (+0.8%)."
+                "explanation": "TVL was broadly flat over 30 days (+2.0%)."
               },
               {
                 "key": "stability",
                 "label": "30-day stability (drawdown, volatility)",
                 "value": "dd 3.5% · vol 0.9%/d",
-                "raw": 0.03468054922584468,
+                "raw": 0.03464557742928544,
                 "score": 97.8,
                 "weight": 0.25,
                 "explanation": "Capital has been stable (max drawdown 3%)."
               }
             ],
-            "explanation": "Mid-sized liquidity ($7.0M): adequate for normal flows, thinner under stress. TVL was broadly flat over 30 days (+0.8%). Capital has been stable (max drawdown 3%)."
+            "explanation": "Mid-sized liquidity ($7.0M): adequate for normal flows, thinner under stress. TVL was broadly flat over 30 days (+2.0%). Capital has been stable (max drawdown 3%)."
           },
           {
             "key": "activity",
             "label": "Protocol Activity",
             "weight": 0.25,
-            "score": 11.8,
+            "score": 17.9,
             "factors": [
               {
                 "key": "tx7d",
                 "label": "Transactions, 7 days",
-                "value": "0",
-                "raw": 0,
-                "score": 0,
+                "value": "41",
+                "raw": 41,
+                "score": 20.8,
                 "weight": 0.4,
-                "note": "Sampled: 0 of 7 days covered by the pagination cap.",
-                "explanation": "Only 0 transactions in 7 days on the tracked entry points: low direct usage."
+                "explanation": "Only 41 transactions in 7 days on the tracked entry points: low direct usage."
               },
               {
                 "key": "senders7d",
                 "label": "Unique senders, 7 days",
-                "value": "0",
-                "raw": 0,
+                "value": "4",
+                "raw": 4,
                 "score": 0,
                 "weight": 0.35,
-                "explanation": "0 distinct addresses interacted: activity is concentrated in few users."
+                "explanation": "4 distinct addresses interacted: activity is concentrated in few users."
               },
               {
                 "key": "trend7d",
                 "label": "7-day transaction trend vs prior week",
-                "value": "n/a",
-                "raw": null,
-                "score": null,
+                "value": "-65.0%",
+                "raw": -0.6495726495726496,
+                "score": 10,
                 "weight": 0.15,
-                "note": "Prior week not covered in this run; factor excluded.",
-                "explanation": "Prior week not covered; trend excluded from the score."
+                "explanation": "Weekly transactions down −65.0% versus the prior week."
               },
               {
                 "key": "success",
                 "label": "Transaction success rate",
-                "value": "100.0%",
-                "raw": 1,
-                "score": 100,
+                "value": "95.1%",
+                "raw": 0.9512195121951219,
+                "score": 80.6,
                 "weight": 0.1,
-                "explanation": "100% of transactions succeeded."
+                "explanation": "95% of transactions succeeded."
               }
             ],
-            "explanation": "Only 0 transactions in 7 days on the tracked entry points: low direct usage. 0 distinct addresses interacted: activity is concentrated in few users. Prior week not covered; trend excluded from the score."
+            "explanation": "Only 41 transactions in 7 days on the tracked entry points: low direct usage. 4 distinct addresses interacted: activity is concentrated in few users. Weekly transactions down −65.0% versus the prior week."
           },
           {
             "key": "collateral",
@@ -5612,16 +5622,16 @@
             "key": "transparency",
             "label": "Security & Transparency",
             "weight": 0.2,
-            "score": 86.5,
+            "score": 90.6,
             "factors": [
               {
                 "key": "source",
                 "label": "Contract source verifiable on-chain",
-                "value": "4/5 contracts",
-                "raw": 0.8,
-                "score": 80,
+                "value": "5/5 contracts",
+                "raw": 1,
+                "score": 100,
                 "weight": 0.2,
-                "explanation": "80% of tracked contracts were verified on-chain."
+                "explanation": "All tracked contracts are found on-chain with readable Clarity source."
               },
               {
                 "key": "audits",
@@ -5654,8 +5664,8 @@
                 "key": "age",
                 "label": "Oldest tracked contract age",
                 "value": "14 months",
-                "raw": 13.821318480191756,
-                "score": 70.3,
+                "raw": 13.839829605599357,
+                "score": 70.4,
                 "weight": 0.15,
                 "explanation": "Contracts have 14 months of production history."
               },
@@ -5689,12 +5699,8 @@
           "transparency": 26.669999999999998
         }
       },
-      "delta7d": -11,
+      "delta7d": -8,
       "tvlHistory": [
-        {
-          "date": "2026-07-15",
-          "tvlUsd": 13146500
-        },
         {
           "date": "2026-07-16",
           "tvlUsd": 13124966
@@ -6049,14 +6055,14 @@
         },
         {
           "date": "2026-10-12",
-          "tvlUsd": 6983508
+          "tvlUsd": 7072849
+        },
+        {
+          "date": "2026-10-13",
+          "tvlUsd": 7034592
         }
       ],
       "liquidityScoreHistory": [
-        {
-          "date": "2026-07-15",
-          "score": 65.4
-        },
         {
           "date": "2026-07-16",
           "score": 65
@@ -6411,7 +6417,11 @@
         },
         {
           "date": "2026-10-12",
-          "score": 64
+          "score": 64.5
+        },
+        {
+          "date": "2026-10-13",
+          "score": 64.4
         }
       ],
       "scoreHistory": [
@@ -6617,40 +6627,51 @@
         },
         {
           "date": "2026-10-13",
-          "overall": 53,
-          "liquidity": 64,
-          "activity": 11.8,
+          "overall": 56,
+          "liquidity": 64.4,
+          "activity": 17.9,
           "collateral": null,
-          "transparency": 86.5
+          "transparency": 90.6
         }
       ],
       "events": [
         {
-          "id": "e1ebc97661559183",
+          "id": "dbe6a9ed3d00735f",
           "slug": "granite",
-          "ts": "2026-10-13T00:53:41.720Z",
-          "kind": "score",
+          "ts": "2026-10-13T14:25:06.273Z",
+          "kind": "activity",
           "severity": "watch",
-          "message": "Granite overall score down 5 points to 53",
-          "delta": -5,
+          "message": "Granite weekly transactions −65.0% vs prior week",
+          "delta": -0.6495726495726496,
           "impact": "Medium",
-          "reason": "Composite score change"
-        },
-        {
-          "id": "46da01eef173ce80",
-          "slug": "granite",
-          "ts": "2026-10-13T00:53:41.720Z",
-          "kind": "transparency",
-          "severity": "watch",
-          "message": "Granite: 1 registered contract(s) not found on-chain",
-          "delta": 1,
-          "impact": "Medium",
-          "reason": "Registry drift detected"
+          "reason": "Activity change detected"
         }
       ]
     }
   ],
   "events": [
+    {
+      "id": "dbe6a9ed3d00735f",
+      "slug": "granite",
+      "ts": "2026-10-13T14:25:06.273Z",
+      "kind": "activity",
+      "severity": "watch",
+      "message": "Granite weekly transactions −65.0% vs prior week",
+      "delta": -0.6495726495726496,
+      "impact": "Medium",
+      "reason": "Activity change detected"
+    },
+    {
+      "id": "c7e48be49511113d",
+      "slug": "stackingdao",
+      "ts": "2026-10-13T14:25:06.273Z",
+      "kind": "activity",
+      "severity": "watch",
+      "message": "StackingDAO weekly transactions −44.6% vs prior week",
+      "delta": -0.44557823129251706,
+      "impact": "Medium",
+      "reason": "Activity change detected"
+    },
     {
       "id": "46da01eef173ce80",
       "slug": "granite",
@@ -7728,53 +7749,31 @@
       "delta": -22,
       "impact": "High",
       "reason": "Composite score change"
-    },
-    {
-      "id": "130706fc89635374",
-      "slug": "bitflow",
-      "ts": "2026-09-25T17:18:52.066Z",
-      "kind": "activity",
-      "severity": "watch",
-      "message": "Bitflow weekly transactions +46.3% vs prior week",
-      "delta": 0.46341463414634143,
-      "impact": "Medium",
-      "reason": "Activity change detected"
-    },
-    {
-      "id": "661dac4baf274c52",
-      "slug": "bitflow",
-      "ts": "2026-09-25T12:00:16.314Z",
-      "kind": "score",
-      "severity": "watch",
-      "message": "Bitflow overall score up 3 points to 63",
-      "delta": 3,
-      "impact": "Medium",
-      "reason": "Composite score change"
     }
   ],
   "staking": {
     "source": "live",
-    "fetchedAt": "2026-10-13T00:53:41.720Z",
+    "fetchedAt": "2026-10-13T14:25:06.273Z",
     "stackedStx": 493445956.980927,
-    "stackedUsd": 200795496.0444637,
-    "stxPriceUsd": 0.406925,
-    "totalStxSupply": 1874142972.045759,
-    "pctSupplyStacked": 0.26329152276055867,
+    "stackedUsd": 202695756.42479727,
+    "stxPriceUsd": 0.410776,
+    "totalStxSupply": 1874307907.504109,
+    "pctSupplyStacked": 0.26326835361753137,
     "currentCycle": 145,
     "cycleLengthBlocks": 2100,
-    "blocksUntilNextCycle": 1484,
-    "nextCycleEta": "2026-10-23T08:13:41.720Z",
+    "blocksUntilNextCycle": 1395,
+    "nextCycleEta": "2026-10-23T06:55:06.273Z",
     "minThresholdStx": 50000,
     "totalSigners": 34,
-    "btcRewardPerBlockAvg": 0.0051163,
-    "btcYieldPerCycleEst": 10.2326,
+    "btcRewardPerBlockAvg": 0.005279,
+    "btcYieldPerCycleEst": 10.558,
     "targetBtcApy": 0.03,
     "cumulativeBtcDistributed": 4224,
     "btcBonded": null,
     "bondPeriodBlocks": 25200,
     "programStatus": "PoX-5 bootstrap (Bitcoin Staking whitepaper, 2026-05-13)",
-    "liquidStackedUsd": 32359867.89006,
-    "stackingTvlUsd": 200795496.0444637,
+    "liquidStackedUsd": 32514721.49243,
+    "stackingTvlUsd": 202695756.42479727,
     "history": [
       {
         "cycle": 130,
