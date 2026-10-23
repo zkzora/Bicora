@@ -1,7 +1,7 @@
 [
   {
     "slug": "zest",
-    "computedAt": "2026-10-22T21:47:46.578Z",
+    "computedAt": "2026-10-23T05:03:40.320Z",
     "methodologyVersion": "1.0.0",
     "overall": 62,
     "band": "Moderate",
@@ -10,44 +10,44 @@
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 50.7,
+        "score": 49.8,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
-            "value": "$52.4M",
-            "raw": 52360845.26873,
-            "score": 68,
+            "value": "$51.7M",
+            "raw": 51697527.56161,
+            "score": 67.8,
             "weight": 0.5,
-            "explanation": "Mid-sized liquidity ($52.4M): adequate for normal flows, thinner under stress."
+            "explanation": "Mid-sized liquidity ($51.7M): adequate for normal flows, thinner under stress."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "-28.8%",
-            "raw": -0.287677335602399,
-            "score": 21.2,
+            "value": "-30.0%",
+            "raw": -0.3000610836037005,
+            "score": 20,
             "weight": 0.25,
-            "explanation": "TVL declined −28.8% over 30 days, signalling capital leaving."
+            "explanation": "TVL declined −30.0% over 30 days, signalling capital leaving."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 33.3% · vol 4.6%/d",
-            "raw": 0.33331290607843167,
-            "score": 45.5,
+            "value": "dd 34.2% · vol 5.0%/d",
+            "raw": 0.3417586358936374,
+            "score": 43.4,
             "weight": 0.25,
-            "explanation": "A 33% drawdown inside 30 days shows unstable capital."
+            "explanation": "A 34% drawdown inside 30 days shows unstable capital."
           }
         ],
         "note": "1 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
-        "explanation": "Mid-sized liquidity ($52.4M): adequate for normal flows, thinner under stress. TVL declined −28.8% over 30 days, signalling capital leaving. A 33% drawdown inside 30 days shows unstable capital."
+        "explanation": "Mid-sized liquidity ($51.7M): adequate for normal flows, thinner under stress. TVL declined −30.0% over 30 days, signalling capital leaving. A 34% drawdown inside 30 days shows unstable capital."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 22.7,
+        "score": 23.3,
         "factors": [
           {
             "key": "tx7d",
@@ -70,11 +70,11 @@
           {
             "key": "trend7d",
             "label": "7-day transaction trend vs prior week",
-            "value": "-31.8%",
-            "raw": -0.31818181818181823,
-            "score": 33.5,
+            "value": "-26.8%",
+            "raw": -0.2682926829268293,
+            "score": 37.6,
             "weight": 0.15,
-            "explanation": "Weekly transactions down −31.8% versus the prior week."
+            "explanation": "Weekly transactions stable (−26.8%) versus the prior week."
           },
           {
             "key": "success",
@@ -86,19 +86,19 @@
             "explanation": "45% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
           }
         ],
-        "explanation": "Only 60 transactions in 7 days on the tracked entry points: low direct usage. 17 distinct addresses interacted: activity is concentrated in few users. Weekly transactions down −31.8% versus the prior week. 45% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
+        "explanation": "Only 60 transactions in 7 days on the tracked entry points: low direct usage. 17 distinct addresses interacted: activity is concentrated in few users. Weekly transactions stable (−26.8%) versus the prior week. 45% of transactions failed, which can indicate liquidation bots, front-running or UX issues."
       },
       {
         "key": "collateral",
         "label": "Collateral Health",
         "weight": 0.25,
-        "score": 90.6,
+        "score": 90.5,
         "factors": [
           {
             "key": "utilization",
             "label": "Utilisation (borrowed / supplied)",
-            "value": "38.7%",
-            "raw": 0.3870976901565739,
+            "value": "38.8%",
+            "raw": 0.3877404343611814,
             "score": 100,
             "weight": 0.7,
             "explanation": "Utilisation of 39% leaves ample liquidity available for withdrawals."
@@ -106,9 +106,9 @@
           {
             "key": "utilTrend7d",
             "label": "Utilisation change, 7 days",
-            "value": "+2.8 pts",
-            "raw": 0.028111461477208888,
-            "score": 68.8,
+            "value": "+2.9 pts",
+            "raw": 0.02944821365752237,
+            "score": 68.2,
             "weight": 0.3,
             "explanation": "Utilisation is unchanged over 7 days."
           }
@@ -161,7 +161,7 @@
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "22 months",
-            "raw": 22.170768007114784,
+            "raw": 22.180712334829902,
             "score": 94.7,
             "weight": 0.15,
             "explanation": "Contracts have 22 months of production history."
@@ -198,92 +198,92 @@
   },
   {
     "slug": "stackingdao",
-    "computedAt": "2026-10-22T21:47:46.578Z",
+    "computedAt": "2026-10-23T05:03:40.320Z",
     "methodologyVersion": "1.0.0",
-    "overall": 77,
+    "overall": 76,
     "band": "Low",
     "components": [
       {
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 76,
+        "score": 73.9,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
-            "value": "$78.6M",
-            "raw": 78587457.00814,
-            "score": 72.4,
+            "value": "$78.0M",
+            "raw": 77999158.40183,
+            "score": 72.3,
             "weight": 0.5,
-            "explanation": "Deep liquidity: $78.6M locked places it among the largest pools on Stacks."
+            "explanation": "Deep liquidity: $78.0M locked places it among the largest pools on Stacks."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "+95.4%",
-            "raw": 0.9535574965351136,
+            "value": "+99.6%",
+            "raw": 0.9961485791857397,
             "score": 100,
             "weight": 0.25,
-            "explanation": "TVL grew +95.4% over 30 days, attracting capital."
+            "explanation": "TVL grew +99.6% over 30 days, attracting capital."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 10.2% · vol 9.6%/d",
-            "raw": 0.10180669902674938,
-            "score": 59.2,
+            "value": "dd 15.2% · vol 10.3%/d",
+            "raw": 0.1515150770164481,
+            "score": 50.8,
             "weight": 0.25,
-            "explanation": "Moderate swings: 10% max drawdown in 30 days."
+            "explanation": "Moderate swings: 15% max drawdown in 30 days."
           }
         ],
         "note": "7 daily point(s) below 5% of the 90-day median were excluded as adapter outliers.",
-        "explanation": "Deep liquidity: $78.6M locked places it among the largest pools on Stacks. TVL grew +95.4% over 30 days, attracting capital. Moderate swings: 10% max drawdown in 30 days."
+        "explanation": "Deep liquidity: $78.0M locked places it among the largest pools on Stacks. TVL grew +99.6% over 30 days, attracting capital. Moderate swings: 15% max drawdown in 30 days."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 62.5,
+        "score": 63.6,
         "factors": [
           {
             "key": "tx7d",
             "label": "Transactions, 7 days",
-            "value": "285",
-            "raw": 285,
-            "score": 48.5,
+            "value": "306",
+            "raw": 306,
+            "score": 49.6,
             "weight": 0.4,
-            "explanation": "285 transactions in 7 days: moderate usage."
+            "explanation": "306 transactions in 7 days: moderate usage."
           },
           {
             "key": "senders7d",
             "label": "Unique senders, 7 days",
-            "value": "193",
-            "raw": 193,
-            "score": 58.8,
+            "value": "205",
+            "raw": 205,
+            "score": 59.8,
             "weight": 0.35,
-            "explanation": "193 distinct addresses interacted: a modest user base."
+            "explanation": "205 distinct addresses interacted: a modest user base."
           },
           {
             "key": "trend7d",
             "label": "7-day transaction trend vs prior week",
-            "value": "+85.1%",
-            "raw": 0.8506493506493507,
-            "score": 96.8,
+            "value": "+92.5%",
+            "raw": 0.9245283018867925,
+            "score": 98.4,
             "weight": 0.15,
-            "explanation": "Weekly transactions up +85.1% versus the prior week."
+            "explanation": "Weekly transactions up +92.5% versus the prior week."
           },
           {
             "key": "success",
             "label": "Transaction success rate",
             "value": "95.1%",
-            "raw": 0.9508771929824561,
-            "score": 80.4,
+            "raw": 0.9509803921568627,
+            "score": 80.5,
             "weight": 0.1,
             "explanation": "95% of transactions succeeded."
           }
         ],
-        "explanation": "285 transactions in 7 days: moderate usage. 193 distinct addresses interacted: a modest user base. Weekly transactions up +85.1% versus the prior week."
+        "explanation": "306 transactions in 7 days: moderate usage. 205 distinct addresses interacted: a modest user base. Weekly transactions up +92.5% versus the prior week."
       },
       {
         "key": "collateral",
@@ -340,7 +340,7 @@
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "34 months",
-            "raw": 34.235396132571054,
+            "raw": 34.24534046028617,
             "score": 100,
             "weight": 0.15,
             "explanation": "Contracts have been live for 34 months."
@@ -377,22 +377,22 @@
   },
   {
     "slug": "granite",
-    "computedAt": "2026-10-22T21:47:46.578Z",
+    "computedAt": "2026-10-23T05:03:40.320Z",
     "methodologyVersion": "1.0.0",
-    "overall": 51,
+    "overall": 53,
     "band": "Elevated",
     "components": [
       {
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 60.7,
+        "score": 62,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
             "value": "$6.9M",
-            "raw": 6855295.88589,
+            "raw": 6877268.74933,
             "score": 45.9,
             "weight": 0.5,
             "explanation": "Mid-sized liquidity ($6.9M): adequate for normal flows, thinner under stress."
@@ -400,58 +400,56 @@
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "-5.2%",
-            "raw": -0.05240311037638091,
-            "score": 55.8,
+            "value": "-3.6%",
+            "raw": -0.035734781577295094,
+            "score": 58.7,
             "weight": 0.25,
-            "explanation": "TVL was broadly flat over 30 days (−5.2%)."
+            "explanation": "TVL was broadly flat over 30 days (−3.6%)."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 5.2% · vol 0.7%/d",
-            "raw": 0.0524032328315779,
-            "score": 95.1,
+            "value": "dd 3.7% · vol 0.7%/d",
+            "raw": 0.03732571485617068,
+            "score": 97.4,
             "weight": 0.25,
-            "explanation": "Capital has been stable (max drawdown 5%)."
+            "explanation": "Capital has been stable (max drawdown 4%)."
           }
         ],
-        "explanation": "Mid-sized liquidity ($6.9M): adequate for normal flows, thinner under stress. TVL was broadly flat over 30 days (−5.2%). Capital has been stable (max drawdown 5%)."
+        "explanation": "Mid-sized liquidity ($6.9M): adequate for normal flows, thinner under stress. TVL was broadly flat over 30 days (−3.6%). Capital has been stable (max drawdown 4%)."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 11.8,
+        "score": 12.1,
         "factors": [
           {
             "key": "tx7d",
             "label": "Transactions, 7 days",
-            "value": "0",
-            "raw": 0,
-            "score": 0,
+            "value": "10",
+            "raw": 10,
+            "score": 1.4,
             "weight": 0.4,
-            "note": "Sampled: 0 of 7 days covered by the pagination cap.",
-            "explanation": "Only 0 transactions in 7 days on the tracked entry points: low direct usage."
+            "explanation": "Only 10 transactions in 7 days on the tracked entry points: low direct usage."
           },
           {
             "key": "senders7d",
             "label": "Unique senders, 7 days",
-            "value": "0",
-            "raw": 0,
+            "value": "4",
+            "raw": 4,
             "score": 0,
             "weight": 0.35,
-            "explanation": "0 distinct addresses interacted: activity is concentrated in few users."
+            "explanation": "4 distinct addresses interacted: activity is concentrated in few users."
           },
           {
             "key": "trend7d",
             "label": "7-day transaction trend vs prior week",
-            "value": "n/a",
-            "raw": null,
-            "score": null,
+            "value": "-67.7%",
+            "raw": -0.6774193548387097,
+            "score": 10,
             "weight": 0.15,
-            "note": "Prior week not covered in this run; factor excluded.",
-            "explanation": "Prior week not covered; trend excluded from the score."
+            "explanation": "Weekly transactions down −67.7% versus the prior week."
           },
           {
             "key": "success",
@@ -463,7 +461,7 @@
             "explanation": "100% of transactions succeeded."
           }
         ],
-        "explanation": "Only 0 transactions in 7 days on the tracked entry points: low direct usage. 0 distinct addresses interacted: activity is concentrated in few users. Prior week not covered; trend excluded from the score."
+        "explanation": "Only 10 transactions in 7 days on the tracked entry points: low direct usage. 4 distinct addresses interacted: activity is concentrated in few users. Weekly transactions down −67.7% versus the prior week."
       },
       {
         "key": "collateral",
@@ -478,16 +476,16 @@
         "key": "transparency",
         "label": "Security & Transparency",
         "weight": 0.2,
-        "score": 86.7,
+        "score": 90.7,
         "factors": [
           {
             "key": "source",
             "label": "Contract source verifiable on-chain",
-            "value": "4/5 contracts",
-            "raw": 0.8,
-            "score": 80,
+            "value": "5/5 contracts",
+            "raw": 1,
+            "score": 100,
             "weight": 0.2,
-            "explanation": "80% of tracked contracts were verified on-chain."
+            "explanation": "All tracked contracts are found on-chain with readable Clarity source."
           },
           {
             "key": "audits",
@@ -520,7 +518,7 @@
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "14 months",
-            "raw": 14.145592118070764,
+            "raw": 14.155536445405655,
             "score": 71.3,
             "weight": 0.15,
             "explanation": "Contracts have 14 months of production history."
@@ -557,7 +555,7 @@
   },
   {
     "slug": "bitflow",
-    "computedAt": "2026-10-22T21:47:46.578Z",
+    "computedAt": "2026-10-23T05:03:40.320Z",
     "methodologyVersion": "1.0.0",
     "overall": 60,
     "band": "Moderate",
@@ -566,82 +564,82 @@
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 38.9,
+        "score": 38.4,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
-            "value": "$2.7M",
-            "raw": 2668008.25265,
-            "score": 35.7,
+            "value": "$2.8M",
+            "raw": 2781129.37544,
+            "score": 36.1,
             "weight": 0.5,
-            "explanation": "Thin liquidity ($2.7M) limits exit capacity under stress."
+            "explanation": "Thin liquidity ($2.8M) limits exit capacity under stress."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "-15.5%",
-            "raw": -0.15470089948987556,
-            "score": 37.9,
+            "value": "-20.2%",
+            "raw": -0.20186430331533758,
+            "score": 29.8,
             "weight": 0.25,
-            "explanation": "TVL declined −15.5% over 30 days, signalling capital leaving."
+            "explanation": "TVL declined −20.2% over 30 days, signalling capital leaving."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 24.8% · vol 6.4%/d",
-            "raw": 0.24769572259342304,
-            "score": 46.4,
+            "value": "dd 22.0% · vol 5.9%/d",
+            "raw": 0.22018256012776727,
+            "score": 51.4,
             "weight": 0.25,
-            "explanation": "Moderate swings: 25% max drawdown in 30 days."
+            "explanation": "Moderate swings: 22% max drawdown in 30 days."
           }
         ],
-        "explanation": "Thin liquidity ($2.7M) limits exit capacity under stress. TVL declined −15.5% over 30 days, signalling capital leaving. Moderate swings: 25% max drawdown in 30 days."
+        "explanation": "Thin liquidity ($2.8M) limits exit capacity under stress. TVL declined −20.2% over 30 days, signalling capital leaving. Moderate swings: 22% max drawdown in 30 days."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 66,
+        "score": 66.8,
         "factors": [
           {
             "key": "tx7d",
             "label": "Transactions, 7 days",
-            "value": "666",
-            "raw": 666,
-            "score": 60.8,
+            "value": "715",
+            "raw": 715,
+            "score": 61.8,
             "weight": 0.4,
-            "explanation": "666 transactions in 7 days: moderate usage."
+            "explanation": "715 transactions in 7 days: moderate usage."
           },
           {
             "key": "senders7d",
             "label": "Unique senders, 7 days",
-            "value": "137",
-            "raw": 137,
-            "score": 53.3,
+            "value": "140",
+            "raw": 140,
+            "score": 53.7,
             "weight": 0.35,
-            "explanation": "137 distinct addresses interacted: a modest user base."
+            "explanation": "140 distinct addresses interacted: a modest user base."
           },
           {
             "key": "trend7d",
             "label": "7-day transaction trend vs prior week",
-            "value": "+39.9%",
-            "raw": 0.39915966386554613,
-            "score": 87.1,
+            "value": "+46.8%",
+            "raw": 0.4681724845995894,
+            "score": 88.6,
             "weight": 0.15,
-            "explanation": "Weekly transactions up +39.9% versus the prior week."
+            "explanation": "Weekly transactions up +46.8% versus the prior week."
           },
           {
             "key": "success",
             "label": "Transaction success rate",
-            "value": "99.5%",
-            "raw": 0.9954954954954955,
+            "value": "99.6%",
+            "raw": 0.9958041958041958,
             "score": 100,
             "weight": 0.1,
             "explanation": "100% of transactions succeeded."
           }
         ],
-        "explanation": "666 transactions in 7 days: moderate usage. 137 distinct addresses interacted: a modest user base. Weekly transactions up +39.9% versus the prior week."
+        "explanation": "715 transactions in 7 days: moderate usage. 140 distinct addresses interacted: a modest user base. Weekly transactions up +46.8% versus the prior week."
       },
       {
         "key": "collateral",
@@ -698,7 +696,7 @@
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "33 months",
-            "raw": 33.26627997776439,
+            "raw": 33.27622430547951,
             "score": 100,
             "weight": 0.15,
             "explanation": "Contracts have been live for 33 months."
@@ -735,70 +733,70 @@
   },
   {
     "slug": "alex",
-    "computedAt": "2026-10-22T21:47:46.578Z",
+    "computedAt": "2026-10-23T05:03:40.320Z",
     "methodologyVersion": "1.0.0",
-    "overall": 65,
+    "overall": 64,
     "band": "Moderate",
     "components": [
       {
         "key": "liquidity",
         "label": "Liquidity Health",
         "weight": 0.3,
-        "score": 43.2,
+        "score": 41.7,
         "factors": [
           {
             "key": "depth",
             "label": "Liquidity depth (TVL)",
             "value": "$1.2M",
-            "raw": 1234172.56488,
-            "score": 27.3,
+            "raw": 1222650.11094,
+            "score": 27.2,
             "weight": 0.5,
             "explanation": "Thin liquidity ($1.2M) limits exit capacity under stress."
           },
           {
             "key": "trend30d",
             "label": "30-day TVL trend",
-            "value": "-7.1%",
-            "raw": -0.07119592400826026,
-            "score": 52.5,
+            "value": "-9.2%",
+            "raw": -0.09241050600531493,
+            "score": 48.8,
             "weight": 0.25,
-            "explanation": "TVL was broadly flat over 30 days (−7.1%)."
+            "explanation": "TVL was broadly flat over 30 days (−9.2%)."
           },
           {
             "key": "stability",
             "label": "30-day stability (drawdown, volatility)",
-            "value": "dd 17.6% · vol 4.0%/d",
-            "raw": 0.175899556556862,
-            "score": 65.5,
+            "value": "dd 18.4% · vol 4.1%/d",
+            "raw": 0.18359320485657377,
+            "score": 63.7,
             "weight": 0.25,
             "explanation": "Moderate swings: 18% max drawdown in 30 days."
           }
         ],
-        "explanation": "Thin liquidity ($1.2M) limits exit capacity under stress. TVL was broadly flat over 30 days (−7.1%). Moderate swings: 18% max drawdown in 30 days."
+        "explanation": "Thin liquidity ($1.2M) limits exit capacity under stress. TVL was broadly flat over 30 days (−9.2%). Moderate swings: 18% max drawdown in 30 days."
       },
       {
         "key": "activity",
         "label": "Protocol Activity",
         "weight": 0.25,
-        "score": 73.7,
+        "score": 73.6,
         "factors": [
           {
             "key": "tx7d",
             "label": "Transactions, 7 days",
-            "value": "1,905",
-            "raw": 1905,
-            "score": 76,
+            "value": "1,869",
+            "raw": 1869,
+            "score": 75.7,
             "weight": 0.4,
-            "explanation": "1,905 transactions in 7 days: sustained usage."
+            "explanation": "1,869 transactions in 7 days: sustained usage."
           },
           {
             "key": "senders7d",
             "label": "Unique senders, 7 days",
-            "value": "265",
-            "raw": 265,
-            "score": 63.9,
+            "value": "268",
+            "raw": 268,
+            "score": 64.1,
             "weight": 0.35,
-            "explanation": "265 distinct addresses interacted: a modest user base."
+            "explanation": "268 distinct addresses interacted: a modest user base."
           },
           {
             "key": "trend7d",
@@ -814,13 +812,13 @@
             "key": "success",
             "label": "Transaction success rate",
             "value": "98.7%",
-            "raw": 0.9868766404199475,
-            "score": 98.4,
+            "raw": 0.9871589085072231,
+            "score": 98.6,
             "weight": 0.1,
             "explanation": "99% of transactions succeeded."
           }
         ],
-        "explanation": "1,905 transactions in 7 days: sustained usage. 265 distinct addresses interacted: a modest user base. Prior week not covered; trend excluded from the score."
+        "explanation": "1,869 transactions in 7 days: sustained usage. 268 distinct addresses interacted: a modest user base. Prior week not covered; trend excluded from the score."
       },
       {
         "key": "collateral",
@@ -877,7 +875,7 @@
             "key": "age",
             "label": "Oldest tracked contract age",
             "value": "29 months",
-            "raw": 28.662497340320364,
+            "raw": 28.672441667655253,
             "score": 100,
             "weight": 0.15,
             "explanation": "Contracts have been live for 29 months."
